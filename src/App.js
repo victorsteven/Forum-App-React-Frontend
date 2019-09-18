@@ -6,7 +6,18 @@ class App extends Component {
 
   state = {
     users: [],
-    newUserModal: false
+    newUserModal: false,
+    nickname: '',
+    email: '',
+    Password: '',
+    errors: {
+      required_nickname: '',
+      required_email: '',
+      required_password: '',
+      invalid_email: '',
+      taken_email: '',
+      taken_nickname: ''
+    }
   }
 
   componentDidMount(){
@@ -19,8 +30,49 @@ class App extends Component {
   }
   toggleNewUserModal(){
     this.setState({
-      newUserModal: true
+      newUserModal: !this.state.newUserModal
     })
+  }
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+  }
+
+  async addBook(){
+    console.log("this is the add book")
+    let newBook = {
+      nickname:  this.state.nickname,
+      email:  this.state.email,
+      password:  this.state.password
+    }
+    try {
+    let res = await axios.post('http://localhost:8080/users', newBook)
+    return res
+    } catch(error) {
+      let errorMessages = error.response.data.error
+      let { errors } = this.state
+
+      if(errorMessages["Required_nickname"] !== ""){
+        errors['required_nickname'] = errorMessages["Required_nickname"]
+      }
+      if(errorMessages["Required_email"] !== ""){
+        errors['required_email'] = errorMessages["Required_email"]
+      }
+      if(errorMessages["Required_password"] !== ""){
+        errors['required_password'] = errorMessages["Required_password"]
+      }
+      if(errorMessages["Invalid_email"] !== ""){
+        errors['invalid_email'] = errorMessages["Invalid_email"]
+      }
+      if(errorMessages["Taken_email"] !== ""){
+        errors['taken_email'] = errorMessages["Taken_email"]
+      }
+      if(errorMessages["Taken_nickname"] !== ""){
+        errors['taken_nickname'] = errorMessages["Taken_nickname"]
+      }
+      this.setState({errors: errors});
+    }
   }
 
   render() {
@@ -45,15 +97,49 @@ class App extends Component {
           <ModalBody>
             <FormGroup>
               <Label>Nickname</Label>
-              <Input type="text" placeholder="with a placeholder" />
+              <Input type="text" id="nickname" placeholder="Enter nickname"  onChange={this.handleChange}/>
+              { this.state.errors.required_nickname ? (
+                <small className="color-red">{this.state.errors.required_nickname}</small>
+                ) : (
+                  ""
+                )}
+                { this.state.errors.taken_nickname ? (
+                <small className="color-red">{this.state.errors.taken_nickname}</small>
+                ) : (
+                  ""
+                )}
             </FormGroup>
             <FormGroup>
               <Label>Email</Label>
-              <Input type="email" placeholder="with a placeholder" />
+              <Input type="email" id="email" placeholder="Enter email" onChange={this.handleChange} />
+              { this.state.errors.required_email ? (
+                <small className="color-red">{this.state.errors.required_email}</small>
+                ) : (
+                  ""
+              )}
+              { this.state.errors.invalid_email ? (
+                <small className="color-red">{this.state.errors.invalid_email}</small>
+                ) : (
+                  ""
+              )}
+              { this.state.errors.taken_email ? (
+                <small className="color-red">{this.state.errors.taken_email}</small>
+                ) : (
+                  ""
+              )}
             </FormGroup>
-          </ModalBody>
+            <FormGroup>
+              <Label>Password</Label>
+              <Input type="password" id="password" placeholder="Enter password" onChange={this.handleChange}/>
+              { this.state.errors.required_password ? (
+                <small className="color-red">{this.state.errors.required_password}</small>
+                ) : (
+                  ""
+                )}
+            </FormGroup>
+          </ModalBody> 
           <ModalFooter>
-            <Button color="primary" onClick={this.toggleNewUserModal.bind(this)}>Do Something</Button>{' '}
+            <Button color="primary" onClick={this.addBook.bind(this)}>Add User</Button>{' '}
             <Button color="secondary" onClick={this.toggleNewUserModal.bind(this)}>Cancel</Button>
           </ModalFooter>
         </Modal>
@@ -61,8 +147,8 @@ class App extends Component {
           <thead>
             <tr>
               <th>#</th>
-              <th>Title</th>
-              <th>Ratings</th>
+              <th>Nickname</th>
+              <th>Email</th>
               <th>Actions</th>
             </tr>
           </thead>
