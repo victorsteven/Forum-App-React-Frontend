@@ -1,9 +1,14 @@
 @media all and (min-width: 480px) {
-  .Login {
+  .Auth {
     padding: 60px 0;
   }
 
-  .Login form {
+  .Auth .card-style {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+
+  .Auth .login-style {
     margin: 0 auto;
     max-width: 320px;
   }

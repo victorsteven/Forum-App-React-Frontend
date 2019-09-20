@@ -146,9 +146,9 @@ class App extends Component {
       <div>
         <NavbarClass />
       </div>
-      <h1>Users Apps</h1>
-      <Button className="my-3" color="primary" onClick={this.toggleNewUserModal.bind(this)}>Add User</Button>
-        <Modal isOpen={this.state.newUserModal} toggle={this.toggleNewUserModal.bind(this)} className={this.props.className}>
+      {/* <h1>Users Apps</h1> */}
+      {/* <Button className="my-3" color="primary" onClick={this.toggleNewUserModal.bind(this)}>Add User</Button> */}
+        {/* <Modal isOpen={this.state.newUserModal} toggle={this.toggleNewUserModal.bind(this)} className={this.props.className}>
           <ModalHeader toggle={this.toggleNewUserModal.bind(this)}>Add a new user</ModalHeader>
           <ModalBody>
             <FormGroup>
@@ -198,7 +198,7 @@ class App extends Component {
             <Button color="primary" onClick={this.addUser.bind(this)}>Add User</Button>{' '}
             <Button color="secondary" onClick={this.toggleNewUserModal.bind(this)}>Cancel</Button>
           </ModalFooter>
-        </Modal>
+        </Modal> */}
 
         <Modal isOpen={this.state.editUserModal} toggle={this.toggleEditUserModal.bind(this)} className={this.props.className}>
           <ModalHeader toggle={this.toggleEditUserModal.bind(this)}>Edit a user</ModalHeader>

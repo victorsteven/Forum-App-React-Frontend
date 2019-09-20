@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
 import Login from './containers/Login'
+import Signup from './containers/Signup'
 import * as serviceWorker from './serviceWorker';
 
 
@@ -13,6 +14,8 @@ const routing = (
     <div>
       <Route exact path="/" component={App} />
       <Route  path="/login" component={Login} />
+      <Route  path="/signup" component={Signup} />
+
     </div>
   </Router>
 )
