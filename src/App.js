@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Label, Input, FormGroup, Modal, ModalHeader, ModalBody, ModalFooter, Table, Button } from "reactstrap";
+import NavbarClass from './containers/NavbarClass'
 
 class App extends Component {
 
@@ -96,7 +97,7 @@ class App extends Component {
       password:  this.state.password
     }
     try {
-      let res = await axios.put('http://localhost:8080/users', updateUser)
+      let res = await axios.put('http://localhost:8080/users' + this.state, updateUser)
       let { users } = this.state
       users.push(res.data.response)
       this.setState({ users, editserModal: false, nickname: '', email: '', password: '' })
@@ -142,6 +143,9 @@ class App extends Component {
     })
     return (
       <div className="App container">
+      <div>
+        <NavbarClass />
+      </div>
       <h1>Users Apps</h1>
       <Button className="my-3" color="primary" onClick={this.toggleNewUserModal.bind(this)}>Add User</Button>
         <Modal isOpen={this.state.newUserModal} toggle={this.toggleNewUserModal.bind(this)} className={this.props.className}>
@@ -243,7 +247,7 @@ class App extends Component {
             </FormGroup>
           </ModalBody> 
           <ModalFooter>
-            <Button color="primary" onClick={this.updateUser.bind(this)}>Add User</Button>{' '}
+            <Button color="primary" onClick={this.updateUser.bind(this)}>Update User</Button>{' '}
             <Button color="secondary" onClick={this.toggleEditUserModal.bind(this)}>Cancel</Button>
           </ModalFooter>
         </Modal>
