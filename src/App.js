@@ -23,7 +23,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:8080/users').then(res => {
+    axios.get('https://chodapi.com/users').then(res => {
       console.log("these are the users: ", res)
       this.setState({
         users: res.data.response
