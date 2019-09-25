@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { Label, Input, FormGroup, Modal, ModalHeader, ModalBody, ModalFooter, Table, Button } from "reactstrap";
 import NavbarClass from './containers/NavbarClass'
+import API_ROUTE from './apiRoute'
 
 class App extends Component {
 
@@ -23,7 +24,8 @@ class App extends Component {
   }
 
   componentDidMount(){
-    axios.get('https://chodapi.com/users').then(res => {
+
+    axios.get(`${API_ROUTE}/users`).then(res => {
       console.log("these are the users: ", res)
       this.setState({
         users: res.data.response
