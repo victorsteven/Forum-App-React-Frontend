@@ -20,7 +20,8 @@ export default class Signup extends Component {
         required_password: '',
         invalid_email: '',
         taken_email: '',
-        taken_username: ''
+        taken_username: '',
+        invalid_password:''
     }
   }
 
@@ -78,6 +79,9 @@ export default class Signup extends Component {
         if(errorMessages["Taken_username"] !== ""){
           errors['taken_username'] = errorMessages["Taken_username"]
         }
+        if(errorMessages["Invalid_password"] !== ""){
+          errors['invalid_password'] = errorMessages["Invalid_password"]
+        }
         this.setState({errors: errors});
       }
     }) 
@@ -133,6 +137,11 @@ export default class Signup extends Component {
             <Input type="password" id="password" placeholder="Enter password" onChange={this.handleChange}/>
             { this.state.errors.required_password ? (
               <small className="color-red">{this.state.errors.required_password}</small>
+              ) : (
+                ""
+              )}
+              { this.state.errors.invalid_password ? (
+              <small className="color-red">{this.state.errors.invalid_password}</small>
               ) : (
                 ""
               )}
