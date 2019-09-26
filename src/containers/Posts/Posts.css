@@ -1,0 +1,33 @@
+@media (min-width: 768px){
+  .style-card {
+    margin-right: 120px;
+    margin-left: 120px;
+  }
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+a:hover{
+  color: #000;
+  text-decoration: none;
+}
+
+.style-card-body:hover{
+  background: #f2f2f2;
+}
+
+.style-heart:hover {
+  color: red;
+}
+
+.style-heart {
+  margin-right: 30px;
+  font-size: 25px
+
+} 
+.style-fav {
+  display: flex;
+  justify-content: left
+}

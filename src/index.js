@@ -4,8 +4,8 @@ import { Route, BrowserRouter as Router } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
-import Login from './containers/Login'
-import Signup from './containers/Signup'
+import Login from './containers/Auth/Login'
+import Signup from './containers/Auth/Signup'
 import * as serviceWorker from './serviceWorker';
 
 

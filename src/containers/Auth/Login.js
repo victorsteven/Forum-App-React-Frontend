@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import axios from 'axios'
 import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
 import "./Auth.css";
-import NavbarClass from './NavbarClass'
-import API_ROUTE from "../apiRoute";
+import NavbarClass from '../NavbarClass'
+import API_ROUTE from "../../apiRoute";
 
 
 export default class Login extends Component {
