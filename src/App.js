@@ -1,23 +1,29 @@
 import React from 'react';
 import NavbarClass from './containers/NavbarClass'
 import Posts from './containers/Posts/Posts';
+import { Provider } from "react-redux"
+import store from './store/index'
+
+import Routes from "./Routes";
+
 
 const App  = () => {
-
-  // state = {
-  //   users: [],
-  // }
-
    
     return (
-      <div className="App">
-      <div>
-        <NavbarClass />
-      </div>
-        <div className="container">
-          <Posts />
+      <Provider store={store}>
+        <div className="App">
+          <div>
+            <NavbarClass />
+          </div>
+          <div className="container">
+            <Posts />
+          </div>
+
+          {/* <main>
+            <Routes />
+          </main> */}
         </div>
-      </div>
+      </Provider>
     );
 }
 
