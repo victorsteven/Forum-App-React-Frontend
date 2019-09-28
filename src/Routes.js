@@ -1,6 +1,6 @@
 import React from 'react';
 import Login from './containers/Auth/Login';
-import SignUp from './containers/Auth/Signup';
+import Register from './containers/Auth/Register';
 import Dashboard from './containers/dashboard/Dashboard';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -11,8 +11,8 @@ const Routes  = () => {
         <div className="App">
           <Switch>
             <Route exact path='/' component={ Dashboard } />
-            <Route path='/login'component={Login} />
-            <Route path='/signup'component={SignUp} />
+            <Route path='/login' component={Login} />
+            <Route path='/signup' component={Register} />
           </Switch>
         </div>
       </BrowserRouter>

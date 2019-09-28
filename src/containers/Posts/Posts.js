@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPosts } from '../../actions/fetch_posts';
-// import axios from 'axios'
 import {
   Card, CardText, CardBody,
   CardTitle
 } from 'reactstrap';
-// import API_ROUTE from '../../apiRoute'
 import { FaRegHeart, FaRegComment } from 'react-icons/fa'
 import './Posts.css';
 
