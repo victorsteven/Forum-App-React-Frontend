@@ -1,4 +1,4 @@
-import API_ROUTE from "../../apiRoute";
+import API_ROUTE from "../apiRoute";
 import axios from 'axios'
 
 export const fetchPosts = () => {

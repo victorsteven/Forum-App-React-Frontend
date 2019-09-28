@@ -1,16 +1,22 @@
-import React from "react";
-import { Route, Switch } from 'react-router-dom'
+import React from 'react';
+import Login from './containers/Auth/Login';
+import SignUp from './containers/Auth/Signup';
+import Dashboard from './containers/dashboard/Dashboard';
 
-import App from './App';
-import Login from './containers/Auth/Login'
-import Signup from './containers/Auth/Signup'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-const Routes = (
-  <Switch>
-      <Route exact path="/" component={App} />
-      <Route  path="/login" component={Login} />
-      <Route  path="/signup" component={Signup} />
-  </Switch>
-)
+const Routes  = () => {
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <Switch>
+            <Route exact path='/' component={ Dashboard } />
+            <Route path='/login'component={Login} />
+            <Route path='/signup'component={SignUp} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
+}
 
 export default Routes;

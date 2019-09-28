@@ -1,64 +1,81 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from "react-redux";
+import { fetchPosts } from '../../actions/fetch_posts';
+// import axios from 'axios'
 import {
   Card, CardText, CardBody,
-  CardTitle, Button
+  CardTitle
 } from 'reactstrap';
-// import NavbarClass from './containers/NavbarClass'
-import API_ROUTE from '../../apiRoute'
+// import API_ROUTE from '../../apiRoute'
 import { FaRegHeart, FaRegComment } from 'react-icons/fa'
 import './Posts.css';
 
 
-class Posts extends Component {
+const Posts = () => {
 
-  state = {
-    posts: []
-  }
+  const postsSelector = useSelector((state) => state.FetchPosts);
+  const dispatch = useDispatch();
 
-  componentDidMount(){
+  const getPosts = () => dispatch(fetchPosts());
 
-    axios.get(`${API_ROUTE}/posts`).then(res => {
-      console.log("these are the posts: ", res.data.response)
-      this.setState({
-        posts: res.data.response
-      })
-    })
-  }
+  useEffect(() => {
+    getPosts();
+  })
 
-  render(){
-    let posts = this.state.posts.map((post) => {
-      return (
-        <a href="/" key={post.id} className="style-anchor">
-        <div  className="mt-5 style-card">
-          <Card>
-            <CardBody className="style-card-body">
-              <CardTitle>{post.title}</CardTitle>
-              <CardText>{post.content}</CardText>
-              {/* <Button>Button</Button> */}
-              {/* <div></div> */}
-              <div className="style-fav">
-                <div className="style-heart-outer">
-                  <FaRegHeart className="style-heart " />
-                </div>
-                <div className="style-heart-outer">
-                  <FaRegComment className="style-heart " />
-                </div>
-              </div>
-              
-              {/* <FaRegComment  /> */}
+  // return (
+  //   <div className="className">
+  //     {postsSelector.posts.map((post) => {
+  //       return (
 
-            </CardBody>
-          </Card>
-        </div>
-        </a>
-      );
-    })
+  //       <a href="/" key={post.id} className="style-anchor">
+  //       <div  className="mt-5 style-card">
+  //         <Card>
+  //           <CardBody className="style-card-body">
+  //             <CardTitle>{post.title}</CardTitle>
+  //             <CardText>{post.content}</CardText>
+  //             <div className="style-fav">
+  //               <div className="style-heart-outer">
+  //                 <FaRegHeart className="style-heart " />
+  //               </div>
+  //               <div className="style-heart-outer">
+  //                 <FaRegComment className="style-heart " />
+  //               </div>
+  //             </div>
+  //           </CardBody>
+  //         </Card>
+  //       </div>
+  //       </a>
+  //       )
+  //     })}
+  //   </div>
+  // );
+
+  // A cleaner approach
+  let posts = postsSelector.posts.map((post) => {
     return (
-      <div>{posts}</div>
-     
-    )
-  }
+      <a href="/" key={post.id} className="style-anchor">
+      <div  className="mt-5 style-card">
+        <Card>
+          <CardBody className="style-card-body">
+            <CardTitle>{post.title}</CardTitle>
+            <CardText>{post.content}</CardText>
+            <div className="style-fav">
+              <div className="style-heart-outer">
+                <FaRegHeart className="style-heart " />
+              </div>
+              <div className="style-heart-outer">
+                <FaRegComment className="style-heart " />
+              </div>
+            </div>
+          </CardBody>
+        </Card>
+      </div>
+      </a>
+    );
+  })
+  return (
+    <div>{posts}</div>
+  )
 }
 
 export default Posts

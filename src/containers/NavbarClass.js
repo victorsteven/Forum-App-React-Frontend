@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+
 import {
   Collapse,
   Navbar,
@@ -6,15 +8,12 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
   import { FaUser } from 'react-icons/fa';
   import Aux  from '../hoc/Aux/Aux'
-  import {Link} from "react-router-dom";
-
 
 
 export default class NavbarClass extends Component {
@@ -65,21 +64,12 @@ export default class NavbarClass extends Component {
                 </Aux>
               ) : (
                   <Aux>
-                  <NavItem>
-                    <NavLink href="/login">Login</NavLink>
+                  <NavItem style={{marginRight: "10px" }}>
+                    <NavLink to="/login">Login</NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink href="/signup">Signup</NavLink>
+                    <NavLink to="/signup">Signup</NavLink>
                   </NavItem>
-                  {/* <nav>
-                    <ul>
-                      <li><Link to="/">ReactReduxHooks</Link></li>
-                    </ul>
-                    <ul>
-                      <li><Link to="/login">Login</Link></li>
-                      <li><Link to="/signup">Signup</Link></li>
-                    </ul>
-                  </nav> */}
                 </Aux>
               )}
             </Nav>

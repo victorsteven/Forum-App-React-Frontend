@@ -35,14 +35,6 @@ export default class Signup extends Component {
     });
   }
 
-  // getNewUser = (newUser) => {
-  //   this.setState(previousState => {
-  //     this.setState({
-  //       users: [...previousState.users, newUser]
-  //     });
-  //   });
-  // }
-
   addUser = (e) => {
     e.preventDefault()
     let newUser = {
@@ -90,7 +82,7 @@ export default class Signup extends Component {
   render() {
     return (
 
-      <div className="App container">
+      <div className="App">
         <div>
           <NavbarClass />
         </div>

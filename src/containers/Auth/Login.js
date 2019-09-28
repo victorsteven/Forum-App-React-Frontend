@@ -8,12 +8,6 @@ import API_ROUTE from "../../apiRoute";
 
 export default class Login extends Component {
 
-  componentDidMount(){
-    console.log("Hello from login")
-  }
-  // constructor(props) {
-  //   super(props);
-
     state = {
       email: '',
       password: '',
@@ -66,7 +60,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="App container">
+      <div className="App">
         <div>
           <NavbarClass />
         </div>
