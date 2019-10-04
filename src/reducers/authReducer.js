@@ -1,4 +1,9 @@
-const initState = {}
+import { SET_CURRENT_USER } from '../actions/types'
+
+const initState = {
+  isAuthenticated: false,
+  currentUser: {}
+}
 
 const authReducer = (state = initState, action) => {
   switch(action.type) {
@@ -6,12 +11,14 @@ const authReducer = (state = initState, action) => {
       console.log("Login error");
       return {
         ...state,
-        authError: 'login failed'
+        authError: action.payload
       }
-      case 'LOGIN_SUCCESS':
+      case SET_CURRENT_USER:
         console.log("login success");
         return {
-          ...state,
+          ...state, 
+          currentUser: action.user,
+          isAuthenticated: true,
           authError: null
         }
       case 'SIGNOUT_SUCCESS':

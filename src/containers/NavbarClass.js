@@ -1,50 +1,36 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { FaUser } from 'react-icons/fa';
+import Aux  from '../hoc/Aux/Aux'
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem } from 'reactstrap';
 
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
-  import { FaUser } from 'react-icons/fa';
-  import Aux  from '../hoc/Aux/Aux'
+
+const NavbarClass = () => {
+
+  const [isOpen, setIsOpen] = useState(false)
+
+  const currentState = useSelector((state) => state);
+  
+  const { isAuthenticated } = currentState.auth;
 
 
-export default class NavbarClass extends Component {
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false,
-      loggedIn: true
-    };
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
-  render() {
-    return (
-      <div>
-        <Navbar color="light" light expand="md" className="style-navbar"> 
-          <NavbarBrand href="/">Seamflow</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              {this.loggedIn ? (
-                <Aux>
-                  <NavItem>
+  const SignedInLinks = (
+              <Aux>
+                  <NavItem style={{marginRight: "15px" }}>
                     <NavLink href="/">Create Post</NavLink>
                   </NavItem>
-                  <NavItem>
+                  <NavItem style={{marginRight: "15px" }}>
                     <NavLink href="/">Your posts</NavLink>
                   </NavItem>
                   <UncontrolledDropdown nav inNavbar>
@@ -61,9 +47,11 @@ export default class NavbarClass extends Component {
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
-                </Aux>
-              ) : (
-                  <Aux>
+              </Aux>
+            )
+
+  const SignedOutLinks = (
+               <Aux>
                   <NavItem style={{marginRight: "10px" }}>
                     <NavLink to="/login">Login</NavLink>
                   </NavItem>
@@ -71,11 +59,22 @@ export default class NavbarClass extends Component {
                     <NavLink to="/signup">Signup</NavLink>
                   </NavItem>
                 </Aux>
-              )}
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </div>
-    );
-  }
+              )
+
+
+  return (
+    <div>
+      <Navbar color="light" light expand="md" className="style-navbar"> 
+        <NavbarBrand href="/">Seamflow</NavbarBrand>
+        <NavbarToggler onClick={() => setIsOpen(!isOpen) } /> 
+        <Collapse isOpen={isOpen} navbar> 
+          <Nav className="ml-auto" navbar>
+            { isAuthenticated ? SignedInLinks: SignedOutLinks }
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
+  );
 }
+
+export default NavbarClass

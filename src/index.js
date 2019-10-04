@@ -6,6 +6,14 @@ import Routes from './Routes';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from "react-redux"
 import store from './store/index'
+import setAuthorizationToken  from './utils/authorization';
+import { SetCurrentUser } from './actions/authAction';
+import jwt from 'jsonwebtoken'
+
+if (localStorage.token){
+  setAuthorizationToken(localStorage.token)
+  store.dispatch(SetCurrentUser(jwt.decode(localStorage.token)))
+}
 
 
 ReactDOM.render(<Provider store={store}><Routes /></Provider>, document.getElementById('root'));

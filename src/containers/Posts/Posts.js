@@ -16,9 +16,10 @@ const Posts = () => {
 
   const getPosts = () => dispatch(fetchPosts());
 
+
   useEffect(() => {
     getPosts();
-  })
+  }, [])
 
   // return (
   //   <div className="className">

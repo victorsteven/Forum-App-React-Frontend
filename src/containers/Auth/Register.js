@@ -13,7 +13,7 @@ import { SignUp } from '../../actions/authAction';
 
 const Register = () => {
 
-  const errorMsg = useSelector((state) => state);
+  const currentState = useSelector((state) => state);
 
   const [user, setUser] = useState({
     username:'',
@@ -27,23 +27,6 @@ const Register = () => {
   // useEffect(() => {
   //   addUser();
   // })
-  // constructor(props) {
-  //   super(props);
-
-  //   state = {
-  //     username: '',
-  //     email: '',
-  //     password: '',
-  //     errors: {
-  //       required_username: '',
-  //       required_email: '',
-  //       required_password: '',
-  //       invalid_email: '',
-  //       taken_email: '',
-  //       taken_username: '',
-  //       invalid_password:''
-  //   }
-  // }
 
   // validateForm() {
   //   return this.state.email.length > 0 && this.state.password.length > 0;
@@ -72,7 +55,7 @@ const Register = () => {
           <NavbarClass />
         </div>
         <div>
-          {console.log("this is the error frontend: ", errorMsg.auth.authError)}
+          {console.log("this is the error frontend: ", currentState.auth.authError)}
         </div>
         <div className="Auth">
         <Card className="card-style">
@@ -82,13 +65,13 @@ const Register = () => {
           <FormGroup>
             <Label>User Name</Label>
             <Input type="text" name="username" placeholder="Enter username"  onChange={handleChange}/>
-            { errorMsg.auth.authError && errorMsg.auth.authError.Required_username ? (
-              <small className="color-red">{errorMsg.auth.authError.Required_username}</small>
+            { currentState.auth.authError && currentState.auth.authError.Required_username ? (
+              <small className="color-red">{currentState.auth.authError.Required_username}</small>
               ) : (
                 ""
               )}
-              { errorMsg.auth.authError && errorMsg.auth.authError.Taken_username ? (
-              <small className="color-red">{ errorMsg.auth.authError.Taken_username }</small>
+              { currentState.auth.authError && currentState.auth.authError.Taken_username ? (
+              <small className="color-red">{ currentState.auth.authError.Taken_username }</small>
               ) : (
                 ""
               )}
@@ -96,18 +79,18 @@ const Register = () => {
           <FormGroup>
             <Label>Email</Label>
             <Input type="email" name="email" placeholder="Enter email" onChange={handleChange} />
-            { errorMsg.auth.authError && errorMsg.auth.authError.Required_email ? (
-              <small className="color-red">{errorMsg.auth.authError.Required_email}</small>
+            { currentState.auth.authError && currentState.auth.authError.Required_email ? (
+              <small className="color-red">{currentState.auth.authError.Required_email}</small>
               ) : (
                 ""
             )}
-            { errorMsg.auth.authError && errorMsg.auth.authError.Invalid_email ? (
-              <small className="color-red">{ errorMsg.auth.authError.Invalid_email }</small>
+            { currentState.auth.authError && currentState.auth.authError.Invalid_email ? (
+              <small className="color-red">{ currentState.auth.authError.Invalid_email }</small>
               ) : (
                 ""
             )}
-            { errorMsg.auth.authError && errorMsg.auth.authError.Taken_email ? (
-              <small className="color-red">{ errorMsg.auth.authError.Taken_email }</small>
+            { currentState.auth.authError && currentState.auth.authError.Taken_email ? (
+              <small className="color-red">{ currentState.auth.authError.Taken_email }</small>
               ) : (
                 ""
             )}
@@ -115,13 +98,13 @@ const Register = () => {
             <FormGroup>
             <Label>Password</Label>
             <Input type="password" name="password" placeholder="Enter password" onChange={handleChange}/>
-            { errorMsg.auth.authError && errorMsg.auth.authError.Required_password ? (
-              <small className="color-red">{ errorMsg.auth.authError.Required_password }</small>
+            { currentState.auth.authError && currentState.auth.authError.Required_password ? (
+              <small className="color-red">{ currentState.auth.authError.Required_password }</small>
               ) : (
                 ""
               )}
-              { errorMsg.auth.authError && errorMsg.auth.authError.Invalid_password ? (
-              <small className="color-red">{ errorMsg.auth.authError.Invalid_password }</small>
+              { currentState.auth.authError && currentState.auth.authError.Invalid_password ? (
+              <small className="color-red">{ currentState.auth.authError.Invalid_password }</small>
               ) : (
                 ""
               )}
