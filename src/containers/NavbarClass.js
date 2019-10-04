@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { FaUser } from 'react-icons/fa';
 import Aux  from '../hoc/Aux/Aux'
+import { SignOut } from '../actions/authAction';
+
 import {
     Collapse,
     Navbar,
@@ -24,6 +26,16 @@ const NavbarClass = () => {
   
   const { isAuthenticated } = currentState.auth;
 
+  const dispatch = useDispatch()
+
+  const logoutUser  = () => dispatch(SignOut());
+
+
+  const logout = (e) => {
+    e.preventDefault()
+    logoutUser()
+  }
+
 
   const SignedInLinks = (
               <Aux>
@@ -43,7 +55,7 @@ const NavbarClass = () => {
                     </DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem>
-                      Logout
+                      <a href="#" onClick={logout}>Logout</a>
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>

@@ -23,17 +23,19 @@ export const SignIn = (credentials) => {
       console.log("this is the decoded:", jwt.decode(token))
       
     }).catch(err => {
-      // dispatch({ type: "LOGIN_ERROR", payload: err.response.data.error })
-      console.log("this is the error for auth: ", err)
+      dispatch({ type: "LOGIN_ERROR", payload: err.response.data.error })
     })
   }
 }
 
 export const SignOut = () => {
   return (dispatch) => {
-    axios.post(`${API_ROUTE}/logout`).then(res => {
-      dispatch({ type: "SIGNOUT_SUCCESS"})
-    })
+    localStorage.removeItem("token")
+    setAuthorizationToken(false)
+    dispatch(SetCurrentUser({}))
+    // axios.post(`${API_ROUTE}/logout`).then(res => {
+    //   dispatch({ type: "SIGNOUT_SUCCESS"})
+    // })
   }
 }
 
@@ -47,13 +49,3 @@ export const SignUp = (newUser) => {
     })
   }
 }
-
-// export const signupAction = () => {
-//   return (dispatch) => {
-//     axios.post(`${API_ROUTE}/users`).then(res => {
-//       dispatch({ type: "USER_SIGNUP", payload: res.data.response })
-//     }).catch(err => {
-//       dispatch({ type: "USER_SIGNUP_ERROR", payload: err.response.data.error })
-//     })
-//   }
-// }

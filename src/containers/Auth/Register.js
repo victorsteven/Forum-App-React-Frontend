@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from "react";
-// import axios from 'axios'
-// import API_ROUTE from "../../apiRoute";
+import React, { useState } from "react";
 import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
 import "./Auth.css";
 import NavbarClass from '../NavbarClass'
-// import { fetchPosts } from '../../actions/authAction';
-
-
 import { useSelector, useDispatch } from "react-redux";
 import { SignUp } from '../../actions/authAction';
 
@@ -23,10 +18,6 @@ const Register = () => {
   const dispatch = useDispatch()
 
   const addUser = (credentials) => dispatch(SignUp(credentials))
-
-  // useEffect(() => {
-  //   addUser();
-  // })
 
   // validateForm() {
   //   return this.state.email.length > 0 && this.state.password.length > 0;
@@ -45,7 +36,6 @@ const Register = () => {
       email: user.email,
       password: user.password
     });
-    // setUser('');
   }
 
     return (

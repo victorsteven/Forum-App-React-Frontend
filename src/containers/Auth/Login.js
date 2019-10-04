@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-// import axios from 'axios'
-// import API_ROUTE from "../../apiRoute";
 import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
 import "./Auth.css";
 import NavbarClass from '../NavbarClass'
@@ -20,23 +18,6 @@ const Login = () => {
   const dispatch = useDispatch()
 
   const userLogin = (credentials) => dispatch(SignIn(credentials))
-  // constructor(props) {
-  //   super(props);
-
-  //   state = {
-  //     username: '',
-  //     email: '',
-  //     password: '',
-  //     errors: {
-  //       required_username: '',
-  //       required_email: '',
-  //       required_password: '',
-  //       invalid_email: '',
-  //       taken_email: '',
-  //       taken_username: '',
-  //       invalid_password:''
-  //   }
-  // }
 
   // validateForm() {
   //   return this.state.email.length > 0 && this.state.password.length > 0;
@@ -54,8 +35,6 @@ const Login = () => {
       email: user.email,
       password: user.password
     });
-    // setUser('');
-
   }
 
     return (

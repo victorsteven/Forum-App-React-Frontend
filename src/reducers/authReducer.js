@@ -1,4 +1,5 @@
 import { SET_CURRENT_USER } from '../actions/types'
+import isEmpty from 'lodash/isEmpty';
 
 const initState = {
   isAuthenticated: false,
@@ -18,7 +19,7 @@ const authReducer = (state = initState, action) => {
         return {
           ...state, 
           currentUser: action.user,
-          isAuthenticated: true,
+          isAuthenticated: !isEmpty(action.user),
           authError: null
         }
       case 'SIGNOUT_SUCCESS':
