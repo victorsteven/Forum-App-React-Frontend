@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
 import "./Posts.css";
-import NavbarClass from '../NavbarClass'
+import Navigation from '../Navigation'
 import { useSelector, useDispatch } from "react-redux";
 import { createPost } from '../../actions/postsAction';
 import { Redirect } from 'react-router-dom';
@@ -48,7 +48,7 @@ const Register = () => {
     return (
       <div className="App">
         <div>
-          <NavbarClass />
+          <Navigation />
         </div>
         <div className="post-style">
         <Card className="card-style">

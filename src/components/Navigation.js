@@ -18,7 +18,7 @@ import {
     DropdownItem } from 'reactstrap';
 
 
-const NavbarClass = () => {
+const Navigation = () => {
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -51,7 +51,9 @@ const NavbarClass = () => {
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem>
-                      Create Post
+                      <NavItem>
+                        <NavLink to={`profile`}>Edit Profile</NavLink>
+                      </NavItem>
                     </DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem>
@@ -89,4 +91,4 @@ const NavbarClass = () => {
   );
 }
 
-export default NavbarClass
+export default Navigation

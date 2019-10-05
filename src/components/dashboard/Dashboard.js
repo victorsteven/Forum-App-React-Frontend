@@ -1,12 +1,12 @@
 import React from 'react';
 import Posts from '../Posts/Posts';
-import NavbarClass from '../NavbarClass'
+import Navigation from '../Navigation'
 
 
   const Dashboard = () => {
     return (
       <div>
-        <NavbarClass />
+        <Navigation />
         <Posts /> 
       </div>
     )
