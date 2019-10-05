@@ -11,7 +11,7 @@ import { SetCurrentUser } from './actions/authAction';
 import jwt from 'jsonwebtoken'
 
 if (localStorage.token){
-  // setAuthorizationToken(localStorage.token)
+  setAuthorizationToken(localStorage.token)
   store.dispatch(SetCurrentUser(jwt.decode(localStorage.token)))
 }
 

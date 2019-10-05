@@ -1,11 +1,12 @@
 import { combineReducers } from "redux"
-import fetchPosts from "./fetch_posts";
+import { createPost, fetchPosts }  from "./postsReducer";
 import authReducer from "./authReducer";
 
 
 const reducer = combineReducers({
   auth: authReducer,
-  FetchPosts: fetchPosts
+  FetchPosts: fetchPosts,
+  CreatePost: createPost
 })
 
 export default reducer

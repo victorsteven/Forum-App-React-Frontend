@@ -31,3 +31,14 @@ a:hover{
   display: flex;
   justify-content: left
 }
+
+@media all and (min-width: 480px) {
+  .post-style {
+    padding: 60px 0;
+  }
+
+  .post-style .card-style {
+    margin: 0 auto;
+    max-width: 500px;
+  }
+}

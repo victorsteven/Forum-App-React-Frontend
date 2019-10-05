@@ -20,10 +20,8 @@ export const SignIn = (credentials) => {
       let token = res.data.response
       localStorage.setItem("token", token)
       setAuthorizationToken(token)
-      // dispatch({ type: "LOGIN_SUCCESS", payload: res.data.response })
       dispatch(SetCurrentUser(jwt.decode(token)))
-      console.log("this is the decoded:", jwt.decode(token))
-      history.push('/');
+      // history.push('/');
     }).catch(err => {
       dispatch({ type: "LOGIN_ERROR", payload: err.response.data.error })
     })
