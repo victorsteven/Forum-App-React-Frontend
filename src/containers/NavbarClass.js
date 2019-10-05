@@ -40,7 +40,7 @@ const NavbarClass = () => {
   const SignedInLinks = (
               <Aux>
                   <NavItem style={{marginRight: "15px" }}>
-                    <NavLink to="/">Create Post</NavLink>
+                    <NavLink to="/createpost">Create Post</NavLink>
                   </NavItem>
                   <NavItem style={{marginRight: "15px" }}>
                     <NavLink to="/">Your posts</NavLink>

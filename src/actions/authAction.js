@@ -23,7 +23,7 @@ export const SignIn = (credentials) => {
       // dispatch({ type: "LOGIN_SUCCESS", payload: res.data.response })
       dispatch(SetCurrentUser(jwt.decode(token)))
       console.log("this is the decoded:", jwt.decode(token))
-      // dispatch(push('/'))
+      history.push('/');
     }).catch(err => {
       dispatch({ type: "LOGIN_ERROR", payload: err.response.data.error })
     })
