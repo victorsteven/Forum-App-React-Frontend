@@ -3,6 +3,8 @@ import axios from 'axios'
 import setAuthorizationToken  from "../utils/authorization";
 import jwt from 'jsonwebtoken'
 import { SET_CURRENT_USER } from './types'
+import  {history} from '../history'
+// import { push } from 'react-router-redux'
 
 export const SetCurrentUser = (user) => {
   return {
@@ -21,7 +23,7 @@ export const SignIn = (credentials) => {
       // dispatch({ type: "LOGIN_SUCCESS", payload: res.data.response })
       dispatch(SetCurrentUser(jwt.decode(token)))
       console.log("this is the decoded:", jwt.decode(token))
-      
+      // dispatch(push('/'))
     }).catch(err => {
       dispatch({ type: "LOGIN_ERROR", payload: err.response.data.error })
     })
@@ -43,6 +45,7 @@ export const SignUp = (newUser) => {
     return (dispatch) => {
     axios.post(`${API_ROUTE}/users`, newUser).then(res => {
       dispatch({ type: "SIGNUP_SUCCESS"})
+      history.push('/login');
     }).catch(err => {
       dispatch({ type: "SIGNUP_ERROR", payload: err.response.data.error })
       console.log("this is the error: ", err.response.data.error)

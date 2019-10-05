@@ -4,6 +4,8 @@ import "./Auth.css";
 import NavbarClass from '../NavbarClass'
 import { useSelector, useDispatch } from "react-redux";
 import { SignUp } from '../../actions/authAction';
+import { Redirect } from 'react-router-dom';
+
 
 
 const Register = () => {
@@ -38,14 +40,14 @@ const Register = () => {
     });
   }
 
+  if(currentState.auth.isAuthenticated){
+    return <Redirect to='/' />
+  }
+
     return (
-      
       <div className="App">
         <div>
           <NavbarClass />
-        </div>
-        <div>
-          {console.log("this is the error frontend: ", currentState.auth.authError)}
         </div>
         <div className="Auth">
         <Card className="card-style">

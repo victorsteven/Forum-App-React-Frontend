@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
 import "./Auth.css";
 import NavbarClass from '../NavbarClass'
-
 import { useSelector, useDispatch } from "react-redux";
 import { SignIn } from '../../actions/authAction';
+import { Redirect } from 'react-router-dom';
+
 
 
 const Login = () => {
 
   const errorMsg = useSelector((state) => state);
+
+  const currentState = useSelector((state) => state);
 
   const [user, setUser] = useState({
     email: '',
@@ -35,6 +38,10 @@ const Login = () => {
       email: user.email,
       password: user.password
     });
+  }
+
+  if(currentState.auth.isAuthenticated){
+    return <Redirect to='/' />
   }
 
     return (

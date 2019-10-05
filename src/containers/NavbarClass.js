@@ -40,10 +40,10 @@ const NavbarClass = () => {
   const SignedInLinks = (
               <Aux>
                   <NavItem style={{marginRight: "15px" }}>
-                    <NavLink href="/">Create Post</NavLink>
+                    <NavLink to="/">Create Post</NavLink>
                   </NavItem>
                   <NavItem style={{marginRight: "15px" }}>
-                    <NavLink href="/">Your posts</NavLink>
+                    <NavLink to="/">Your posts</NavLink>
                   </NavItem>
                   <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>
@@ -65,10 +65,10 @@ const NavbarClass = () => {
   const SignedOutLinks = (
                <Aux>
                   <NavItem style={{marginRight: "10px" }}>
-                    <NavLink to="/login">Login</NavLink>
+                    <NavLink to={`login`}>Login</NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink to="/signup">Signup</NavLink>
+                    <NavLink to={`signup`}>Signup</NavLink>
                   </NavItem>
                 </Aux>
               )
