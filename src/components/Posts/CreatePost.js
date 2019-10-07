@@ -37,7 +37,7 @@ const Register = () => {
       content: post.content,
       author_id: currentState.auth.currentUser.id
     });
-  console.log("the current user id: ", currentState.auth.currentUser.id)
+  // console.log("the current user id: ", currentState.auth.currentUser.id)
 
   }
 
@@ -78,20 +78,6 @@ const Register = () => {
                 ""
               )}
             </FormGroup>
-            {/* <FormGroup>
-            <Label>Password</Label>
-            <Input type="password" name="password" placeholder="Enter password" onChange={handleChange}/>
-            { currentState.auth.authError && currentState.auth.authError.Required_password ? (
-              <small className="color-red">{ currentState.auth.authError.Required_password }</small>
-              ) : (
-                ""
-              )}
-              { currentState.auth.authError && currentState.auth.authError.Invalid_password ? (
-              <small className="color-red">{ currentState.auth.authError.Invalid_password }</small>
-              ) : (
-                ""
-              )}
-            </FormGroup> */}
             <Button
               color="primary"
               type="submit"
