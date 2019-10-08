@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { updateUser } from '../../actions/usersAction';
@@ -15,6 +15,8 @@ const Profile = () => {
     id: '',
     file: ''
   });
+  const [uploadedFile, setUploadedFile] = useState({});
+
 
   const dispatch = useDispatch()
 
@@ -41,7 +43,7 @@ const Profile = () => {
 
   }
 
-  const onChangeHandler = e => {
+  const onChangeFile = e => {
     // setFile(e.target.files[0]);
     setUser({
       ...user,
@@ -50,8 +52,24 @@ const Profile = () => {
     // console.log("this is the file frontend", e.target.files[0])
   }
 
+  const handleImageChange = (e) => {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    }
+
+    reader.readAsDataURL(file)
+  }
+
   return (
-    <div>
+    <Fragment>
       <Navigation />
       <div className="post-style">
         <Card className="card-style">
@@ -61,7 +79,9 @@ const Profile = () => {
           <FormGroup>
             <Label>Photo Title</Label>
             {/* <Input type="file" name="file"  onChange={handleChange}/> */}
-            <Input type="file" name="file" onChange={onChangeHandler}/>
+            <Input type="file" name="file" onChange={onChangeFile}/>
+            <img src={user.file} alt="No One" accepts="images/*" style={{ height: '40px', width: '40px'}}/>
+
 
             {/* { currentState.CreatePost.postError && currentState.CreatePost.postError.Required_title ? (
               <small className="color-red">{currentState.CreatePost.postError.Required_title}</small>
@@ -94,8 +114,7 @@ const Profile = () => {
             </CardBody>
           </Card>
         </div>
-
-    </div>
+    </Fragment>
   )
 }
 

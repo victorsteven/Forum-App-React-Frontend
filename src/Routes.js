@@ -6,6 +6,8 @@ import Dashboard from './components/dashboard/Dashboard';
 import { history } from './history'
 import { Router, Switch, Route } from 'react-router-dom';
 import Profile from './components/Users/Profile';
+import ProfileImage from './components/Users/ProfileImage';
+
 
 const Routes  = () => {
     return (
@@ -17,6 +19,8 @@ const Routes  = () => {
             <Route path='/signup' component={Register} />
             <Route path='/createpost' component={CreatePost} />
             <Route path='/profile' component={Profile} />
+            <Route path='/profileImage' component={ProfileImage} />
+
           </Switch>
         </div>
       </Router>
