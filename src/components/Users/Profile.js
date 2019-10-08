@@ -115,48 +115,48 @@ const Profile = () => {
               </FormGroup>
             </Col>
           </Row>
-            <Row>
-              <Col sm="12" md={{ size: 10, offset: 1 }}>
-                <FormGroup>
-                  <Label for="exampleAddress">Email</Label>
-                  <Input type="text" name="email" value={currentState.auth.currentUser.email} onChange={handleChange}/>
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col sm="12" md={{ size: 10, offset: 1 }}>
-                <FormGroup>
-                  <Label for="exampleAddress">Current Password</Label>
-                  <Input type="text" name="current_password" />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col sm="12" md={{ size: 10, offset: 1 }}>
-                <FormGroup>
-                  <Label for="exampleAddress">New Password</Label>
-                  <Input type="text" name="new_password" />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row className="mt-3">
-              <Col sm="12" md={{ size: 10, offset: 1 }}>
-                <FormGroup>
-                  <Button
-                    color="primary"
-                    type="submit"
-                    block
-                  >
-                    Update User
-                  </Button>
-                </FormGroup>
-              </Col>
-            </Row>
-          </Form>
-          </CardBody>
-        {/* </Card> */}
-        </div>
+          <Row>
+            <Col sm="12" md={{ size: 10, offset: 1 }}>
+              <FormGroup>
+                <Label for="exampleAddress">Email</Label>
+                <Input type="text" name="email" value={currentState.auth.currentUser.email} onChange={handleChange}/>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm="12" md={{ size: 10, offset: 1 }}>
+              <FormGroup>
+                <Label for="exampleAddress">Current Password</Label>
+                <Input type="text" name="current_password" />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm="12" md={{ size: 10, offset: 1 }}>
+              <FormGroup>
+                <Label for="exampleAddress">New Password</Label>
+                <Input type="text" name="new_password" />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row className="mt-3">
+            <Col sm="12" md={{ size: 10, offset: 1 }}>
+              <FormGroup>
+                <Button
+                  color="primary"
+                  type="submit"
+                  block
+                >
+                  Update User
+                </Button>
+              </FormGroup>
+            </Col>
+          </Row>
+        </Form>
+        </CardBody>
+      {/* </Card> */}
       </div>
+    </div>
   </Fragment>
   )
 }
