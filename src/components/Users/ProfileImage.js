@@ -1,16 +1,9 @@
 import React, { useState } from 'react'
-import './ProfileImage.css'
-// import Default from '../../Assets/default.png'
-// import Img from '../../Assets/logo512.png'
-// import mine from '../../mine.jpg'
+import './ProfileImage.module.css'
+import Default from '../../Assets/default.png'
 
 
 const ImageUpload  = () => {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {file: '',imagePreviewUrl: ''};
-  // }
-
   // _handleSubmit(e) {
   //   e.preventDefault();
   //   // TODO: do something with -> this.state.file
@@ -18,9 +11,7 @@ const ImageUpload  = () => {
   // }
 
   const [file, setFile] = useState();
-  const [uploadedFile, setUploadedFile] = useState({});
-
-
+  const [uploadedFile, setUploadedFile] = useState();
 
   const handleImageChange = (e) => {
     e.preventDefault();
@@ -36,10 +27,10 @@ const ImageUpload  = () => {
 
     let $imagePreview = null;
     if (uploadedFile) {
-      $imagePreview = (<img src={uploadedFile} />);
+      console.log("this is the uploaded image: ", uploadedFile)
+      $imagePreview = (<img src={uploadedFile} alt="no one"/>);
     } else {
-      // $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
-      $imagePreview = (<img src={require("../../mine.jpg")} />);
+      $imagePreview = (<img src={Default} alt="no one 2"/>);
     }
 
     return (

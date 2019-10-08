@@ -1,4 +1,4 @@
-h3 {
+/* h3 {
   margin-left: 15px
 } 
 
@@ -47,5 +47,12 @@ img {
 .centerText {
   text-align: center;
   width: 500px;
+} */
+
+img {
+  border-radius: 10%; 
+  height: 100px; 
+  width: 100px; 
+  margin-top: 30px;
 }
   

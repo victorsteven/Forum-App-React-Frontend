@@ -7,7 +7,7 @@ import { UPDATE_USER_SUCCESS, UPDATE_USER_ERROR } from '../actions/types'
 //   return state;
 // }
 
-export const updateUser = (state = { user: {}}, action) => {
+export const updateUserAvatar = (state = { user: {}}, action) => {
   switch(action.type) {
     case UPDATE_USER_SUCCESS:
       return { 

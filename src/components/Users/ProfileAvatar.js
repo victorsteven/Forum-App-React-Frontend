@@ -12,13 +12,13 @@ import styles from './Profile.module.css'
 
 import Navigation from "../Navigation"
 
-const Profile = () => {
+const ProfileAvatar = () => {
 
   const currentState = useSelector((state) => state);
 
   const dispatch = useDispatch()
 
-  const userAvatarUpdate = (userDetails) => dispatch(updateUserAvatar(userDetails))
+  const userUpdate = (userDetails) => dispatch(updateUserAvatar(userDetails))
   
   // const [user, setUser] = useState({
   //   email: '',
@@ -58,7 +58,7 @@ const Profile = () => {
     return <Redirect to='/login' />
   }
 
-  const submitUserAvatar = (e) => {
+  const submitUser = (e) => {
     e.preventDefault()
     const formData = new FormData();
     formData.append('file', file);
@@ -70,7 +70,7 @@ const Profile = () => {
     //   id: currentState.auth.currentUser.id,
     //   file: user.file
     // })
-    userAvatarUpdate(formData)
+    userUpdate(formData)
   }
 
   // const onChangeFile = e => {
@@ -101,9 +101,9 @@ const Profile = () => {
       <Navigation />
       <div className="post-style">
         <Card className="card-style">
-          <CardHeader>Update Profile</CardHeader>
+          <CardHeader>Update ProfileAvatar</CardHeader>
           <CardBody>
-          <form onSubmit={submitUserAvatar} encType="multipart/form-data">
+          <form onSubmit={submitUser} encType="multipart/form-data">
           <FormGroup>
             <Label>Photo Title</Label>
             <div className="previewComponent">
@@ -130,7 +130,7 @@ const Profile = () => {
             <Label>Email</Label>
               <Input name="email" type="email" id="email" onChange={handleChange} />
           </FormGroup> */}
-
+          
           <Button
             color="primary"
             type="submit"
@@ -146,4 +146,4 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export default ProfileAvatar

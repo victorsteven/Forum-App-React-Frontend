@@ -13,11 +13,11 @@ import  {history} from '../history'
 //   }
 // }
 
-export const updateUser = (updateUser) => {
+export const updateUserAvatar = (updateUserAvatar) => {
   return async (dispatch, getState) => {
     const { id } = getState().auth.currentUser
     try {
-      const res = await axios.put(`${API_ROUTE}/users/${id}`, updateUser, {
+      const res = await axios.put(`${API_ROUTE}/avatar/users/${id}`, updateUserAvatar, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
