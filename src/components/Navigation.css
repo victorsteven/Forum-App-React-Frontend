@@ -1,3 +1,5 @@
 .style-navbar {
   width: 100%!important;
+  display: flex;
+  justify-content: right;
 }

@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from 'react-router-dom';
-import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
+import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody, Col, Row, Form, FormText } from "reactstrap";
+
 
 import { updateUserAvatar } from '../../actions/usersAction';
 import Default from '../../Assets/default.png'
@@ -103,42 +104,55 @@ const Profile = () => {
         <Card className="card-style">
           <CardHeader>Update Profile</CardHeader>
           <CardBody>
-          <form onSubmit={submitUserAvatar} encType="multipart/form-data">
+          <Form onSubmit={submitUserAvatar} encType="multipart/form-data">
           <FormGroup>
-            <Label>Photo Title</Label>
-            <div className="previewComponent">
-                <Input 
-                  type="file" 
-                  onChange={(e)=> handleImageChange(e)} />
+            <div>
               <div className="imgPreview">
                 {$imagePreview}
               </div>
+              <Input 
+                type="file" 
+                onChange={(e)=> handleImageChange(e)} 
+              />
             </div>
-            {/* { currentState.CreatePost.postError && currentState.CreatePost.postError.Required_title ? (
-              <small className="color-red">{currentState.CreatePost.postError.Required_title}</small>
-              ) : (
-                ""
-              )}
-              { currentState.CreatePost.postError && currentState.CreatePost.postError.Taken_title ? (
-              <small className="color-red">{ currentState.CreatePost.postError.Taken_title }</small>
-              ) : (
-                ""
-              )} */}
           </FormGroup>
-
-          {/* <FormGroup>
-            <Label>Email</Label>
-              <Input name="email" type="email" id="email" onChange={handleChange} />
-          </FormGroup> */}
-
           <Button
             color="primary"
             type="submit"
-            block
           >
-            Update 
+            Update Photo
           </Button>
-          </form>
+        </Form>
+
+        <Form>
+          <Row form>
+            <Col md={6}>
+              <FormGroup>
+                <Label for="exampleEmail">Email</Label>
+                <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+              </FormGroup>
+            </Col>
+            <Col md={6}>
+              <FormGroup>
+                <Label for="examplePassword">Password</Label>
+                <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+              </FormGroup>
+            </Col>
+          </Row>
+          <FormGroup>
+            <Label for="exampleAddress">Address</Label>
+            <Input type="text" name="address" id="exampleAddress" placeholder="1234 Main St"/>
+          </FormGroup>
+          <FormGroup>
+            <Label for="exampleAddress2">Address 2</Label>
+            <Input type="text" name="address2" id="exampleAddress2" placeholder="Apartment, studio, or floor"/>
+          </FormGroup>
+          <FormGroup check>
+            <Input type="checkbox" name="check" id="exampleCheck"/>
+            <Label for="exampleCheck" check>Check me out</Label>
+          </FormGroup>
+          <Button>Sign in</Button>
+        </Form>
           </CardBody>
         </Card>
       </div>

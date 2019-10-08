@@ -78,9 +78,9 @@ const Navigation = () => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md" className="style-navbar"> 
-        <NavbarBrand href="/">Seamflow</NavbarBrand>
-        <NavbarToggler onClick={() => setIsOpen(!isOpen) } /> 
+      <Navbar color="light" light expand="md"> 
+          <NavbarBrand className="mx-auto" href="/">Seamflow</NavbarBrand>
+          <NavbarToggler onClick={() => setIsOpen(!isOpen) } /> 
         <Collapse isOpen={isOpen} navbar> 
           <Nav className="ml-auto" navbar>
             { isAuthenticated ? SignedInLinks: SignedOutLinks }
