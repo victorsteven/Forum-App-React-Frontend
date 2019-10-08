@@ -1,6 +1,26 @@
 .img_style {
   border-radius: 50%; 
-  height: 100px; 
-  width: 100px; 
+  height: 120px; 
+  width: 120px; 
   margin-top: 30px;
+}
+
+@media (min-width: 768px){
+  .style_file_input {
+    width: 50%;
+    margin: auto;
+  }
+  .style_photo_button {
+     margin-top: 20px;
+     margin-bottom: 20px;
+     margin-left: 35%;
+  }
+}
+
+@media (max-width: 768px){
+  .style_photo_button {
+     margin-top: 5px;
+     margin-bottom: 5px;
+     margin-left: 25%;
+  }
 }

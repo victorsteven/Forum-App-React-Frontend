@@ -52,3 +52,18 @@ export const updateUserAvatar = (updateUserAvatar) => {
     // })
   }
 }
+
+
+export const updateUser = (updateUser) => {
+  return async (dispatch, getState) => {
+    const { id } = getState().auth.currentUser
+    try {
+      const res = await axios.put(`${API_ROUTE}/users/${id}`, updateUser);
+      console.log("this the response: ", res)
+        dispatch({ type: UPDATE_USER_SUCCESS })
+    } catch (err) {
+      console.log("this is the response  err: ", err)
+      dispatch({ type: UPDATE_USER_ERROR, payload: err.response.data.error })
+    }
+  }
+}

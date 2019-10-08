@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from 'react-router-dom';
-import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody, Col, Row, Form, FormText } from "reactstrap";
+import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody, Col, Row, Form, FormText, CustomInput } from "reactstrap";
 
 
-import { updateUserAvatar } from '../../actions/usersAction';
+import { updateUserAvatar, updateUser } from '../../actions/usersAction';
 import Default from '../../Assets/default.png'
 import styles from './Profile.module.css'
 
@@ -20,20 +20,17 @@ const Profile = () => {
   const dispatch = useDispatch()
 
   const userAvatarUpdate = (userDetails) => dispatch(updateUserAvatar(userDetails))
-  
-  // const [user, setUser] = useState({
-  //   email: '',
-  // });
+  const userUpdate = (userDetails) => dispatch(updateUser(userDetails))
 
   const [file, setFile] = useState();
   const [uploadedFile, setUploadedFile] = useState();
 
-  // const handleChange = e => {
-  //   setUser({
-  //     ...user,
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
+  const [user, setUser] = useState({
+    email: '',
+    current_password: '',
+    new_password: '',
+  });
+
 
   const handleImageChange = (e) => {
     e.preventDefault();
@@ -45,6 +42,13 @@ const Profile = () => {
       setUploadedFile(reader.result)
     }
     reader.readAsDataURL(thefile)
+  }
+
+  const handleChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value
+    })
   }
 
   let $imagePreview = null;
@@ -63,60 +67,38 @@ const Profile = () => {
     e.preventDefault()
     const formData = new FormData();
     formData.append('file', file);
-
-    // formData.append('email', user.email);
-    // console.log("this is the email: ", user.email)
-
-    // userUpdate({
-    //   id: currentState.auth.currentUser.id,
-    //   file: user.file
-    // })
     userAvatarUpdate(formData)
   }
 
-  // const onChangeFile = e => {
-  //   setUser({
-  //     ...user,
-  //     [e.target.name]: e.target.files[0]
-  //   })
-  // }
-
-  // const handleImageChange = (e) => {
-  //   e.preventDefault();
-
-  //   let reader = new FileReader();
-  //   let file = e.target.files[0];
-
-  //   reader.onloadend = () => {
-  //     this.setState({
-  //       file: file,
-  //       imagePreviewUrl: reader.result
-  //     });
-  //   }
-
-  //   reader.readAsDataURL(file)
-  // }
+  const submitUser = (e) => {
+    e.preventDefault()
+    userUpdate({
+      email: user.email,
+      current_password: user.current_password,
+      new_password: user.new_password
+    })
+  }
 
   return (
     <Fragment>
       <Navigation />
-      <div className="post-style">
-        <Card className="card-style">
-          <CardHeader>Update Profile</CardHeader>
+      <div className="post-style container">
+        {/* <Card className="card-style">   */}
+        <div className="card-style">
+          <div className="text-center">
+            <h2>Update Profile</h2>
+          </div>
           <CardBody>
-          <Form onSubmit={submitUserAvatar} encType="multipart/form-data">
-          <FormGroup>
-            <div>
-              <div className="imgPreview">
+            <div className="text-center mb-3">
                 {$imagePreview}
-              </div>
-              <Input 
-                type="file" 
-                onChange={(e)=> handleImageChange(e)} 
-              />
             </div>
-          </FormGroup>
-          <Button
+          <Form onSubmit={submitUserAvatar} encType="multipart/form-data">
+          <div>
+            <FormGroup className={styles.style_file_input}>
+              <CustomInput type="file" id="exampleCustomFileBrowser" onChange={(e)=> handleImageChange(e)} />
+            </FormGroup>
+          </div>
+          <Button className={styles.style_photo_button}
             color="primary"
             type="submit"
           >
@@ -124,37 +106,56 @@ const Profile = () => {
           </Button>
         </Form>
 
-        <Form>
-          <Row form>
-            <Col md={6}>
+        <Form onSubmit={submitUser}>
+          <Row className="mt-3">
+            <Col sm="12" md={{ size: 10, offset: 1 }}>
               <FormGroup>
-                <Label for="exampleEmail">Email</Label>
-                <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="examplePassword">Password</Label>
-                <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+                <Label for="exampleAddress">Username</Label>
+                <Input type="text" name="username" value={currentState.auth.currentUser.username} disabled/>
               </FormGroup>
             </Col>
           </Row>
-          <FormGroup>
-            <Label for="exampleAddress">Address</Label>
-            <Input type="text" name="address" id="exampleAddress" placeholder="1234 Main St"/>
-          </FormGroup>
-          <FormGroup>
-            <Label for="exampleAddress2">Address 2</Label>
-            <Input type="text" name="address2" id="exampleAddress2" placeholder="Apartment, studio, or floor"/>
-          </FormGroup>
-          <FormGroup check>
-            <Input type="checkbox" name="check" id="exampleCheck"/>
-            <Label for="exampleCheck" check>Check me out</Label>
-          </FormGroup>
-          <Button>Sign in</Button>
-        </Form>
+            <Row>
+              <Col sm="12" md={{ size: 10, offset: 1 }}>
+                <FormGroup>
+                  <Label for="exampleAddress">Email</Label>
+                  <Input type="text" name="email" value={currentState.auth.currentUser.email} onChange={handleChange}/>
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row>
+              <Col sm="12" md={{ size: 10, offset: 1 }}>
+                <FormGroup>
+                  <Label for="exampleAddress">Current Password</Label>
+                  <Input type="text" name="current_password" />
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row>
+              <Col sm="12" md={{ size: 10, offset: 1 }}>
+                <FormGroup>
+                  <Label for="exampleAddress">New Password</Label>
+                  <Input type="text" name="new_password" />
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row className="mt-3">
+              <Col sm="12" md={{ size: 10, offset: 1 }}>
+                <FormGroup>
+                  <Button
+                    color="primary"
+                    type="submit"
+                    block
+                  >
+                    Update User
+                  </Button>
+                </FormGroup>
+              </Col>
+            </Row>
+          </Form>
           </CardBody>
-        </Card>
+        {/* </Card> */}
+        </div>
       </div>
   </Fragment>
   )
