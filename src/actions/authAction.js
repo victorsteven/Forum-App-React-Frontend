@@ -2,7 +2,7 @@ import API_ROUTE from "../apiRoute";
 import axios from 'axios'
 import setAuthorizationToken  from "../utils/authorization";
 import jwt from 'jsonwebtoken'
-import { SET_CURRENT_USER, UPDATE_USER_AVATAR } from './types'
+import { SET_CURRENT_USER, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR } from './types'
 import  {history} from '../history'
 // import { push } from 'react-router-redux'
 
@@ -71,14 +71,31 @@ export const updateUserAvatar = (updateUserAvatar) => {
           'Content-Type': 'multipart/form-data'
         },
       });
-      console.log("this the response: ", res)
 
-      // window.localStorage.setItem('user_data', JSON.stringify(res.data.response));
+      let updatedUser = res.data.response
 
-      dispatch(SetUserUpdate(res.data.response))
-      console.log("this is the new user: ", res.data.response)
+      console.log("the updated: ", updatedUser)
+
+      window.localStorage.setItem('user_data', JSON.stringify(updatedUser)); //update the localstorage
+
+      dispatch(SetUserUpdate(updatedUser)) //update the redux store
+
     } catch (err) {
       console.log("this is the response  err: ", err)
+    }
+  }
+}
+
+export const updateUser = (updateUser) => {
+  return async (dispatch, getState) => {
+    const { id } = getState().Auth.currentUser
+    try {
+      const res = await axios.put(`${API_ROUTE}/users/${id}`, updateUser);
+      console.log("this the response: ", res)
+        dispatch({ type: UPDATE_USER_SUCCESS })
+    } catch (err) {
+      console.log("this is the response  err: ", err)
+      dispatch({ type: UPDATE_USER_ERROR, payload: err.response.data.error })
     }
   }
 }

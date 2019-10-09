@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody, Col, Row, Form, FormText, CustomInput } from "reactstrap";
 
 
-import { updateUserAvatar, updateUser } from '../../actions/usersAction';
+import { updateUserAvatar, updateUser } from '../../actions/authAction';
 import Default from '../../Assets/default.png'
 import styles from './Profile.module.css'
 
@@ -50,10 +50,11 @@ const Profile = () => {
       [e.target.name]: e.target.value
     })
   }
-
   let $imagePreview = null;
-  // if(currentUserState.CurrentUser)
-  if (uploadedFile) {
+  if(currentUserState.currentUser.avatar_path && !uploadedFile){
+    $imagePreview = (<img className={styles.img_style} src={currentUserState.currentUser.avatar_path} alt="no one"/>);
+  }
+  else if(uploadedFile) {
     $imagePreview = (<img className={styles.img_style} src={uploadedFile} alt="no one"/>);
   } else {
     $imagePreview = (<img className={styles.img_style} src={Default} alt="no one 2"/>);
