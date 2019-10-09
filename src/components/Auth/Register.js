@@ -40,7 +40,7 @@ const Register = () => {
     });
   }
 
-  if(currentState.auth.isAuthenticated){
+  if(currentState.Auth.isAuthenticated){
     return <Redirect to='/' />
   }
 
@@ -57,13 +57,13 @@ const Register = () => {
           <FormGroup>
             <Label>User Name</Label>
             <Input type="text" name="username" placeholder="Enter username"  onChange={handleChange}/>
-            { currentState.auth.authError && currentState.auth.authError.Required_username ? (
-              <small className="color-red">{currentState.auth.authError.Required_username}</small>
+            { currentState.Auth.authError && currentState.Auth.authError.Required_username ? (
+              <small className="color-red">{currentState.Auth.authError.Required_username}</small>
               ) : (
                 ""
               )}
-              { currentState.auth.authError && currentState.auth.authError.Taken_username ? (
-              <small className="color-red">{ currentState.auth.authError.Taken_username }</small>
+              { currentState.Auth.authError && currentState.Auth.authError.Taken_username ? (
+              <small className="color-red">{ currentState.Auth.authError.Taken_username }</small>
               ) : (
                 ""
               )}
@@ -71,18 +71,18 @@ const Register = () => {
           <FormGroup>
             <Label>Email</Label>
             <Input type="email" name="email" placeholder="Enter email" onChange={handleChange} />
-            { currentState.auth.authError && currentState.auth.authError.Required_email ? (
-              <small className="color-red">{currentState.auth.authError.Required_email}</small>
+            { currentState.Auth.authError && currentState.Auth.authError.Required_email ? (
+              <small className="color-red">{currentState.Auth.authError.Required_email}</small>
               ) : (
                 ""
             )}
-            { currentState.auth.authError && currentState.auth.authError.Invalid_email ? (
-              <small className="color-red">{ currentState.auth.authError.Invalid_email }</small>
+            { currentState.Auth.authError && currentState.Auth.authError.Invalid_email ? (
+              <small className="color-red">{ currentState.Auth.authError.Invalid_email }</small>
               ) : (
                 ""
             )}
-            { currentState.auth.authError && currentState.auth.authError.Taken_email ? (
-              <small className="color-red">{ currentState.auth.authError.Taken_email }</small>
+            { currentState.Auth.authError && currentState.Auth.authError.Taken_email ? (
+              <small className="color-red">{ currentState.Auth.authError.Taken_email }</small>
               ) : (
                 ""
             )}
@@ -90,13 +90,13 @@ const Register = () => {
             <FormGroup>
             <Label>Password</Label>
             <Input type="password" name="password" placeholder="Enter password" onChange={handleChange}/>
-            { currentState.auth.authError && currentState.auth.authError.Required_password ? (
-              <small className="color-red">{ currentState.auth.authError.Required_password }</small>
+            { currentState.Auth.authError && currentState.Auth.authError.Required_password ? (
+              <small className="color-red">{ currentState.Auth.authError.Required_password }</small>
               ) : (
                 ""
               )}
-              { currentState.auth.authError && currentState.auth.authError.Invalid_password ? (
-              <small className="color-red">{ currentState.auth.authError.Invalid_password }</small>
+              { currentState.Auth.authError && currentState.Auth.authError.Invalid_password ? (
+              <small className="color-red">{ currentState.Auth.authError.Invalid_password }</small>
               ) : (
                 ""
               )}

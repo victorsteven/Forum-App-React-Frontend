@@ -8,11 +8,12 @@ import { Provider } from "react-redux"
 import store from './store/index'
 import setAuthorizationToken  from './utils/authorization';
 import { SetCurrentUser } from './actions/authAction';
-import jwt from 'jsonwebtoken'
 
+//when the page reloads, the auth user is still set
 if (localStorage.token){
-  setAuthorizationToken(localStorage.token)
-  store.dispatch(SetCurrentUser(jwt.decode(localStorage.token)))
+  setAuthorizationToken(localStorage.token) 
+  let userData = localStorage.getItem('user_data') == null ? null : JSON.parse(localStorage.getItem('user_data'))
+  store.dispatch(SetCurrentUser(userData))
 }
 
 

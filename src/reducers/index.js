@@ -1,12 +1,17 @@
 import { combineReducers } from "redux"
 import { createPost, fetchPosts }  from "./postsReducer";
 import authReducer from "./authReducer";
+import { updateUserAvatar } from "./usersReducer";
+
+
+
 
 
 const reducer = combineReducers({
-  auth: authReducer,
+  Auth: authReducer,
   FetchPosts: fetchPosts,
-  CreatePost: createPost
+  CreatePost: createPost,
+  Avatar: updateUserAvatar
 })
 
 export default reducer

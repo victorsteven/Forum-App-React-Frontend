@@ -1,6 +1,6 @@
 import API_ROUTE from "../apiRoute";
 import axios from 'axios'
-import { UPDATE_USER_SUCCESS, UPDATE_USER_ERROR } from './types'
+import { UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, UPDATE_USER_AVATAR } from './types'
 import  {history} from '../history'
 
 // export const fetchPosts = () => {
@@ -13,9 +13,16 @@ import  {history} from '../history'
 //   }
 // }
 
+export const SetUserUpdate = (user) => {
+  return {
+    type: UPDATE_USER_AVATAR,
+    user
+  };
+}
+
 export const updateUserAvatar = (updateUserAvatar) => {
   return async (dispatch, getState) => {
-    const { id } = getState().auth.currentUser
+    const { id } = getState().Auth.currentUser
     try {
       const res = await axios.put(`${API_ROUTE}/avatar/users/${id}`, updateUserAvatar, {
         headers: {
@@ -23,6 +30,8 @@ export const updateUserAvatar = (updateUserAvatar) => {
         },
       });
       console.log("this the response: ", res)
+      dispatch(SetUserUpdate(res.data.response))
+      console.log("this is the new user: ", res.data.response)
     } catch (err) {
       console.log("this is the response  err: ", err)
     }
@@ -56,7 +65,7 @@ export const updateUserAvatar = (updateUserAvatar) => {
 
 export const updateUser = (updateUser) => {
   return async (dispatch, getState) => {
-    const { id } = getState().auth.currentUser
+    const { id } = getState().Auth.currentUser
     try {
       const res = await axios.put(`${API_ROUTE}/users/${id}`, updateUser);
       console.log("this the response: ", res)

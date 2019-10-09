@@ -15,7 +15,7 @@ import Navigation from "../Navigation"
 
 const Profile = () => {
 
-  const currentState = useSelector((state) => state);
+  const currentUserState = useSelector((state) => state.Auth);
 
   const dispatch = useDispatch()
 
@@ -52,6 +52,7 @@ const Profile = () => {
   }
 
   let $imagePreview = null;
+  // if(currentUserState.CurrentUser)
   if (uploadedFile) {
     $imagePreview = (<img className={styles.img_style} src={uploadedFile} alt="no one"/>);
   } else {
@@ -59,7 +60,7 @@ const Profile = () => {
   }
 
   //incase someone visits the route manually
-  if(!currentState.auth.isAuthenticated){
+  if(!currentUserState.isAuthenticated){
     return <Redirect to='/login' />
   }
 
@@ -111,7 +112,7 @@ const Profile = () => {
             <Col sm="12" md={{ size: 10, offset: 1 }}>
               <FormGroup>
                 <Label for="exampleAddress">Username</Label>
-                <Input type="text" name="username" value={currentState.auth.currentUser.username} disabled/>
+                <Input type="text" name="username" value={currentUserState.currentUser.username} disabled/>
               </FormGroup>
             </Col>
           </Row>
@@ -119,7 +120,7 @@ const Profile = () => {
             <Col sm="12" md={{ size: 10, offset: 1 }}>
               <FormGroup>
                 <Label for="exampleAddress">Email</Label>
-                <Input type="text" name="email" value={currentState.auth.currentUser.email} onChange={handleChange}/>
+                <Input type="text" name="email" value={currentUserState.currentUser.email} onChange={handleChange}/>
               </FormGroup>
             </Col>
           </Row>

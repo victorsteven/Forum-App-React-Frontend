@@ -1,10 +1,12 @@
-import { SET_CURRENT_USER } from '../actions/types'
+import { SET_CURRENT_USER, UPDATE_USER_AVATAR } from '../actions/types'
 import isEmpty from 'lodash/isEmpty';
+// import { initState } from './index'
 
 const initState = {
   isAuthenticated: false,
   currentUser: {}
 }
+
 
 const authReducer = (state = initState, action) => {
   switch(action.type) {
@@ -31,6 +33,13 @@ const authReducer = (state = initState, action) => {
         return {
           ...state,
           authError: action.payload
+        }
+
+      case UPDATE_USER_AVATAR:
+        console.log("updated user")
+        return {
+          ...state,
+          currentUser: action.user
         }
       default:
         return state;

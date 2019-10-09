@@ -1,4 +1,7 @@
-import { UPDATE_USER_SUCCESS, UPDATE_USER_ERROR } from '../actions/types'
+import { UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, UPDATE_USER_AVATAR } from '../actions/types'
+// import { initState } from './index'
+import { store } from '../store/index'
+
 
 // export const fetchPosts = (state = { posts: []}, action) => {
 //   if(action.type === FETCH_POSTS ) {
@@ -7,12 +10,15 @@ import { UPDATE_USER_SUCCESS, UPDATE_USER_ERROR } from '../actions/types'
 //   return state;
 // }
 
-export const updateUserAvatar = (state = { user: {}}, action) => {
+// const currentstate = store.getState()
+
+export const updateUserAvatar = (state = {}, action) => {
+  // console.log("this is the current state from the reducer: ", currentstate)
   switch(action.type) {
-    case UPDATE_USER_SUCCESS:
+    case UPDATE_USER_AVATAR:
       return { 
         ...state, 
-        user: action.payload 
+        avatarUser: action.user 
       }
     case UPDATE_USER_ERROR:
         return { 

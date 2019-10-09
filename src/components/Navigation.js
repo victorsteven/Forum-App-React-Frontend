@@ -24,7 +24,7 @@ const Navigation = () => {
 
   const currentState = useSelector((state) => state);
   
-  const { isAuthenticated } = currentState.auth;
+  const { isAuthenticated } = currentState.Auth;
 
   const dispatch = useDispatch()
 

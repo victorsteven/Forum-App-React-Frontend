@@ -40,7 +40,7 @@ const Login = () => {
     });
   }
 
-  if(currentState.auth.isAuthenticated){
+  if(currentState.Auth.isAuthenticated){
     return <Redirect to='/' />
   }
 
@@ -55,8 +55,8 @@ const Login = () => {
           <CardBody>
           <form onSubmit={submitUser}>
           <div>
-            { errorMsg.auth.authError && errorMsg.auth.authError.Incorrect_details ? (
-              <small className="color-red">{errorMsg.auth.authError.Incorrect_details}</small>
+            { errorMsg.Auth.authError && errorMsg.Auth.authError.Incorrect_details ? (
+              <small className="color-red">{errorMsg.Auth.authError.Incorrect_details}</small>
               ) : (
                 ""
             )}
@@ -64,13 +64,13 @@ const Login = () => {
           <FormGroup>
             <Label>Email</Label>
             <Input type="email" name="email" placeholder="Enter email" onChange={handleChange} />
-            { errorMsg.auth.authError && errorMsg.auth.authError.Required_email ? (
-              <small className="color-red">{errorMsg.auth.authError.Required_email}</small>
+            { errorMsg.Auth.authError && errorMsg.Auth.authError.Required_email ? (
+              <small className="color-red">{errorMsg.Auth.authError.Required_email}</small>
               ) : (
                 ""
             )}
-            { errorMsg.auth.authError && errorMsg.auth.authError.Invalid_email ? (
-              <small className="color-red">{ errorMsg.auth.authError.Invalid_email }</small>
+            { errorMsg.Auth.authError && errorMsg.Auth.authError.Invalid_email ? (
+              <small className="color-red">{ errorMsg.Auth.authError.Invalid_email }</small>
               ) : (
                 ""
             )}
@@ -78,13 +78,13 @@ const Login = () => {
             <FormGroup>
             <Label>Password</Label>
             <Input type="password" name="password" placeholder="Enter password" onChange={handleChange}/>
-            { errorMsg.auth.authError && errorMsg.auth.authError.Required_password ? (
-              <small className="color-red">{ errorMsg.auth.authError.Required_password }</small>
+            { errorMsg.Auth.authError && errorMsg.Auth.authError.Required_password ? (
+              <small className="color-red">{ errorMsg.Auth.authError.Required_password }</small>
               ) : (
                 ""
               )}
-              { errorMsg.auth.authError && errorMsg.auth.authError.Invalid_password ? (
-              <small className="color-red">{ errorMsg.auth.authError.Invalid_password }</small>
+              { errorMsg.Auth.authError && errorMsg.Auth.authError.Invalid_password ? (
+              <small className="color-red">{ errorMsg.Auth.authError.Invalid_password }</small>
               ) : (
                 ""
               )}
