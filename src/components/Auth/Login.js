@@ -10,9 +10,7 @@ import { Redirect } from 'react-router-dom';
 
 const Login = () => {
 
-  const errorMsg = useSelector((state) => state);
-
-  const currentState = useSelector((state) => state);
+  const currentState = useSelector((state) => state.Auth);
 
   const [user, setUser] = useState({
     email: '',
@@ -40,7 +38,7 @@ const Login = () => {
     });
   }
 
-  if(currentState.Auth.isAuthenticated){
+  if(currentState.isAuthenticated){
     return <Redirect to='/' />
   }
 
@@ -55,8 +53,8 @@ const Login = () => {
           <CardBody>
           <form onSubmit={submitUser}>
           <div>
-            { errorMsg.Auth.authError && errorMsg.Auth.authError.Incorrect_details ? (
-              <small className="color-red">{errorMsg.Auth.authError.Incorrect_details}</small>
+            { currentState.authError && currentState.authError.Incorrect_details ? (
+              <small className="color-red">{currentState.authError.Incorrect_details}</small>
               ) : (
                 ""
             )}
@@ -64,13 +62,13 @@ const Login = () => {
           <FormGroup>
             <Label>Email</Label>
             <Input type="email" name="email" placeholder="Enter email" onChange={handleChange} />
-            { errorMsg.Auth.authError && errorMsg.Auth.authError.Required_email ? (
-              <small className="color-red">{errorMsg.Auth.authError.Required_email}</small>
+            { currentState.authError && currentState.authError.Required_email ? (
+              <small className="color-red">{currentState.authError.Required_email}</small>
               ) : (
                 ""
             )}
-            { errorMsg.Auth.authError && errorMsg.Auth.authError.Invalid_email ? (
-              <small className="color-red">{ errorMsg.Auth.authError.Invalid_email }</small>
+            { currentState.authError && currentState.authError.Invalid_email ? (
+              <small className="color-red">{ currentState.authError.Invalid_email }</small>
               ) : (
                 ""
             )}
@@ -78,29 +76,40 @@ const Login = () => {
             <FormGroup>
             <Label>Password</Label>
             <Input type="password" name="password" placeholder="Enter password" onChange={handleChange}/>
-            { errorMsg.Auth.authError && errorMsg.Auth.authError.Required_password ? (
-              <small className="color-red">{ errorMsg.Auth.authError.Required_password }</small>
+            { currentState.authError && currentState.authError.Required_password ? (
+              <small className="color-red">{ currentState.authError.Required_password }</small>
               ) : (
                 ""
               )}
-              { errorMsg.Auth.authError && errorMsg.Auth.authError.Invalid_password ? (
-              <small className="color-red">{ errorMsg.Auth.authError.Invalid_password }</small>
+              { currentState.authError && currentState.authError.Invalid_password ? (
+              <small className="color-red">{ currentState.authError.Invalid_password }</small>
               ) : (
                 ""
               )}
-              { errorMsg.Auth.authError && errorMsg.Auth.authError.Incorrect_password ? (
-              <small className="color-red">{ errorMsg.Auth.authError.Incorrect_password }</small>
+              { currentState.authError && currentState.authError.Incorrect_password ? (
+              <small className="color-red">{ currentState.authError.Incorrect_password }</small>
               ) : (
                 ""
               )}
             </FormGroup>
-            <Button
-              color="primary"
-              type="submit"
-              block
-            >
-              Login
+            { currentState.isLoading ? (
+              <Button
+                color="primary"
+                type="submit"
+                block
+                disabled
+              >
+                Login...
+              </Button>
+            ) : (
+              <Button
+                color="primary"
+                type="submit"
+                block
+              >
+                Login
             </Button>
+            )}
             </form>
             </CardBody>
           </Card>

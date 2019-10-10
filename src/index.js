@@ -7,15 +7,15 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from "react-redux"
 import store from './store/index'
 import setAuthorizationToken  from './utils/authorization';
-import { SetCurrentUser } from './actions/authAction';
+import { LOGIN_SUCCESS } from './actions/types';
 
 //when the page reloads, the auth user is still set
 if (localStorage.token){
   setAuthorizationToken(localStorage.token) 
   let userData = localStorage.getItem('user_data') == null ? null : JSON.parse(localStorage.getItem('user_data'))
-  store.dispatch(SetCurrentUser(userData))
-}
+  store.dispatch({ type: LOGIN_SUCCESS, payload: userData}) //provided he has a valid token 
 
+}
 
 ReactDOM.render(<Provider store={store}><Routes /></Provider>, document.getElementById('root'));
 

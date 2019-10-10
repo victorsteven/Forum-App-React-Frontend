@@ -10,7 +10,7 @@ import { Redirect } from 'react-router-dom';
 
 const Register = () => {
 
-  const currentState = useSelector((state) => state);
+  const currentState = useSelector((state) => state.Auth);
 
   const [user, setUser] = useState({
     username:'',
@@ -40,7 +40,7 @@ const Register = () => {
     });
   }
 
-  if(currentState.Auth.isAuthenticated){
+  if(currentState.isAuthenticated){
     return <Redirect to='/' />
   }
 
@@ -51,19 +51,19 @@ const Register = () => {
         </div>
         <div className="Auth">
         <Card className="card-style">
-          <CardHeader>Add a new user</CardHeader>
+          <CardHeader>Welcome To SeamFlow</CardHeader>
           <CardBody>
           <form onSubmit={submitUser}>
           <FormGroup>
             <Label>User Name</Label>
             <Input type="text" name="username" placeholder="Enter username"  onChange={handleChange}/>
-            { currentState.Auth.authError && currentState.Auth.authError.Required_username ? (
-              <small className="color-red">{currentState.Auth.authError.Required_username}</small>
+            { currentState.authError && currentState.authError.Required_username ? (
+              <small className="color-red">{currentState.authError.Required_username}</small>
               ) : (
                 ""
               )}
-              { currentState.Auth.authError && currentState.Auth.authError.Taken_username ? (
-              <small className="color-red">{ currentState.Auth.authError.Taken_username }</small>
+              { currentState.authError && currentState.authError.Taken_username ? (
+              <small className="color-red">{ currentState.authError.Taken_username }</small>
               ) : (
                 ""
               )}
@@ -71,18 +71,18 @@ const Register = () => {
           <FormGroup>
             <Label>Email</Label>
             <Input type="email" name="email" placeholder="Enter email" onChange={handleChange} />
-            { currentState.Auth.authError && currentState.Auth.authError.Required_email ? (
-              <small className="color-red">{currentState.Auth.authError.Required_email}</small>
+            { currentState.authError && currentState.authError.Required_email ? (
+              <small className="color-red">{currentState.authError.Required_email}</small>
               ) : (
                 ""
             )}
-            { currentState.Auth.authError && currentState.Auth.authError.Invalid_email ? (
-              <small className="color-red">{ currentState.Auth.authError.Invalid_email }</small>
+            { currentState.authError && currentState.authError.Invalid_email ? (
+              <small className="color-red">{ currentState.authError.Invalid_email }</small>
               ) : (
                 ""
             )}
-            { currentState.Auth.authError && currentState.Auth.authError.Taken_email ? (
-              <small className="color-red">{ currentState.Auth.authError.Taken_email }</small>
+            { currentState.authError && currentState.authError.Taken_email ? (
+              <small className="color-red">{ currentState.authError.Taken_email }</small>
               ) : (
                 ""
             )}
@@ -90,29 +90,40 @@ const Register = () => {
             <FormGroup>
             <Label>Password</Label>
             <Input type="password" name="password" placeholder="Enter password" onChange={handleChange}/>
-            { currentState.Auth.authError && currentState.Auth.authError.Required_password ? (
-              <small className="color-red">{ currentState.Auth.authError.Required_password }</small>
+            { currentState.authError && currentState.authError.Required_password ? (
+              <small className="color-red">{ currentState.authError.Required_password }</small>
               ) : (
                 ""
               )}
-              { currentState.Auth.authError && currentState.Auth.authError.Invalid_password ? (
-              <small className="color-red">{ currentState.Auth.authError.Invalid_password }</small>
+              { currentState.authError && currentState.authError.Invalid_password ? (
+              <small className="color-red">{ currentState.authError.Invalid_password }</small>
               ) : (
                 ""
               )}
             </FormGroup>
-            <Button
-              color="primary"
-              type="submit"
-              block
-            >
-              Add User
+            { currentState.isLoading ? (
+              <Button
+                color="primary"
+                type="submit"
+                block
+                disabled
+              >
+                Registering...
             </Button>
+            ) : (
+              <Button
+                color="primary"
+                type="submit"
+                block
+              >
+                Register
+            </Button>
+            )}
             </form>
             </CardBody>
           </Card>
         </div>
-        </div>
+      </div>
     );
 }
 

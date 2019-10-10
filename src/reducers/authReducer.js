@@ -1,13 +1,13 @@
-import { SET_CURRENT_USER, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, BEFORE_STATE, UPDATE_USER_AVATAR_ERROR } from '../actions/types'
+import { SIGNUP_SUCCESS, SIGNUP_ERROR, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, BEFORE_STATE, UPDATE_USER_AVATAR_ERROR, BEFORE_AVATAR_STATE, BEFORE_USER_STATE } from '../actions/types'
 import isEmpty from 'lodash/isEmpty';
-// import { initState } from './index'
 
 const initState = {
   isAuthenticated: false,
   currentUser: {},
-  isLoading: false
+  isLoading: false,
+  isLoadingAvatar: false,
+  isUpdatingUser: false
 }
-
 
 const authReducer = (state = initState, action) => {
   switch(action.type) {
@@ -17,59 +17,72 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         isLoading: true
-    }
-    case 'LOGIN_ERROR':
+      }
+    case BEFORE_AVATAR_STATE:
+        return {
+          ...state,
+          isLoadingAvatar: true
+        }
+    case BEFORE_USER_STATE:
       return {
         ...state,
+        isUpdatingUser: true
+      }
+    case SIGNUP_SUCCESS:
+      return {
+        ...state,
+        isLoading: false
+      }
+    case SIGNUP_ERROR:
+      return {
+        ...state,
+        isLoading: false,
         authError: action.payload
       }
-      case SET_CURRENT_USER:
-        return {
-          ...state, 
-          currentUser: action.user,
-          isAuthenticated: !isEmpty(action.user),
-        }
-      case 'SIGNOUT_SUCCESS':
-        return state
-      case 'SIGNUP_SUCCESS':
-        console.log("Sign up success");
-        return {
-          ...state,
-        }
-      case 'SIGNUP_ERROR':
-        console.log("Signup error")
-        return {
-          ...state,
-          authError: action.payload
-        }
-
-      case UPDATE_USER_AVATAR:
-        console.log("updated avatar")
-        return {
-          ...state,
-          isLoading: false,
-          currentUser: action.payload
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        currentUser: action.payload,
+        isAuthenticated: !isEmpty(action.payload),
       }
-
-      case UPDATE_USER_SUCCESS:
+    case LOGIN_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        authError: action.payload
+      }
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: false,
+        currentUser: {},
+      }
+    case UPDATE_USER_AVATAR:
+      return {
+        ...state,
+        isLoadingAvatar: false,
+        currentUser: action.payload
+      }
+    case UPDATE_USER_AVATAR_ERROR:
         return {
           ...state,
-          isLoading: false,
-          currentUser: action.payload
+          isLoadingAvatar: false
       }
-      case UPDATE_USER_ERROR:
-        return {
-          ...state,
-          isLoading: false,
-          updateError: action.payload
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        currentUser: action.payload
       }
-      case UPDATE_USER_AVATAR_ERROR:
-          return {
-            ...state,
-            isLoading: false
-        }
-      default:
-        return state;
+    case UPDATE_USER_ERROR:
+      return {
+        ...state,
+        isUpdatingUser: false,
+        updateError: action.payload
+      }
+    default:
+      return state;
   }
 }
 

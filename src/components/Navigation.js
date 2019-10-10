@@ -26,6 +26,8 @@ const Navigation = () => {
   
   const { isAuthenticated } = currentState.Auth;
 
+  // console.log("this is the auth user: ", isAuthenticated)
+
   const dispatch = useDispatch()
 
   const logoutUser  = () => dispatch(SignOut());

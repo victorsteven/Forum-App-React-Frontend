@@ -1,7 +1,7 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from 'react-router-dom';
-import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody, Col, Row, Form, FormText, CustomInput } from "reactstrap";
+import { Label, Input, FormGroup, Button, CardBody, Col, Row, Form, CustomInput } from "reactstrap";
 
 
 import { updateUserAvatar, updateUser } from '../../actions/authAction';
@@ -23,7 +23,9 @@ const Profile = () => {
   const [file, setFile] = useState();
   const [uploadedFile, setUploadedFile] = useState();
 
-  // const [loading, setLoading] = useState(false);
+  // const [loadAvatar, setLoadAvatar] = useState(false);
+  // const [loadUser, setLoadUser] = useState(false);
+
 
   const [user, setUser] = useState({
     email: currentUserState.currentUser.email,
@@ -107,7 +109,7 @@ const Profile = () => {
                 <CustomInput type="file" id="exampleCustomFileBrowser" onChange={(e)=> handleImageChange(e)} />
               </FormGroup>
             </div>
-            { currentUserState.isLoading ? (
+            { currentUserState.isLoadingAvatar ? (
               <Button className={styles.style_photo_button}
                 color="primary"
                 type="submit"
@@ -184,7 +186,7 @@ const Profile = () => {
           <Row className="mt-3">
             <Col sm="12" md={{ size: 10, offset: 1 }}>
               <FormGroup>
-                { currentUserState.isLoading ? (
+                { currentUserState.isUpdatingUser ? (
                   <Button
                     color="primary"
                     type="submit"
