@@ -88,6 +88,11 @@ const Login = () => {
               ) : (
                 ""
               )}
+              { errorMsg.Auth.authError && errorMsg.Auth.authError.Incorrect_password ? (
+              <small className="color-red">{ errorMsg.Auth.authError.Incorrect_password }</small>
+              ) : (
+                ""
+              )}
             </FormGroup>
             <Button
               color="primary"

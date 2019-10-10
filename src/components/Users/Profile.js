@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody, Col, Row, Form, FormText, CustomInput } from "reactstrap";
@@ -7,8 +7,6 @@ import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody, Col, Row, 
 import { updateUserAvatar, updateUser } from '../../actions/authAction';
 import Default from '../../Assets/default.png'
 import styles from './Profile.module.css'
-
-
 
 
 import Navigation from "../Navigation"
@@ -25,12 +23,28 @@ const Profile = () => {
   const [file, setFile] = useState();
   const [uploadedFile, setUploadedFile] = useState();
 
+  const [loading, setLoading] = useState(false);
+
   const [user, setUser] = useState({
-    email: '',
+    email: currentUserState.currentUser.email,
     current_password: '',
     new_password: '',
-  });
+  })
 
+  // useEffect(() => {
+  //   setUser({
+  //     email: currentUserState.currentUser.email,
+  //     current_password: '',
+  //     new_password: '',
+  //   })
+  // }, []);
+
+  const handleChange = e => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value
+    })
+  }
 
   const handleImageChange = (e) => {
     e.preventDefault();
@@ -44,12 +58,6 @@ const Profile = () => {
     reader.readAsDataURL(thefile)
   }
 
-  const handleChange = (e) => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value
-    })
-  }
   let $imagePreview = null;
   if(currentUserState.currentUser.avatar_path && !uploadedFile){
     $imagePreview = (<img className={styles.img_style} src={currentUserState.currentUser.avatar_path} alt="no one"/>);
@@ -85,7 +93,6 @@ const Profile = () => {
     <Fragment>
       <Navigation />
       <div className="post-style container">
-        {/* <Card className="card-style">   */}
         <div className="card-style">
           <div className="text-center">
             <h2>Update Profile</h2>
@@ -95,33 +102,41 @@ const Profile = () => {
                 {$imagePreview}
             </div>
           <Form onSubmit={submitUserAvatar} encType="multipart/form-data">
-          <div>
-            <FormGroup className={styles.style_file_input}>
-              <CustomInput type="file" id="exampleCustomFileBrowser" onChange={(e)=> handleImageChange(e)} />
-            </FormGroup>
-          </div>
-          <Button className={styles.style_photo_button}
-            color="primary"
-            type="submit"
-          >
-            Update Photo
-          </Button>
+            <div>
+              <FormGroup className={styles.style_file_input}>
+                <CustomInput type="file" id="exampleCustomFileBrowser" onChange={(e)=> handleImageChange(e)} />
+              </FormGroup>
+            </div>
+            <Button className={styles.style_photo_button}
+              color="primary"
+              type="submit"
+            >
+              Update Photo
+            </Button>
         </Form>
 
+        <Row className="mt-3">
+          <Col sm="12" md={{ size: 10, offset: 1 }}>
+          <div style={{margin: "10px 0px 10px"}}>Username: <strong>{currentUserState.currentUser.username}</strong></div>
+          </Col>
+        </Row>
+
         <Form onSubmit={submitUser}>
-          <Row className="mt-3">
-            <Col sm="12" md={{ size: 10, offset: 1 }}>
-              <FormGroup>
-                <Label for="exampleAddress">Username</Label>
-                <Input type="text" name="username" value={currentUserState.currentUser.username} disabled/>
-              </FormGroup>
-            </Col>
-          </Row>
           <Row>
             <Col sm="12" md={{ size: 10, offset: 1 }}>
               <FormGroup>
                 <Label for="exampleAddress">Email</Label>
-                <Input type="text" name="email" value={currentUserState.currentUser.email} onChange={handleChange}/>
+                <Input type="text" name="email" value={user.email} onChange={handleChange} />
+                { currentUserState.updateError && currentUserState.updateError.Required_email ? (
+                  <small className="color-red">{currentUserState.updateError.Required_email}</small>
+                  ) : (
+                    ""
+                )}
+                { currentUserState.updateError && currentUserState.updateError.Invalid_email ? (
+                  <small className="color-red">{ currentUserState.updateError.Invalid_email }</small>
+                  ) : (
+                    ""
+                )}
               </FormGroup>
             </Col>
           </Row>
@@ -129,7 +144,17 @@ const Profile = () => {
             <Col sm="12" md={{ size: 10, offset: 1 }}>
               <FormGroup>
                 <Label for="exampleAddress">Current Password</Label>
-                <Input type="text" name="current_password" />
+                <Input type="password" name="current_password"   onChange={handleChange}/>
+                { currentUserState.updateError && currentUserState.updateError.Password_mismatch ? (
+                  <small className="color-red">{currentUserState.updateError.Password_mismatch}</small>
+                  ) : (
+                    ""
+                )}
+                { currentUserState.updateError && currentUserState.updateError.Empty_Current ? (
+                  <small className="color-red">{ currentUserState.updateError.Empty_Current }</small>
+                  ) : (
+                    ""
+                )}
               </FormGroup>
             </Col>
           </Row>
@@ -137,18 +162,41 @@ const Profile = () => {
             <Col sm="12" md={{ size: 10, offset: 1 }}>
               <FormGroup>
                 <Label for="exampleAddress">New Password</Label>
-                <Input type="text" name="new_password" />
+                <Input type="password" name="new_password"   onChange={handleChange}/>
+                { currentUserState.updateError && currentUserState.updateError.Invalid_password ? (
+                  <small className="color-red">{ currentUserState.updateError.Invalid_password }</small>
+                  ) : (
+                    ""
+                )}
               </FormGroup>
             </Col>
           </Row>
           <Row className="mt-3">
             <Col sm="12" md={{ size: 10, offset: 1 }}>
               <FormGroup>
+                {/* { loading ? (
+                  <Button
+                    color="primary"
+                    type="submit"
+                    block
+                  >
+                    Updating...
+                </Button>
+                ) : (
+                  <Button
+                    color="primary"
+                    type="submit"
+                    block
+                  >
+                  Update User
+                </Button>
+                )} */}
+
                 <Button
-                  color="primary"
-                  type="submit"
-                  block
-                >
+                    color="primary"
+                    type="submit"
+                    block
+                  >
                   Update User
                 </Button>
               </FormGroup>
@@ -156,7 +204,6 @@ const Profile = () => {
           </Row>
         </Form>
         </CardBody>
-      {/* </Card> */}
       </div>
     </div>
   </Fragment>

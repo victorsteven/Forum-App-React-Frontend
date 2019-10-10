@@ -1,10 +1,11 @@
-import { SET_CURRENT_USER, UPDATE_USER_AVATAR } from '../actions/types'
+import { SET_CURRENT_USER, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR } from '../actions/types'
 import isEmpty from 'lodash/isEmpty';
 // import { initState } from './index'
 
 const initState = {
   isAuthenticated: false,
-  currentUser: {}
+  currentUser: {},
+  loading: false
 }
 
 
@@ -36,11 +37,24 @@ const authReducer = (state = initState, action) => {
         }
 
       case UPDATE_USER_AVATAR:
-        console.log("updated user")
+        console.log("updated avatar")
         return {
           ...state,
-          currentUser: action.user
-        }
+          currentUser: action.payload
+      }
+
+      case UPDATE_USER_SUCCESS:
+        return {
+          ...state,
+          currentUser: action.payload
+      }
+      case UPDATE_USER_ERROR:
+        return {
+          ...state,
+          updateError: action.payload
+      }
+
+      
       default:
         return state;
   }

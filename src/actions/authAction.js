@@ -1,7 +1,6 @@
 import API_ROUTE from "../apiRoute";
 import axios from 'axios'
 import setAuthorizationToken  from "../utils/authorization";
-import jwt from 'jsonwebtoken'
 import { SET_CURRENT_USER, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR } from './types'
 import  {history} from '../history'
 // import { push } from 'react-router-redux'
@@ -37,6 +36,8 @@ export const SignOut = () => {
     localStorage.removeItem("token")
     setAuthorizationToken(false)
     dispatch(SetCurrentUser({}))
+    window.localStorage.clear(); //update the localstorage
+
     // axios.post(`${API_ROUTE}/logout`).then(res => {
     //   dispatch({ type: "SIGNOUT_SUCCESS"})
     // })
@@ -55,13 +56,6 @@ export const SignUp = (newUser) => {
   }
 }
 
-export const SetUserUpdate = (user) => {
-  return {
-    type: UPDATE_USER_AVATAR,
-    user
-  };
-}
-
 export const updateUserAvatar = (updateUserAvatar) => {
   return async (dispatch, getState) => {
     const { id } = getState().Auth.currentUser
@@ -71,14 +65,9 @@ export const updateUserAvatar = (updateUserAvatar) => {
           'Content-Type': 'multipart/form-data'
         },
       });
-
       let updatedUser = res.data.response
-
-      console.log("the updated: ", updatedUser)
-
       window.localStorage.setItem('user_data', JSON.stringify(updatedUser)); //update the localstorage
-
-      dispatch(SetUserUpdate(updatedUser)) //update the redux store
+      dispatch({ type: "UPDATE_USER_AVATAR", payload: updatedUser })
 
     } catch (err) {
       console.log("this is the response  err: ", err)
@@ -88,13 +77,14 @@ export const updateUserAvatar = (updateUserAvatar) => {
 
 export const updateUser = (updateUser) => {
   return async (dispatch, getState) => {
-    const { id } = getState().Auth.currentUser
+    const { currentUser, loading } = getState().Auth
     try {
-      const res = await axios.put(`${API_ROUTE}/users/${id}`, updateUser);
-      console.log("this the response: ", res)
-        dispatch({ type: UPDATE_USER_SUCCESS })
+      const res = await axios.put(`${API_ROUTE}/users/${currentUser.id}`, updateUser);
+      let updatedUser = res.data.response
+
+      dispatch({ type: "UPDATE_USER_SUCCESS", payload: updatedUser })
+       window.localStorage.setItem('user_data', JSON.stringify(updatedUser)); //update the localstorage
     } catch (err) {
-      console.log("this is the response  err: ", err)
       dispatch({ type: UPDATE_USER_ERROR, payload: err.response.data.error })
     }
   }

@@ -19,6 +19,7 @@ const Posts = () => {
 
 
   useEffect(() => {
+    console.log("we are getting the posts")
     getPosts();
   }, [])
 
