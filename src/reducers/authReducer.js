@@ -1,16 +1,23 @@
-import { SET_CURRENT_USER, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR } from '../actions/types'
+import { SET_CURRENT_USER, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, BEFORE_STATE, UPDATE_USER_AVATAR_ERROR } from '../actions/types'
 import isEmpty from 'lodash/isEmpty';
 // import { initState } from './index'
 
 const initState = {
   isAuthenticated: false,
   currentUser: {},
-  loading: false
+  isLoading: false
 }
 
 
 const authReducer = (state = initState, action) => {
   switch(action.type) {
+
+    // This is the state to set when the button is click and we are waiting for response 
+    case BEFORE_STATE:
+      return {
+        ...state,
+        isLoading: true
+    }
     case 'LOGIN_ERROR':
       return {
         ...state,
@@ -40,21 +47,27 @@ const authReducer = (state = initState, action) => {
         console.log("updated avatar")
         return {
           ...state,
+          isLoading: false,
           currentUser: action.payload
       }
 
       case UPDATE_USER_SUCCESS:
         return {
           ...state,
+          isLoading: false,
           currentUser: action.payload
       }
       case UPDATE_USER_ERROR:
         return {
           ...state,
+          isLoading: false,
           updateError: action.payload
       }
-
-      
+      case UPDATE_USER_AVATAR_ERROR:
+          return {
+            ...state,
+            isLoading: false
+        }
       default:
         return state;
   }

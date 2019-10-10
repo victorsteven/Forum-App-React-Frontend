@@ -23,7 +23,7 @@ const Profile = () => {
   const [file, setFile] = useState();
   const [uploadedFile, setUploadedFile] = useState();
 
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const [user, setUser] = useState({
     email: currentUserState.currentUser.email,
@@ -107,12 +107,22 @@ const Profile = () => {
                 <CustomInput type="file" id="exampleCustomFileBrowser" onChange={(e)=> handleImageChange(e)} />
               </FormGroup>
             </div>
-            <Button className={styles.style_photo_button}
-              color="primary"
-              type="submit"
-            >
-              Update Photo
-            </Button>
+            { currentUserState.isLoading ? (
+              <Button className={styles.style_photo_button}
+                color="primary"
+                type="submit"
+                disabled
+              >
+                Updating...
+              </Button>
+            ) : (
+              <Button className={styles.style_photo_button}
+                color="primary"
+                type="submit"
+              >
+                Update Photo
+              </Button>
+            )}
         </Form>
 
         <Row className="mt-3">
@@ -174,11 +184,12 @@ const Profile = () => {
           <Row className="mt-3">
             <Col sm="12" md={{ size: 10, offset: 1 }}>
               <FormGroup>
-                {/* { loading ? (
+                { currentUserState.isLoading ? (
                   <Button
                     color="primary"
                     type="submit"
                     block
+                    disabled
                   >
                     Updating...
                 </Button>
@@ -190,15 +201,7 @@ const Profile = () => {
                   >
                   Update User
                 </Button>
-                )} */}
-
-                <Button
-                    color="primary"
-                    type="submit"
-                    block
-                  >
-                  Update User
-                </Button>
+                )}
               </FormGroup>
             </Col>
           </Row>

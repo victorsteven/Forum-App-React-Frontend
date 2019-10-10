@@ -1,7 +1,7 @@
 import API_ROUTE from "../apiRoute";
 import axios from 'axios'
 import setAuthorizationToken  from "../utils/authorization";
-import { SET_CURRENT_USER, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR } from './types'
+import { SET_CURRENT_USER, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, BEFORE_STATE } from './types'
 import  {history} from '../history'
 // import { push } from 'react-router-redux'
 
@@ -58,6 +58,9 @@ export const SignUp = (newUser) => {
 
 export const updateUserAvatar = (updateUserAvatar) => {
   return async (dispatch, getState) => {
+    
+    dispatch({ type: BEFORE_STATE })
+
     const { id } = getState().Auth.currentUser
     try {
       const res = await axios.put(`${API_ROUTE}/avatar/users/${id}`, updateUserAvatar, {
@@ -70,14 +73,19 @@ export const updateUserAvatar = (updateUserAvatar) => {
       dispatch({ type: "UPDATE_USER_AVATAR", payload: updatedUser })
 
     } catch (err) {
-      console.log("this is the response  err: ", err)
+      dispatch({ type: "UPDATE_USER_AVATAR_ERROR", payload: err.response.data.error })
+
     }
   }
 }
 
 export const updateUser = (updateUser) => {
+
   return async (dispatch, getState) => {
-    const { currentUser, loading } = getState().Auth
+
+    dispatch({ type: BEFORE_STATE })
+
+    const { currentUser } = getState().Auth
     try {
       const res = await axios.put(`${API_ROUTE}/users/${currentUser.id}`, updateUser);
       let updatedUser = res.data.response
