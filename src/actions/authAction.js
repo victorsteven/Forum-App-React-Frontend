@@ -69,7 +69,7 @@ export const updateUser = (updateUser) => {
       const res = await axios.put(`${API_ROUTE}/users/${currentUser.id}`, updateUser);
       let updatedUser = res.data.response
       dispatch({ type: UPDATE_USER_SUCCESS, payload: updatedUser })
-       window.localStorage.setItem('user_data', JSON.stringify(updatedUser)); //update the localstorage
+       window.localStorage.setItem('user_data', JSON.stringify(updatedUser)); //update the localstorages
     } catch (err) {
       dispatch({ type: UPDATE_USER_ERROR, payload: err.response.data.error })
     }

@@ -31,13 +31,14 @@ const authReducer = (state = initState, action) => {
     case SIGNUP_SUCCESS:
       return {
         ...state,
-        isLoading: false
+        isLoading: false,
+        signupError: null
       }
     case SIGNUP_ERROR:
       return {
         ...state,
         isLoading: false,
-        authError: action.payload
+        signupError: action.payload
       }
     case LOGIN_SUCCESS:
       return {
@@ -45,12 +46,13 @@ const authReducer = (state = initState, action) => {
         isLoading: false,
         currentUser: action.payload,
         isAuthenticated: !isEmpty(action.payload),
+        loginError: null
       }
     case LOGIN_ERROR:
       return {
         ...state,
         isLoading: false,
-        authError: action.payload
+        loginError: action.payload
       }
     case LOGOUT_SUCCESS:
       return {
@@ -62,18 +64,22 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         isLoadingAvatar: false,
-        currentUser: action.payload
+        currentUser: action.payload,
+        updateAvatarError: null
       }
     case UPDATE_USER_AVATAR_ERROR:
         return {
           ...state,
-          isLoadingAvatar: false
+          isLoadingAvatar: false,
+          updateAvatarError: action.payload
       }
     case UPDATE_USER_SUCCESS:
       return {
         ...state,
-        isLoading: false,
-        currentUser: action.payload
+        isUpdatingUser: false,
+        currentUser: action.payload,
+        updateError: null
+
       }
     case UPDATE_USER_ERROR:
       return {
