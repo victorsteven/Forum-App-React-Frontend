@@ -23,10 +23,6 @@ const Profile = () => {
   const [file, setFile] = useState();
   const [uploadedFile, setUploadedFile] = useState();
 
-  // const [loadAvatar, setLoadAvatar] = useState(false);
-  // const [loadUser, setLoadUser] = useState(false);
-
-
   const [user, setUser] = useState({
     email: currentUserState.currentUser.email,
     current_password: '',
@@ -106,7 +102,17 @@ const Profile = () => {
           <Form onSubmit={submitUserAvatar} encType="multipart/form-data">
             <div>
               <FormGroup className={styles.style_file_input}>
-                <CustomInput type="file" id="exampleCustomFileBrowser" onChange={(e)=> handleImageChange(e)} />
+                <CustomInput type="file" accept="image/*" id="exampleCustomFileBrowser" onChange={(e)=> handleImageChange(e)} />
+                { currentUserState.updateAvatarError && currentUserState.updateAvatarError.Too_large ? (
+                  <small className="color-red">{currentUserState.updateAvatarError.Too_large}</small>
+                  ) : (
+                    ""
+                )}
+                { currentUserState.updateAvatarError && currentUserState.updateAvatarError.Not_Image ? (
+                  <small className="color-red">{ currentUserState.updateAvatarError.Not_Image }</small>
+                  ) : (
+                    ""
+                )}
               </FormGroup>
             </div>
             { currentUserState.isLoadingAvatar ? (
