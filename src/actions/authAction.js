@@ -62,6 +62,8 @@ export const updateUserAvatar = (updateUserAvatar) => {
 }
 
 export const updateUser = (updateUser) => {
+
+  console.log("this is the payload user: ", updateUser)
   return async (dispatch, getState) => {
     dispatch({ type: BEFORE_USER_STATE })
     const { currentUser } = getState().Auth
@@ -71,6 +73,7 @@ export const updateUser = (updateUser) => {
       dispatch({ type: UPDATE_USER_SUCCESS, payload: updatedUser })
        window.localStorage.setItem('user_data', JSON.stringify(updatedUser)); //update the localstorages
     } catch (err) {
+      console.log("this is the update error: ", err)
       dispatch({ type: UPDATE_USER_ERROR, payload: err.response.data.error })
     }
   }

@@ -6,7 +6,8 @@ const initState = {
   currentUser: {},
   isLoading: false,
   isLoadingAvatar: false,
-  isUpdatingUser: false
+  isUpdatingUser: false,
+  authError: null
 }
 
 const authReducer = (state = initState, action) => {
@@ -16,29 +17,32 @@ const authReducer = (state = initState, action) => {
     case BEFORE_STATE:
       return {
         ...state,
-        isLoading: true
+        authError: null,
+        isLoading: true,
       }
     case BEFORE_AVATAR_STATE:
         return {
           ...state,
-          isLoadingAvatar: true
+          authError: null,
+          isLoadingAvatar: true,
         }
     case BEFORE_USER_STATE:
       return {
         ...state,
-        isUpdatingUser: true
+        authError: null,
+        isUpdatingUser: true,
       }
     case SIGNUP_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        signupError: null
+        authError: null
       }
     case SIGNUP_ERROR:
       return {
         ...state,
         isLoading: false,
-        signupError: action.payload
+        authError: action.payload
       }
     case LOGIN_SUCCESS:
       return {
@@ -46,46 +50,47 @@ const authReducer = (state = initState, action) => {
         isLoading: false,
         currentUser: action.payload,
         isAuthenticated: !isEmpty(action.payload),
-        loginError: null
+        authError: null
       }
     case LOGIN_ERROR:
       return {
         ...state,
         isLoading: false,
-        loginError: action.payload
+        authError: action.payload
       }
     case LOGOUT_SUCCESS:
       return {
         ...state,
         isAuthenticated: false,
         currentUser: {},
+        authError: null
       }
     case UPDATE_USER_AVATAR:
       return {
         ...state,
         isLoadingAvatar: false,
         currentUser: action.payload,
-        updateAvatarError: null
+        authError: null
       }
     case UPDATE_USER_AVATAR_ERROR:
         return {
           ...state,
           isLoadingAvatar: false,
-          updateAvatarError: action.payload
+          authError: action.payload
       }
     case UPDATE_USER_SUCCESS:
       return {
         ...state,
         isUpdatingUser: false,
         currentUser: action.payload,
-        updateError: null
+        authError: null
 
       }
     case UPDATE_USER_ERROR:
       return {
         ...state,
         isUpdatingUser: false,
-        updateError: action.payload
+        authError: action.payload
       }
     default:
       return state;
