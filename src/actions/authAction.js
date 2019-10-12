@@ -4,6 +4,15 @@ import setAuthorizationToken  from "../utils/authorization";
 import { BEFORE_STATE, SIGNUP_SUCCESS, SIGNUP_ERROR, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, UPDATE_USER_AVATAR_ERROR, BEFORE_AVATAR_STATE, BEFORE_USER_STATE } from './types'
 import  {history} from '../history'
 
+// export const setErrorState = 
+
+// export const SetCurrentUser = (user) => {
+//   return {
+//     type: SET_CURRENT_USER,
+//     user
+//   };
+// }
+
 export const SignIn = (credentials) => {
   return async (dispatch) => {
       dispatch({ type: BEFORE_STATE }) 
@@ -63,7 +72,6 @@ export const updateUserAvatar = (updateUserAvatar) => {
 
 export const updateUser = (updateUser) => {
 
-  console.log("this is the payload user: ", updateUser)
   return async (dispatch, getState) => {
     dispatch({ type: BEFORE_USER_STATE })
     const { currentUser } = getState().Auth
@@ -73,7 +81,7 @@ export const updateUser = (updateUser) => {
       dispatch({ type: UPDATE_USER_SUCCESS, payload: updatedUser })
        window.localStorage.setItem('user_data', JSON.stringify(updatedUser)); //update the localstorages
     } catch (err) {
-      console.log("this is the update error: ", err)
+      // dispatch()
       dispatch({ type: UPDATE_USER_ERROR, payload: err.response.data.error })
     }
   }
