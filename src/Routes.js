@@ -18,7 +18,7 @@ const Routes  = () => {
             <Route path='/login' component={Login} />
             <Route path='/signup' component={Register} />
             <Route path='/createpost' component={CreatePost} />
-            <Route path='/profile' component={Profile} />
+            <Route path='/profile/:id' component={Profile} />
             <Route path='/profileImage' component={ProfileImage} />
 
           </Switch>

@@ -38,6 +38,13 @@ const Navigation = () => {
     logoutUser()
   }
 
+  // const userProfile = {
+  //   pathname: "/profile",
+  //   id:  currentState.Auth.currentUser.id
+  // }
+
+  const userProfile = `/profile/${currentState.Auth.currentUser.id}`
+
 
   const SignedInLinks = (
               <Aux>
@@ -54,7 +61,7 @@ const Navigation = () => {
                   <DropdownMenu right>
                     <DropdownItem>
                       <NavItem>
-                        <NavLink to={`profile`}>Edit Profile</NavLink>
+                        <NavLink to={userProfile}>Edit Profile</NavLink>
                       </NavItem>
                     </DropdownItem>
                     <DropdownItem divider />

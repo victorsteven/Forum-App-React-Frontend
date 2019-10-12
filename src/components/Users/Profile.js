@@ -2,11 +2,10 @@ import React, { Fragment, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { Label, Input, FormGroup, Button, CardBody, Col, Row, Form, CustomInput } from "reactstrap";
-
-
 import { updateUserAvatar, updateUser } from '../../actions/authAction';
 import Default from '../../Assets/default.png'
 import styles from './Profile.module.css'
+import Message from '../utils/Message';
 
 
 import Navigation from "../Navigation"
@@ -22,7 +21,6 @@ const Profile = () => {
 
   const [file, setFile] = useState();
   const [uploadedFile, setUploadedFile] = useState();
-
   const [user, setUser] = useState({
     email: currentUserState.currentUser.email,
     current_password: '',
@@ -86,7 +84,6 @@ const Profile = () => {
       new_password: user.new_password
     })
   }
-
   return (
     <Fragment>
       <Navigation />
@@ -95,6 +92,17 @@ const Profile = () => {
           <div className="text-center">
             <h2>Update Profile</h2>
           </div>
+          <Row className="mt-4">
+            <Col sm="12" md={{ size: 10, offset: 1 }}>
+              <FormGroup>
+                { currentUserState.authSuccessImage != null && currentUserState.authError == null ? (
+                  <Message msg={currentUserState.authSuccessImage} />
+                  ) : (
+                    ""
+                )}
+              </FormGroup>
+            </Col>
+          </Row>
           <CardBody>
             <div className="text-center mb-3">
                 {$imagePreview}
@@ -127,13 +135,25 @@ const Profile = () => {
               <Button className={styles.style_photo_button}
                 color="primary"
                 type="submit"
+                disabled={ uploadedFile == null || file == null }
               >
                 Update Photo
               </Button>
             )}
         </Form>
 
-        <Row className="mt-3">
+        <Row className="mt-4">
+          <Col sm="12" md={{ size: 10, offset: 1 }}>
+            <FormGroup>
+              { currentUserState.authSuccessUser != null && currentUserState.authError == null ? (
+                <Message msg={currentUserState.authSuccessUser} />
+                ) : (
+                  ""
+              )}
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row>
           <Col sm="12" md={{ size: 10, offset: 1 }}>
           <div style={{margin: "10px 0px 10px"}}>Username: <strong>{currentUserState.currentUser.username}</strong></div>
           </Col>

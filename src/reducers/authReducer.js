@@ -7,7 +7,8 @@ const initState = {
   isLoading: false,
   isLoadingAvatar: false,
   isUpdatingUser: false,
-  authError: null
+  authError: null,
+  authSuccess: null
 }
 
 const authReducer = (state = initState, action) => {
@@ -70,21 +71,22 @@ const authReducer = (state = initState, action) => {
         ...state,
         isLoadingAvatar: false,
         currentUser: action.payload,
-        authError: null
+        authError: null,
+        authSuccessImage: "Image Uploaded"
       }
     case UPDATE_USER_AVATAR_ERROR:
         return {
           ...state,
           isLoadingAvatar: false,
-          authError: action.payload
+          authError: action.payload,
       }
     case UPDATE_USER_SUCCESS:
       return {
         ...state,
         isUpdatingUser: false,
         currentUser: action.payload,
-        authError: null
-
+        authError: null,
+        authSuccessUser: "Details Updated"
       }
     case UPDATE_USER_ERROR:
       return {
