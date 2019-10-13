@@ -3,18 +3,19 @@ import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "rea
 // import "./Auth.css";
 import Navigation from '../Navigation'
 import { useSelector, useDispatch } from "react-redux";
-import { ResetPassword } from '../../actions/authAction';
+import { ForgotPassword } from '../../actions/authAction';
 import { Redirect, Link } from 'react-router-dom';
+import Message from '../utils/Message';
 
 
-const ForgotPassword = () => {
+const PasswordForgot = () => {
 
   const currentState = useSelector((state) => state.Auth);
 
   const [email, setEmail] = useState('');
   const dispatch = useDispatch()
 
-  const resetPassword = (userEmail) => dispatch(ResetPassword(userEmail))
+  const forgotPass = (userEmail) => dispatch(ForgotPassword(userEmail))
 
   const handleChange = e => {
     setEmail(e.target.value)
@@ -22,7 +23,7 @@ const ForgotPassword = () => {
 
   const submitRequest = (e) => {
     e.preventDefault()
-    resetPassword({
+    forgotPass({
       email
     });
   }
@@ -38,14 +39,30 @@ const ForgotPassword = () => {
       </div>
       <div className="container Auth">
         <Card className="card-style">
-          <CardHeader>Reset Password</CardHeader>
+          <CardHeader>Forgot Password</CardHeader>
           <CardBody>
+        
+          <FormGroup>
+            { currentState.successMessage != null && currentState.authError == null ? (
+              <span>
+              <Message msg={currentState.successMessage} />
+              </span>
+              ) : (
+                ""
+            )}
+          </FormGroup>
+
           <form onSubmit={submitRequest}>
           <FormGroup>
             <Label>Email</Label>
             <Input type="email" name="email" placeholder="Enter email" onChange={handleChange} />
             { currentState.authError && currentState.authError.Required_email ? (
-              <small className="color-red">{currentState.authError.Required_email}</small>
+              <small className="color-red">{ currentState.authError.Required_email }</small>
+              ) : (
+                ""
+            )}
+            { currentState.authError && currentState.authError.No_email ? (
+              <small className="color-red">{currentState.authError.No_email}</small>
               ) : (
                 ""
             )}
@@ -69,6 +86,8 @@ const ForgotPassword = () => {
                 color="primary"
                 type="submit"
                 block
+                disabled={ email === ""}
+
               >
                 Reset Password
             </Button>
@@ -89,4 +108,4 @@ const ForgotPassword = () => {
   );
 }
 
-export default ForgotPassword
+export default PasswordForgot

@@ -1,4 +1,4 @@
-import { SIGNUP_SUCCESS, SIGNUP_ERROR, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, BEFORE_STATE, UPDATE_USER_AVATAR_ERROR, BEFORE_AVATAR_STATE, BEFORE_USER_STATE, CHANGE_PASSWORD_SUCCESS, CHANGE_PASSWORD_ERROR } from '../actions/types'
+import { SIGNUP_SUCCESS, SIGNUP_ERROR, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, BEFORE_STATE, UPDATE_USER_AVATAR_ERROR, BEFORE_AVATAR_STATE, BEFORE_USER_STATE, CHANGE_PASSWORD_SUCCESS, CHANGE_PASSWORD_ERROR, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_ERROR } from '../actions/types'
 import isEmpty from 'lodash/isEmpty';
 
 const initState = {
@@ -94,7 +94,7 @@ const authReducer = (state = initState, action) => {
         isUpdatingUser: false,
         authError: action.payload
       }
-      case CHANGE_PASSWORD_SUCCESS:
+    case CHANGE_PASSWORD_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -102,6 +102,19 @@ const authReducer = (state = initState, action) => {
         successMessage: "Mesage sent to the email provided"
       }
     case CHANGE_PASSWORD_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        authError: action.payload
+      }
+      case RESET_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        authError: null,
+        successMessage: "Success! Password Reset" 
+      }
+    case RESET_PASSWORD_ERROR:
       return {
         ...state,
         isLoading: false,

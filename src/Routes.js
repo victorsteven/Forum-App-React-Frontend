@@ -7,6 +7,8 @@ import { history } from './history'
 import { Router, Switch, Route } from 'react-router-dom';
 import Profile from './components/Users/Profile';
 import ForgotPassword from './components/Users/ForgotPassword';
+import ResetPassword from './components/Users/ResetPassword';
+
 
 
 const Routes  = () => {
@@ -20,6 +22,7 @@ const Routes  = () => {
             <Route path='/createpost' component={CreatePost} />
             <Route path='/profile/:id' component={Profile} />
             <Route path='/forgotpassword' component={ForgotPassword} />
+            <Route path='/resetpassword/:token' component={ResetPassword} />
           </Switch>
         </div>
       </Router>
