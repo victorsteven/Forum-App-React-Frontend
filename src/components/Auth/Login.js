@@ -4,7 +4,7 @@ import "./Auth.css";
 import Navigation from '../Navigation'
 import { useSelector, useDispatch } from "react-redux";
 import { SignIn } from '../../actions/authAction';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 
 
@@ -47,7 +47,7 @@ const Login = () => {
         <div>
           <Navigation />
         </div>
-        <div className="Auth">
+        <div className="container Auth">
         <Card className="card-style">
           <CardHeader>Login</CardHeader>
           <CardBody>
@@ -92,6 +92,7 @@ const Login = () => {
                 ""
               )}
             </FormGroup>
+
             { currentState.isLoading ? (
               <Button
                 color="primary"
@@ -111,6 +112,15 @@ const Login = () => {
             </Button>
             )}
             </form>
+            <div className="mt-2" style={{display: "flex", justifyContent: "space-between"}}>
+              <div>
+                <small><Link to="/signup">Sign Up</Link></small>
+              </div>
+              <div>
+                <small><Link to="/forgotpassword">Forgot Password?</Link></small>
+              </div>
+            </div>
+           
             </CardBody>
           </Card>
         </div>

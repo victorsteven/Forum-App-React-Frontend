@@ -4,7 +4,7 @@ import "./Auth.css";
 import Navigation from '../Navigation'
 import { useSelector, useDispatch } from "react-redux";
 import { SignUp } from '../../actions/authAction';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 
 
@@ -49,7 +49,7 @@ const Register = () => {
         <div>
           <Navigation />
         </div>
-        <div className="Auth">
+        <div className="container Auth">
         <Card className="card-style">
           <CardHeader>Welcome To SeamFlow</CardHeader>
           <CardBody>
@@ -120,6 +120,9 @@ const Register = () => {
             </Button>
             )}
             </form>
+            <div className="mt-2">
+              <small>Have an account? <Link to="/login">Please login</Link></small>
+            </div>
             </CardBody>
           </Card>
         </div>

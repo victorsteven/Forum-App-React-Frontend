@@ -6,7 +6,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import { history } from './history'
 import { Router, Switch, Route } from 'react-router-dom';
 import Profile from './components/Users/Profile';
-import ProfileImage from './components/Users/ProfileImage';
+import ForgotPassword from './components/Users/ForgotPassword';
 
 
 const Routes  = () => {
@@ -19,8 +19,7 @@ const Routes  = () => {
             <Route path='/signup' component={Register} />
             <Route path='/createpost' component={CreatePost} />
             <Route path='/profile/:id' component={Profile} />
-            <Route path='/profileImage' component={ProfileImage} />
-
+            <Route path='/forgotpassword' component={ForgotPassword} />
           </Switch>
         </div>
       </Router>
