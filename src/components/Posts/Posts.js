@@ -81,7 +81,7 @@ const Posts = () => {
     );
   })
   return (
-    <div>{posts}</div>
+    <div className="container">{posts}</div>
   )
 }
 

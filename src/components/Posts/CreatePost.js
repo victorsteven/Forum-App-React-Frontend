@@ -35,18 +35,15 @@ const Register = () => {
     addPost({
       title: post.title,
       content: post.content,
-      author_id: currentState.auth.currentUser.id
+      author_id: currentState.Auth.currentUser.id
     });
-  // console.log("the current user id: ", currentState.auth.currentUser.id)
-
   }
 
-  if(!currentState.auth.isAuthenticated){
+  if(!currentState.Auth.isAuthenticated){
     return <Redirect to='/login' />
   }
-
     return (
-      <div className="App">
+      <div className="container App">
         <div>
           <Navigation />
         </div>
