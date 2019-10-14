@@ -10,30 +10,19 @@ import Message from '../utils/Message';
 
 
 
-const PasswordReset = (props) => {
+const PasswordReset = () => {
 
-  console.log("this is the token: ", props.match.params.token)
 
   const currentState = useSelector((state) => state.Auth);
 
   const [resetDetails, setResetDetails] = useState({
-    token: props.match.params.token,
     new_password: '',
     retype_password: ''
   });
 
   const dispatch = useDispatch()
 
-  const resetPass = (details) => dispatch(ResetPassword(details, clearInput))
-
-
-  const clearInput = () => {
-    setResetDetails({
-      token: '',
-      new_password: '',
-      retype_password: ''
-    })
-  } 
+  const resetPass = (details) => dispatch(ResetPassword(details))
 
   const handleChange = e => {
     setResetDetails({
@@ -65,7 +54,7 @@ const PasswordReset = (props) => {
           <CardHeader>Reset Password</CardHeader>
           <CardBody>
             <FormGroup>
-              { currentState.successMessage != null && currentState.resetError == null ? (
+              { currentState.successMessage != null && currentState.authError == null ? (
                 <span>
                 <Message msg={currentState.successMessage} />
                 </span>
@@ -74,26 +63,26 @@ const PasswordReset = (props) => {
               )}
             </FormGroup>
             <FormGroup>
-            { currentState.resetError && currentState.resetError.Invalid_token ? (
+            { currentState.authError && currentState.authError.Invalid_token ? (
               <span>
-                <small className="color-red">{currentState.resetError.Invalid_token}</small>
+                <small className="color-red">{currentState.authError.Invalid_token}</small>
                 <small className="ml-2"><Link to="/forgotpassword">here </Link></small>
               </span>
               ) : (
                 ""
             )}
-            { currentState.resetError && currentState.resetError.Empty_passwords ? (
-              <small className="color-red">{currentState.resetError.Empty_passwords}</small>
+            { currentState.authError && currentState.authError.Empty_passwords ? (
+              <small className="color-red">{currentState.authError.Empty_passwords}</small>
               ) : (
                 ""
             )}
-            { currentState.resetError && currentState.resetError.Invalid_Passwords ? (
-              <small className="color-red">{ currentState.resetError.Invalid_Passwords }</small>
+            { currentState.authError && currentState.authError.Invalid_Passwords ? (
+              <small className="color-red">{ currentState.authError.Invalid_Passwords }</small>
               ) : (
                 ""
             )}
-            { currentState.resetError && currentState.resetError.Password_unequal ? (
-              <small className="color-red">{ currentState.resetError.Password_unequal }</small>
+            { currentState.authError && currentState.authError.Password_unequal ? (
+              <small className="color-red">{ currentState.authError.Password_unequal }</small>
               ) : (
                 ""
             )}
@@ -102,11 +91,11 @@ const PasswordReset = (props) => {
             <form onSubmit={submitRequest}>
             <FormGroup>
               <Label>New Password</Label>
-              <Input type="password" name="new_password" value={resetDetails.new_password} onChange={handleChange} />
+              <Input type="password" name="new_password" onChange={handleChange} />
               </FormGroup>
               <FormGroup>
               <Label>Retype Password</Label>
-              <Input type="password" name="retype_password" value={resetDetails.retype_password}  onChange={handleChange} />
+              <Input type="password" name="retype_password" onChange={handleChange} />
               </FormGroup>
               { currentState.isLoading ? (
                 <Button

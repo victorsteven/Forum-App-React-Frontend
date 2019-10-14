@@ -8,18 +8,26 @@ import { Redirect, Link } from 'react-router-dom';
 import Message from '../utils/Message';
 
 
+
+
 const PasswordForgot = () => {
+
+  
 
   const currentState = useSelector((state) => state.Auth);
 
   const [email, setEmail] = useState('');
   const dispatch = useDispatch()
 
-  const forgotPass = (userEmail) => dispatch(ForgotPassword(userEmail))
+  const forgotPass = (userEmail) => dispatch(ForgotPassword(userEmail, clearInput))
 
   const handleChange = e => {
     setEmail(e.target.value)
   }
+
+  const clearInput = () => {
+    setEmail('')
+  } 
 
   const submitRequest = (e) => {
     e.preventDefault()
@@ -43,7 +51,7 @@ const PasswordForgot = () => {
           <CardBody>
         
           <FormGroup>
-            { currentState.successMessage != null && currentState.authError == null ? (
+            { currentState.successMessage != null && currentState.forgotError == null ? (
               <span>
               <Message msg={currentState.successMessage} />
               </span>
@@ -55,19 +63,19 @@ const PasswordForgot = () => {
           <form onSubmit={submitRequest}>
           <FormGroup>
             <Label>Email</Label>
-            <Input type="email" name="email" placeholder="Enter email" onChange={handleChange} />
-            { currentState.authError && currentState.authError.Required_email ? (
-              <small className="color-red">{ currentState.authError.Required_email }</small>
+            <Input type="email" name="email" placeholder="Enter email" value={email} onChange={handleChange} />
+            { currentState.forgotError && currentState.forgotError.Required_email ? (
+              <small className="color-red">{ currentState.forgotError.Required_email }</small>
               ) : (
                 ""
             )}
-            { currentState.authError && currentState.authError.No_email ? (
-              <small className="color-red">{currentState.authError.No_email}</small>
+            { currentState.forgotError && currentState.forgotError.No_email ? (
+              <small className="color-red">{currentState.forgotError.No_email}</small>
               ) : (
                 ""
             )}
-            { currentState.authError && currentState.authError.Invalid_email ? (
-              <small className="color-red">{ currentState.authError.Invalid_email }</small>
+            { currentState.forgotError && currentState.forgotError.Invalid_email ? (
+              <small className="color-red">{ currentState.forgotError.Invalid_email }</small>
               ) : (
                 ""
             )}

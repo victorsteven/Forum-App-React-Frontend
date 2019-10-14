@@ -17,7 +17,7 @@ const Profile = () => {
   const dispatch = useDispatch()
 
   const userAvatarUpdate = (userDetails) => dispatch(updateUserAvatar(userDetails))
-  const userUpdate = (userDetails) => dispatch(updateUser(userDetails))
+  const userUpdate = (userDetails) => dispatch(updateUser(userDetails, clearInput))
 
   const [file, setFile] = useState();
   const [uploadedFile, setUploadedFile] = useState();
@@ -26,6 +26,14 @@ const Profile = () => {
     current_password: '',
     new_password: '',
   })
+
+  const clearInput = () => {
+    setUser({
+      ...user,
+      current_password: "",
+      new_password: ""
+    })
+  }
 
   // useEffect(() => {
   //   setUser({
@@ -95,7 +103,7 @@ const Profile = () => {
           <Row className="mt-4">
             <Col sm="12" md={{ size: 10, offset: 1 }}>
               <FormGroup>
-                { currentUserState.authSuccessImage != null && currentUserState.authError == null ? (
+                { currentUserState.authSuccessImage != null && currentUserState.avatarError == null ? (
                   <Message msg={currentUserState.authSuccessImage} />
                   ) : (
                     ""
@@ -111,13 +119,13 @@ const Profile = () => {
             <div>
               <FormGroup className={styles.style_file_input}>
                 <CustomInput type="file" accept="image/*" id="exampleCustomFileBrowser" onChange={(e)=> handleImageChange(e)} />
-                { currentUserState.authError && currentUserState.authError.Too_large ? (
-                  <small className="color-red">{currentUserState.authError.Too_large}</small>
+                { currentUserState.avatarError && currentUserState.avatarError.Too_large ? (
+                  <small className="color-red">{currentUserState.avatarError.Too_large}</small>
                   ) : (
                     ""
                 )}
-                { currentUserState.authError && currentUserState.authError.Not_Image ? (
-                  <small className="color-red">{ currentUserState.authError.Not_Image }</small>
+                { currentUserState.avatarError && currentUserState.avatarError.Not_Image ? (
+                  <small className="color-red">{ currentUserState.avatarError.Not_Image }</small>
                   ) : (
                     ""
                 )}
@@ -145,7 +153,7 @@ const Profile = () => {
         <Row className="mt-4">
           <Col sm="12" md={{ size: 10, offset: 1 }}>
             <FormGroup>
-              { currentUserState.authSuccessUser != null && currentUserState.authError == null ? (
+              { currentUserState.authSuccessUser != null && currentUserState.userError == null ? (
                 <Message msg={currentUserState.authSuccessUser} />
                 ) : (
                   ""
@@ -165,13 +173,13 @@ const Profile = () => {
               <FormGroup>
                 <Label for="exampleAddress">Email</Label>
                 <Input type="text" name="email" value={user.email} onChange={handleChange} />
-                { currentUserState.authError && currentUserState.authError.Required_email ? (
-                  <small className="color-red">{currentUserState.authError.Required_email}</small>
+                { currentUserState.userError && currentUserState.userError.Required_email ? (
+                  <small className="color-red">{currentUserState.userError.Required_email}</small>
                   ) : (
                     ""
                 )}
-                { currentUserState.authError && currentUserState.authError.Invalid_email ? (
-                  <small className="color-red">{ currentUserState.authError.Invalid_email }</small>
+                { currentUserState.userError && currentUserState.userError.Invalid_email ? (
+                  <small className="color-red">{ currentUserState.userError.Invalid_email }</small>
                   ) : (
                     ""
                 )}
@@ -182,14 +190,14 @@ const Profile = () => {
             <Col sm="12" md={{ size: 10, offset: 1 }}>
               <FormGroup>
                 <Label for="exampleAddress">Current Password</Label>
-                <Input type="password" name="current_password"   onChange={handleChange}/>
-                { currentUserState.authError && currentUserState.authError.Password_mismatch ? (
-                  <small className="color-red">{currentUserState.authError.Password_mismatch}</small>
+                <Input type="password" name="current_password" value={user.current_password}   onChange={handleChange}/>
+                { currentUserState.userError && currentUserState.userError.Password_mismatch ? (
+                  <small className="color-red">{currentUserState.userError.Password_mismatch}</small>
                   ) : (
                     ""
                 )}
-                { currentUserState.authError && currentUserState.authError.Empty_Current ? (
-                  <small className="color-red">{ currentUserState.authError.Empty_Current }</small>
+                { currentUserState.userError && currentUserState.userError.Empty_Current ? (
+                  <small className="color-red">{ currentUserState.userError.Empty_Current }</small>
                   ) : (
                     ""
                 )}
@@ -200,14 +208,14 @@ const Profile = () => {
             <Col sm="12" md={{ size: 10, offset: 1 }}>
               <FormGroup>
                 <Label for="exampleAddress">New Password</Label>
-                <Input type="password" name="new_password"   onChange={handleChange}/>
-                { currentUserState.authError && currentUserState.authError.Invalid_password ? (
-                  <small className="color-red">{ currentUserState.authError.Invalid_password }</small>
+                <Input type="password" name="new_password" value={user.new_password}  onChange={handleChange}/>
+                { currentUserState.userError && currentUserState.userError.Invalid_password ? (
+                  <small className="color-red">{ currentUserState.userError.Invalid_password }</small>
                   ) : (
                     ""
                 )}
-                { currentUserState.authError && currentUserState.authError.Empty_New ? (
-                  <small className="color-red">{ currentUserState.authError.Empty_New }</small>
+                { currentUserState.userError && currentUserState.userError.Empty_New ? (
+                  <small className="color-red">{ currentUserState.userError.Empty_New }</small>
                   ) : (
                     ""
                 )}

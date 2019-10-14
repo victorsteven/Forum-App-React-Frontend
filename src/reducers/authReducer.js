@@ -1,4 +1,4 @@
-import { SIGNUP_SUCCESS, SIGNUP_ERROR, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, BEFORE_STATE, UPDATE_USER_AVATAR_ERROR, BEFORE_AVATAR_STATE, BEFORE_USER_STATE, CHANGE_PASSWORD_SUCCESS, CHANGE_PASSWORD_ERROR, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_ERROR } from '../actions/types'
+import { SIGNUP_SUCCESS, SIGNUP_ERROR, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, BEFORE_STATE, UPDATE_USER_AVATAR_ERROR, BEFORE_AVATAR_STATE, BEFORE_USER_STATE, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_ERROR, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_ERROR } from '../actions/types'
 import isEmpty from 'lodash/isEmpty';
 
 const initState = {
@@ -24,26 +24,26 @@ const authReducer = (state = initState, action) => {
     case BEFORE_AVATAR_STATE:
         return {
           ...state,
-          authError: null,
+          avatarError: null,
           isLoadingAvatar: true,
         }
     case BEFORE_USER_STATE:
       return {
         ...state,
-        authError: null,
+        userError: null,
         isUpdatingUser: true,
       }
     case SIGNUP_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        authError: null
+        signupError: null
       }
     case SIGNUP_ERROR:
       return {
         ...state,
         isLoading: false,
-        authError: action.payload
+        signupError: action.payload
       }
     case LOGIN_SUCCESS:
       return {
@@ -51,74 +51,74 @@ const authReducer = (state = initState, action) => {
         isLoading: false,
         currentUser: action.payload,
         isAuthenticated: !isEmpty(action.payload),
-        authError: null
+        loginError: null
       }
     case LOGIN_ERROR:
       return {
         ...state,
         isLoading: false,
-        authError: action.payload
+        loginError: action.payload
       }
     case LOGOUT_SUCCESS:
       return {
         ...state,
         isAuthenticated: false,
         currentUser: {},
-        authError: null
+        logoutError: null
       }
     case UPDATE_USER_AVATAR:
       return {
         ...state,
         isLoadingAvatar: false,
         currentUser: action.payload,
-        authError: null,
+        avatarError: null,
         authSuccessImage: "Image Uploaded"
       }
     case UPDATE_USER_AVATAR_ERROR:
         return {
           ...state,
           isLoadingAvatar: false,
-          authError: action.payload,
+          avatarError: action.payload,
       }
     case UPDATE_USER_SUCCESS:
       return {
         ...state,
         isUpdatingUser: false,
         currentUser: action.payload,
-        authError: null,
+        userError: null,
         authSuccessUser: "Details Updated"
       }
     case UPDATE_USER_ERROR:
       return {
         ...state,
         isUpdatingUser: false,
-        authError: action.payload
+        userError: action.payload
       }
-    case CHANGE_PASSWORD_SUCCESS:
+    case FORGOT_PASSWORD_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        authError: null,
+        forgotError: null,
         successMessage: "Mesage sent to the email provided"
       }
-    case CHANGE_PASSWORD_ERROR:
+    case FORGOT_PASSWORD_ERROR:
       return {
         ...state,
         isLoading: false,
-        authError: action.payload
+        forgotError: action.payload
       }
       case RESET_PASSWORD_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        authError: null,
+        resetError: null,
         successMessage: "Success! Password Reset" 
       }
     case RESET_PASSWORD_ERROR:
       return {
         ...state,
         isLoading: false,
-        authError: action.payload
+        resetError: action.payload
       }
     default:
       return state;

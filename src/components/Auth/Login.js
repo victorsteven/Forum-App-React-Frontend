@@ -53,8 +53,8 @@ const Login = () => {
           <CardBody>
           <form onSubmit={submitUser}>
           <div>
-            { currentState.authError && currentState.authError.Incorrect_details ? (
-              <small className="color-red">{currentState.authError.Incorrect_details}</small>
+            { currentState.loginError && currentState.loginError.Incorrect_details ? (
+              <small className="color-red">{currentState.loginError.Incorrect_details}</small>
               ) : (
                 ""
             )}
@@ -62,13 +62,13 @@ const Login = () => {
           <FormGroup>
             <Label>Email</Label>
             <Input type="email" name="email" placeholder="Enter email" onChange={handleChange} />
-            { currentState.authError && currentState.authError.Required_email ? (
-              <small className="color-red">{currentState.authError.Required_email}</small>
+            { currentState.loginError && currentState.loginError.Required_email ? (
+              <small className="color-red">{currentState.loginError.Required_email}</small>
               ) : (
                 ""
             )}
-            { currentState.authError && currentState.authError.Invalid_email ? (
-              <small className="color-red">{ currentState.authError.Invalid_email }</small>
+            { currentState.loginError && currentState.loginError.Invalid_email ? (
+              <small className="color-red">{ currentState.loginError.Invalid_email }</small>
               ) : (
                 ""
             )}
@@ -76,18 +76,18 @@ const Login = () => {
             <FormGroup>
             <Label>Password</Label>
             <Input type="password" name="password" placeholder="Enter password" onChange={handleChange}/>
-            { currentState.authError && currentState.authError.Required_password ? (
-              <small className="color-red">{ currentState.authError.Required_password }</small>
+            { currentState.loginError && currentState.loginError.Required_password ? (
+              <small className="color-red">{ currentState.loginError.Required_password }</small>
               ) : (
                 ""
               )}
-              { currentState.authError && currentState.authError.Invalid_password ? (
-              <small className="color-red">{ currentState.authError.Invalid_password }</small>
+              { currentState.loginError && currentState.loginError.Invalid_password ? (
+              <small className="color-red">{ currentState.loginError.Invalid_password }</small>
               ) : (
                 ""
               )}
-              { currentState.authError && currentState.authError.Incorrect_password ? (
-              <small className="color-red">{ currentState.authError.Incorrect_password }</small>
+              { currentState.loginError && currentState.loginError.Incorrect_password ? (
+              <small className="color-red">{ currentState.loginError.Incorrect_password }</small>
               ) : (
                 ""
               )}

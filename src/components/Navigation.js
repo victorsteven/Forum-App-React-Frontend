@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { FaUser } from 'react-icons/fa';
 import Aux  from '../hoc/Aux/Aux'
@@ -76,10 +76,10 @@ const Navigation = () => {
   const SignedOutLinks = (
                <Aux>
                   <NavItem style={{marginRight: "10px" }}>
-                    <NavLink to={`login`}>Login</NavLink>
+                    <Link to='/login'>Login</Link>
                   </NavItem>
                   <NavItem>
-                    <NavLink to={`signup`}>Signup</NavLink>
+                    <Link to='/signup'>Signup</Link>
                   </NavItem>
                 </Aux>
               )
