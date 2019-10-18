@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
 // import "./Auth.css";
-import Navigation from '../Navigation'
+import Navigation from '../../Navigation'
 import { useSelector, useDispatch } from "react-redux";
-import { ForgotPassword } from '../../actions/authAction';
+import { ForgotPassword } from '../../../actions/authAction';
 import { Redirect, Link } from 'react-router-dom';
-import Message from '../utils/Message';
+import Message from '../../utils/Message';
 
 
 
 
 const PasswordForgot = () => {
 
-  
-
   const currentState = useSelector((state) => state.Auth);
+
+  // console.log("this is the current state: ", currentState)
 
   const [email, setEmail] = useState('');
   const dispatch = useDispatch()
@@ -61,44 +61,47 @@ const PasswordForgot = () => {
           </FormGroup>
 
           <form onSubmit={submitRequest}>
-          <FormGroup>
-            <Label>Email</Label>
-            <Input type="email" name="email" placeholder="Enter email" value={email} onChange={handleChange} />
-            { currentState.forgotError && currentState.forgotError.Required_email ? (
-              <small className="color-red">{ currentState.forgotError.Required_email }</small>
-              ) : (
-                ""
-            )}
-            { currentState.forgotError && currentState.forgotError.No_email ? (
-              <small className="color-red">{currentState.forgotError.No_email}</small>
-              ) : (
-                ""
-            )}
-            { currentState.forgotError && currentState.forgotError.Invalid_email ? (
-              <small className="color-red">{ currentState.forgotError.Invalid_email }</small>
-              ) : (
-                ""
-            )}
-            </FormGroup>
-            { currentState.isLoading ? (
-              <Button
+            <FormGroup>
+              <Label>Email</Label>
+              <input type="email" name="email" className="form-control" data-test="inputEmail" placeholder="Enter email" value={email} onChange={handleChange} />
+              { currentState.forgotError && currentState.forgotError.Required_email ? (
+                <small className="color-red">{ currentState.forgotError.Required_email }</small>
+                ) : (
+                  ""
+              )}
+              { currentState.forgotError && currentState.forgotError.No_email ? (
+                <small className="color-red">{currentState.forgotError.No_email}</small>
+                ) : (
+                  ""
+              )}
+              { currentState.forgotError && currentState.forgotError.Invalid_email ? (
+                <small className="color-red">{ currentState.forgotError.Invalid_email }</small>
+                ) : (
+                  ""
+              )}
+              </FormGroup>
+              
+              { currentState.isLoading ? (
+              <button
+                className="btn btn-primary w-100"
                 color="primary"
                 type="submit"
                 block
                 disabled
               >
                 Sending Request...
-              </Button>
+              </button>
             ) : (
-              <Button
+              <button
+                data-test='resetButton'
+                className="btn btn-primary w-100"
                 color="primary"
                 type="submit"
                 block
                 disabled={ email === ""}
-
               >
                 Reset Password
-            </Button>
+            </button>
             )}
             </form>
             <div className="mt-2" style={{display: "flex", justifyContent: "space-between"}}>

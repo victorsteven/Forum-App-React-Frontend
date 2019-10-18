@@ -6,7 +6,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import { history } from './history'
 import { Router, Switch, Route } from 'react-router-dom';
 import Profile from './components/Users/Profile';
-import ForgotPassword from './components/Users/ForgotPassword';
+import ForgotPassword from './components/Users/ForgotPassword/ForgotPassword.js';
 import ResetPassword from './components/Users/ResetPassword';
 
 
