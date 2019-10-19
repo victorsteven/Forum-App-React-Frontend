@@ -6,36 +6,42 @@ import {
   CardTitle
 } from 'reactstrap';
 import { FaRegHeart, FaRegComment } from 'react-icons/fa'
+import { fetchPost } from '../../store/modules/post/actions/singlePostAction'
 
 
 const PostDetails = (props) => {
 
   const postID  = props.match.params.id
 
-  // const postsSelector = useSelector((state) => state.FetchPosts);
-
   const dispatch = useDispatch()
 
-  // const getPosts = () => dispatch(fetchPosts());
+  const singlePost = id => dispatch(fetchPost(id))
 
-  // useEffect(() => {
-  //   console.log("we are getting the posts")
-  //   getPosts();
-  // }, [])
+  // const getPost = dispatch(fetchPost())
 
-  // const post = postsSelector.posts
+  useEffect(() => {
+    singlePost(postID)
+  }, [])
+
+  const postSelector = useSelector(state => state.FetchPost)
+  console.log("this is the post state: ", postSelector.post.author ? postSelector.post.author.username : "nothing")
+
   return (
     <div  className="mt-5 style-card">
-        {/* <Card>
+        <Card>
           <CardBody className="style-card-body">
           <CardTitle>
-            <span href="" style={{fontWeight: 'bold'}}>{post.author.username}</span>
+            <span href="" style={{fontWeight: 'bold'}}>
+              {postSelector.post.author ? postSelector.post.author.username : ""}
+            </span>
             <span style={{float: 'right'}}>
-              <Moment fromNow>{post.author.created_at}</Moment>
+              <Moment fromNow>
+                {postSelector.post.author ? postSelector.post.author.created_at : ""}
+              </Moment>
             </span>
             </CardTitle>
-            <CardTitle>{post.title}</CardTitle>
-            <CardText>{post.content}</CardText>
+            <CardTitle>{postSelector.post.title}</CardTitle>
+            <CardText>{postSelector.post.content}</CardText>
             <div className="style-fav">
               <div className="style-heart-outer">
                 <FaRegHeart className="style-heart " />
@@ -45,10 +51,9 @@ const PostDetails = (props) => {
               </div>
             </div>
           </CardBody>
-        </Card> */}
+        </Card>
       </div>
   )
-  // console.log("this is the prop: ", props)
 }
 
 export default PostDetails

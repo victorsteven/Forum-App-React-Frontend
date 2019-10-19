@@ -1,17 +1,31 @@
-import { SINGLE_POST_SUCCESS, CREATE_POST, CREATE_POST_ERROR } from '../postTypes'
+import { GET_POST_SUCCESS, GET_POST_ERROR, CREATE_POST, CREATE_POST_ERROR } from '../postTypes'
+
+// export const initState = {
+//   post: {}
+// }
 
 export const initState = {
-  post: {}
+  post: {},
 }
 
 export const getPost = (state = initState, action) => {
-  if(action.type === SINGLE_POST_SUCCESS ) {
-    state = { ...state, post: action.payload }
+  switch(action.type) {
+    case GET_POST_SUCCESS:
+      return { 
+        ...state, 
+        post: action.payload 
+      }
+    case GET_POST_ERROR:
+        return { 
+          ...state, 
+          postError: action.payload 
+        }
+    default:
+      return state
   }
-  return state;
 }
 
-export const createPost = (state = initState.post, action) => {
+export const createPost = (state = {post: {}}, action) => {
   switch(action.type) {
     case CREATE_POST:
       return { 
