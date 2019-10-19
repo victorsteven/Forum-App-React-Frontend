@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { Label, Input, FormGroup, Button, CardBody, Col, Row, Form, CustomInput } from "reactstrap";
-import { updateUserAvatar, updateUser } from '../../actions/authAction';
+import { updateUserAvatar, updateUser } from '../../store/modules/auth/actions/authAction';
 import Default from '../../Assets/default.png'
 import styles from './Profile.module.css'
 import Message from '../utils/Message';

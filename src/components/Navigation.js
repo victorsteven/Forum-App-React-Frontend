@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { FaUser } from 'react-icons/fa';
 import Aux  from '../hoc/Aux/Aux'
-import { SignOut } from '../actions/authAction';
+import { SignOut } from '../store/modules/auth/actions/authAction';
 
 import {
     Collapse,

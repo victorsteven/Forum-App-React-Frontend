@@ -3,7 +3,7 @@ import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "rea
 import "./Auth.css";
 import Navigation from '../Navigation'
 import { useSelector, useDispatch } from "react-redux";
-import { SignUp } from '../../actions/authAction';
+import { SignUp } from '../../store/modules/auth/actions/authAction';
 import { Redirect, Link } from 'react-router-dom';
 
 

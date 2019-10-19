@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from "react-redux"
 import store from './store/index'
 import setAuthorizationToken  from './utils/authorization';
-import { LOGIN_SUCCESS } from './actions/types';
+import { LOGIN_SUCCESS } from './store/modules/auth/authTypes';
 
 //when the page reloads, the auth user is still set
 if (localStorage.token){

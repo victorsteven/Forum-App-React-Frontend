@@ -3,7 +3,7 @@ import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "rea
 import "./Posts.css";
 import Navigation from '../Navigation'
 import { useSelector, useDispatch } from "react-redux";
-import { createPost } from '../../actions/postsAction';
+import { createPost } from '../../store/modules/post/actions/singlePostAction';
 import { Redirect } from 'react-router-dom';
 
 
