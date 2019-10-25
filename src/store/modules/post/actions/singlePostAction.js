@@ -3,6 +3,7 @@ import axios from 'axios'
 import { CREATE_POST_SUCCESS, CREATE_POST_ERROR, GET_POST_SUCCESS, GET_POST_ERROR } from '../postTypes'
 import  {history} from '../../../../history'
 
+
 export const fetchPost = id => {
   return async (dispatch) => {
     try {

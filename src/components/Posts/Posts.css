@@ -19,11 +19,11 @@ a:hover{
 }
 
 .style-heart:hover {
-  color: red;
+  color: pink;
 }
 
 .style-heart {
-  margin-right: 30px;
+  /* margin-right: 30px; */
   font-size: 25px
 
 } 

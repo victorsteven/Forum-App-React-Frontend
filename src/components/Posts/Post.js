@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Moment from 'react-moment';
+// import { useSelector, useDispatch } from 'react-redux'
 import {
   Card, CardText, CardBody,
   CardTitle
 } from 'reactstrap';
-import { FaRegHeart, FaRegComment } from 'react-icons/fa'
 import './Posts.css';
+import Like from './Like'
+import Comment from './Comment'
+import './Posts.css';
+
 
 const Post = ({ post }) => {
   
@@ -23,12 +27,8 @@ const Post = ({ post }) => {
             <CardTitle>{post.title}</CardTitle>
             <CardText>{post.content}</CardText>
             <div className="style-fav">
-              <div className="style-heart-outer">
-                <FaRegHeart className="style-heart " />
-              </div>
-              <div className="style-heart-outer">
-                <FaRegComment className="style-heart " />
-              </div>
+              <Like postID={post.id} />
+              <Comment postID={post.id} />
             </div>
           </CardBody>
         </Card>

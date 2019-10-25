@@ -13,6 +13,7 @@ import Navigation from "../Navigation"
 const Profile = () => {
 
   const currentUserState = useSelector((state) => state.Auth);
+  console.log("this is the current auth: ", currentUserState.currentUser.id)
 
   const dispatch = useDispatch()
 

@@ -43,7 +43,7 @@ const Navigation = () => {
   //   id:  currentState.Auth.currentUser.id
   // }
 
-  const userProfile = `/profile/${currentState.Auth.currentUser.id}`
+  const userProfile = isAuthenticated ?  `/profile/${currentState.Auth.currentUser.id}` : ""
 
 
   const SignedInLinks = (
