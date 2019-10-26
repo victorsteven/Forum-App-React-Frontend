@@ -21,11 +21,15 @@ a:hover{
 .style-heart:hover {
   color: pink;
 }
+.style-auth {
+  color: red;
+  font-size: 25px;
+  /* background: red; */
+}
 
 .style-heart {
   /* margin-right: 30px; */
   font-size: 25px
-
 } 
 .style-fav {
   display: flex;

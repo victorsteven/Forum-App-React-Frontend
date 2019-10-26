@@ -1,7 +1,9 @@
 import { combineReducers } from "redux"
 import authReducer  from './auth/reducer/authReducer'
 import { fetchPosts }  from "./posts/reducer/postsReducer";
-import { createPost, getPost, createLike, getLikes } from './post/reducer/singlePostReducer'
+import { createPost, getPost } from './post/reducer/singlePostReducer'
+import { createLike, getLikes } from './likes/reducer/likesReducer'
+
 
 
 const reducer = combineReducers({

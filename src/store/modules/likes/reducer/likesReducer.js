@@ -1,36 +1,21 @@
-import { GET_POST_SUCCESS, GET_POST_ERROR, CREATE_POST, CREATE_POST_ERROR, LIKE_POST_SUCCESS, LIKE_POST_ERROR, GET_LIKES_SUCCESS, GET_LIKES_ERROR } from '../postTypes'
+import { LIKE_CREATE_SUCCESS, LIKE_CREATE_ERROR, GET_LIKES_SUCCESS, GET_LIKES_ERROR, LIKE_DELETE_SUCCESS, LIKE_DELETE_ERROR } from '../likeTypes'
 
-export const initPost = {
-  post: {},
-}
-export const initLikes = {
-  likeItem : []
+export const initState = {
+  likeItem : [],
+  // authLiked: false
 }
 
-export const getPost = (state = { post: {}}, action) => {
-  switch(action.type) {
-    case GET_POST_SUCCESS:
-      return { 
-        ...state, 
-        post: action.payload 
-      }
-    case GET_POST_ERROR:
-        return { 
-          ...state, 
-          postError: action.payload 
-        }
-    default:
-      return state
-  }
-}
+// export const getAuthLike = (state = initState, action) => {
+  
+// }
 
-export const getLikes = (state = initLikes, action) => {
+export const getLikes = (state = initState, action) => {
   const { payload, type }  = action;
   switch(type) {
     case GET_LIKES_SUCCESS:
       return { 
         ...state, 
-        likeItem: [...state.likeItem, { postID: payload.postID, likes: payload.likes} ]
+        likeItem: [...state.likeItem, { postID: payload.postID, likes: payload.likes, likesCount: payload.likesCount  } ]
       }
     case GET_LIKES_ERROR:
         return { 
@@ -42,34 +27,38 @@ export const getLikes = (state = initLikes, action) => {
   }
 }
 
-export const createLike = (state = initLikes, action) => {
-  switch(action.type) {
-    case LIKE_POST_SUCCESS:
+export const createLike = (state = initState, action) => {
+  const { payload, type } = action
+  switch(type) {
+    case LIKE_CREATE_SUCCESS:
       return { 
-        ...state, 
-        post: action.payload 
+        ...state,
+        likeItem: [...state.likeItem, payload ]
+
+        // comments: [payload.comment, ...state.comments]
       }
-    case LIKE_POST_ERROR:
+    case LIKE_CREATE_ERROR:
         return { 
           ...state, 
-          postError: action.payload 
+          postError: payload 
         }
     default:
       return state
   }
 }
 
-export const createPost = (state = initPost, action) => {
-  switch(action.type) {
-    case CREATE_POST:
+export const deleteLike = (state = initState, action) => {
+  const { payload, type } = action
+  switch(type) {
+    case LIKE_DELETE_SUCCESS:
       return { 
-        ...state, 
-        post: action.payload 
+        ...state,
+        likeItem: [...state.likeItem, payload ]
       }
-    case CREATE_POST_ERROR:
+    case LIKE_DELETE_ERROR:
         return { 
           ...state, 
-          postError: action.payload 
+          postError: payload 
         }
     default:
       return state
