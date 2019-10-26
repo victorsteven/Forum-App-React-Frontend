@@ -62,11 +62,11 @@ export const createLike = (details) => {
 }
 
 export const deleteLike = (details) => {
-  console.log("this is the post id: ", details.post_id)
+  // console.log("this is the post id: ", details.post_id)
   return async (dispatch) => {
     try {
       const res  = await axios.post(`${API_ROUTE}/deletelike/${details.post_id}`, details)
-      console.log("this is the response: ", res.data.response )
+      console.log("this is the response from the unlike: ", res.data.response )
       dispatch({ type: LIKE_DELETE_SUCCESS, payload: res.data.response })
     } catch(err){
       console.log("this is the error for the post: ", err)

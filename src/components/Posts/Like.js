@@ -63,7 +63,7 @@ const Like = ({ postID }) => {
   //   });
   // }
 
-  const deleteLike = (e) => {
+  const unLike = (e) => {
     e.preventDefault()
     console.log("The auth like removed")
     removeLike({
@@ -87,7 +87,7 @@ const Like = ({ postID }) => {
   const likeToggle = (e) => {
     e.preventDefault()
 
-    authLiked ? deleteLike(e) : saveLike(e)
+    authLiked ? unLike(e) : saveLike(e)
 
   }
 
