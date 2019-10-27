@@ -29,7 +29,7 @@ const PostDetails = (props) => {
   }, [])
 
 
-  console.log("this is the post state: ", postSelector.post.author ? postSelector.post.author.username : "nothing")
+  // console.log("this is the post state: ", postSelector.post.author ? postSelector.post.author.username : "nothing")
 
   return (
     <div  className="mt-5 style-card">

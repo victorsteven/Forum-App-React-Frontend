@@ -1,66 +1,52 @@
 import { LIKE_CREATE_SUCCESS, LIKE_CREATE_ERROR, GET_LIKES_SUCCESS, GET_LIKES_ERROR, LIKE_DELETE_SUCCESS, LIKE_DELETE_ERROR } from '../likeTypes'
 
 export const initState = {
-  likeItem : [],
-  // authLiked: false
+  likeItems : [],
 }
 
-// export const getAuthLike = (state = initState, action) => {
-  
-// }
 
-export const getLikes = (state = initState, action) => {
+export const likesState = (state = initState, action) => {
   const { payload, type }  = action;
   switch(type) {
     case GET_LIKES_SUCCESS:
       return { 
         ...state, 
-        likeItem: [...state.likeItem, { postID: payload.postID, likes: payload.likes, likesCount: payload.likesCount  } ]
+        likeItems: [...state.likeItems, { postID: payload.postID, likes: payload.likes  } ]
       }
     case GET_LIKES_ERROR:
         return { 
           ...state, 
           likesError: action.payload 
         }
-    default:
-      return state
-  }
-}
-
-export const createLike = (state = initState, action) => {
-  const { payload, type } = action
-  switch(type) {
     case LIKE_CREATE_SUCCESS:
       return { 
-        ...state,
-        likeItem: [...state.likeItem, payload ]
-
-        // comments: [payload.comment, ...state.comments]
-      }
+        ...state, 
+        likeItems: state.likeItems.map(likeItem => 
+                    likeItem.postID === payload.postID ? 
+                    {...likeItem, likes: [...likeItem.likes, payload.oneLike]} : likeItem
+        )
+     }
     case LIKE_CREATE_ERROR:
-        return { 
-          ...state, 
-          postError: payload 
-        }
-    default:
-      return state
-  }
-}
+      return { 
+        ...state, 
+        postError: payload 
+      }
 
-export const deleteLike = (state = initState, action) => {
-  const { payload, type } = action
-  switch(type) {
     case LIKE_DELETE_SUCCESS:
       return { 
-        ...state,
-        likeItem: [...state.likeItem, payload ]
+        ...state, 
+        likeItems: state.likeItems.map(likeItem => 
+                    likeItem.postID === payload.postID ? 
+                    {...likeItem, likes: likeItem.likes.filter(({id}) => id !== payload.deletedLike.id) } : likeItem
+        )
       }
     case LIKE_DELETE_ERROR:
-        return { 
-          ...state, 
-          postError: payload 
-        }
+      return { 
+        ...state, 
+        postError: payload 
+      }
     default:
       return state
   }
 }
+
