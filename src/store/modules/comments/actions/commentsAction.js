@@ -6,7 +6,7 @@ import  {history} from '../../../../history'
 
 export const fetchComments = id => {
 
-  console.log("this is the comment id sent: ", id)
+  // console.log("this is the comment id sent: ", id)
 
   return async dispatch => {
 

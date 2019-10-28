@@ -11,7 +11,7 @@ import Navigation from '../Navigation'
 import Like from './Like'
 import Comments from '../Comments/Comments'
 import Comment from '../Comments/Comment'
-
+import Default from '../../Assets/default.png'
 
 
 const PostDetails = (props) => {
@@ -29,6 +29,17 @@ const PostDetails = (props) => {
   const postComments = currentState.CommentsState
 
   const authID = currentState.Auth.currentUser.id
+
+  console.log("this is the post selector: ", postSelector)
+
+//Get the avatar of the author of the post
+  let imagePreview = null;
+  let avatarPathPost = postSelector.post.author ? postSelector.post.author.avatar_path : null
+  if(avatarPathPost){
+    imagePreview = (<img className="img_style" src={avatarPathPost} alt="no one"/>);
+  } else {
+    imagePreview = (<img className="img_style" src={Default} alt="no one 2"/>);
+  }
 
 
   useEffect(() => {
@@ -62,8 +73,11 @@ const PostDetails = (props) => {
           <Card>
             <CardBody>
             <CardTitle>
-              <span href="" style={{fontWeight: 'bold'}}>
-                {postSelector.post.author ? postSelector.post.author.username : ""}
+              <span>
+                <span className="mr-2">
+                  {imagePreview}
+                </span>
+                <span href="" style={{fontWeight: 'bold'}}>{postSelector.post.author ? postSelector.post.author.username : ""}</span>
               </span>
               <span style={{float: 'right'}}>
                 <Moment fromNow>
@@ -74,10 +88,8 @@ const PostDetails = (props) => {
               <CardTitle>{postSelector.post.title}</CardTitle>
               <CardText>{postSelector.post.content}</CardText>
               <div className="style-fav">
-                <div className="style-fav">
-                  <Like postID={postID} />
-                  <Comments postID={postID} />
-                </div>
+                <Like postID={postID} />
+                <Comments postID={postID} />
               </div>
             </CardBody>
           </Card>

@@ -15,12 +15,10 @@ const Posts = () => {
   const getPosts = () => dispatch(fetchPosts());
 
   useEffect(() => {
-    // console.log("we are getting the posts")
     getPosts();
   }, [])
 
   let posts = postsSelector.posts.map((post) => {
-    // console.log("this is the initial post: ", post)
     return (
        <Link to={'/posts/' + post.id} key={post.id}>
         <Post post={post} key={post.id} />

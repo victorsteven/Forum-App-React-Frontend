@@ -63,14 +63,14 @@ const Profile = () => {
     reader.readAsDataURL(thefile)
   }
 
-  let $imagePreview = null;
+  let imagePreview = null;
   if(currentUserState.currentUser.avatar_path && !uploadedFile){
-    $imagePreview = (<img className={styles.img_style} src={currentUserState.currentUser.avatar_path} alt="no one"/>);
+    imagePreview = (<img className={styles.img_style} src={currentUserState.currentUser.avatar_path} alt="no one"/>);
   }
   else if(uploadedFile) {
-    $imagePreview = (<img className={styles.img_style} src={uploadedFile} alt="no one"/>);
+    imagePreview = (<img className={styles.img_style} src={uploadedFile} alt="no one"/>);
   } else {
-    $imagePreview = (<img className={styles.img_style} src={Default} alt="no one 2"/>);
+    imagePreview = (<img className={styles.img_style} src={Default} alt="no one 2"/>);
   }
 
   //incase someone visits the route manually
@@ -114,7 +114,7 @@ const Profile = () => {
           </Row>
           <CardBody>
             <div className="text-center mb-3">
-                {$imagePreview}
+                {imagePreview}
             </div>
           <Form onSubmit={submitUserAvatar} encType="multipart/form-data">
             <div>

@@ -8,9 +8,20 @@ import {
 // import Like from './Like'
 // import Comments from '../Comments/Comments'
 import '../Posts/Posts.css';
+import Default from '../../Assets/default.png'
+
 
 
 const Comment = ({ comment }) => {
+
+  let commentAvatar = comment.user.avatar_path
+
+  let imagePreview = null
+  if(commentAvatar){
+    imagePreview = (<img className="img_style" src={commentAvatar} alt="no one"/>);
+  } else {
+    imagePreview = (<img className="img_style" src={Default} alt="no one 2"/>);
+  }
   
   return (
     <div className="mt-3">
@@ -19,8 +30,11 @@ const Comment = ({ comment }) => {
           <CardTitle>
             {comment.user ?
             <span> 
-              <span href="" style={{fontWeight: 'bold'}}>
-                {comment.user.username}
+              <span>
+                <span className="mr-2">
+                  {imagePreview}
+                </span>
+                <span href="" style={{fontWeight: 'bold'}}>{comment.user.username}</span>
               </span>
               <span style={{float: 'right'}}>
                 <Moment fromNow>
