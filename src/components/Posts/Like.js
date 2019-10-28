@@ -13,51 +13,27 @@ const Like = ({ postID }) => {
 
   const postLikes  =  currentState.LikesState
 
-  // console.log("the postlikes: ", postLikes)
-
   const authID = currentState.Auth.currentUser.id
-
-  // const authLiked  = currentState.authLiked
 
   let postLike = 0
   let likeID = null
   let authLiked  = false
 
-  // postLikes.likeItems.map(eachItem => {
-  //   console.log("this is a like item: ", eachItem)
-  //   if(eachItem.postID === postID){
-  //     postLike = eachItem.likes.length  
 
-  //     eachItem.likes.map(eachLike => {
-  //       if(eachLike.user_id === authID){
-  //         // console.log("the auth id also liked")
-  //         authLiked = true
-  //       } else {
-  //         // console.log("the auth has not liked yet")
-  //       }
-  //     })  
-  //   } else {
-  //     postLike = 99
-  //   }
-  // }) 
+  if(postLikes){
+    postLikes.likeItems.map(eachItem => {
+      if(eachItem.postID === postID){
+        postLike = eachItem.likes.length  
 
-  postLikes.likeItems.map(eachItem => {
-    console.log("this is a like item: ", eachItem)
-    if(eachItem.postID === postID){
-      postLike = eachItem.likes.length  
-
-      eachItem.likes.map(eachLike => {
-        if(eachLike.user_id === authID){
-          console.log("the auth id also liked")
-          authLiked = true
-          likeID = eachLike.id
-          // console.log('this is the auth like id: ', eachItem.id)
-        } else {
-          console.log("the auth has not liked yet")
-        }
-      })  
-    }
-  }) 
+        eachItem.likes.map(eachLike => {
+          if(eachLike.user_id === authID){
+            authLiked = true
+            likeID = eachLike.id
+          } 
+        })  
+      }
+    }) 
+  }
 
   // console.log("this is the postLikes: ", postLikes)
 
@@ -75,18 +51,8 @@ const Like = ({ postID }) => {
   useEffect(() => {
     getPostLikes(postID);
 
-    // if(authID){
-    //   authLike(authID, postID)
-    // }
   }, [])
 
-  // const getAuthLike = (e) => {
-  //   e.preventDefault()
-  //   authLike({
-  //     post_id: postID,
-  //     auth_id
-  //   });
-  // }
 
   const unLike = (e) => {
     e.preventDefault()

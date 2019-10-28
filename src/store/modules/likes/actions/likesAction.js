@@ -8,7 +8,7 @@ export const fetchLikes = id => {
 
   return async dispatch => {
     try {
-      const res = await axios.get(`${API_ROUTE}/getlikes/${id}`)
+      const res = await axios.get(`${API_ROUTE}/likes/${id}`)
       // console.log("this is the console likes: ", res.data.response)
       dispatch({ 
         type: GET_LIKES_SUCCESS, 
@@ -24,17 +24,6 @@ export const fetchLikes = id => {
     }
   }
 }
-
-// export const fetchAuthLike = (authID, postID) => {
-//   return async dispatch => {
-//     try {
-//       const res = await axios.get(`${API_ROUTE}/getauthlike/${authID}/${postID}`)
-//       dispatch({ type: GET_AUTH_LIKE_SUCCESS, payload: res.data.response })
-//     } catch(err) {
-//       console.log("this is the error: ", err)
-//     }
-//   }
-// }
 
 export const createLike = (details) => {
   console.log("this is the post id: ", details.post_id)
@@ -56,19 +45,6 @@ export const createLike = (details) => {
   }
 }
 
-// export const deleteLike = (details) => {
-//   // console.log("this is the post id: ", details.post_id)
-//   return async (dispatch) => {
-//     try {
-//       const res  = await axios.post(`${API_ROUTE}/deletelike/${details.post_id}`, details)
-//       console.log("this is the response from the unlike: ", res.data.response )
-//       dispatch({ type: LIKE_DELETE_SUCCESS, payload: res.data.response })
-//     } catch(err){
-//       console.log("this is the error for the post: ", err.response.data.error)
-//       dispatch({ type: LIKE_DELETE_ERROR, payload: err.response.data.error })
-//     }
-//   }
-// }
 
 export const deleteLike = details => {
   // console.log("this is the post id: ", details.post_id)

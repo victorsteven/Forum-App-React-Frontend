@@ -23,7 +23,7 @@ const Routes  = () => {
             <Route path='/profile/:id' component={Profile} />
             <Route path='/forgotpassword' component={ForgotPassword} />
             <Route path='/resetpassword/:token' component={ResetPassword} />
-            <Route path='/post/:id' component={PostDetails} />
+            <Route path='/posts/:id' component={PostDetails} />
           </Switch>
         </div>
       </Router>

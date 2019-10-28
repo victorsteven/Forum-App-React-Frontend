@@ -3,7 +3,7 @@ import authReducer  from './auth/reducer/authReducer'
 import { fetchPosts }  from "./posts/reducer/postsReducer";
 import { createPost, getPost } from './post/reducer/singlePostReducer'
 import { likesState } from './likes/reducer/likesReducer'
-
+import { commentsState } from './comments/reducer/commentsReducer'
 
 
 const reducer = combineReducers({
@@ -11,9 +11,9 @@ const reducer = combineReducers({
   FetchPosts: fetchPosts,
   CreatePost: createPost,
   FetchPost: getPost,
-  // CreateLike: createLike,
-  LikesState: likesState
-})
+  LikesState: likesState,
+  CommentsState: commentsState
 
+})
 
 export default reducer

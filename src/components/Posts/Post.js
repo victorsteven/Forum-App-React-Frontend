@@ -7,15 +7,15 @@ import {
 } from 'reactstrap';
 import './Posts.css';
 import Like from './Like'
-import Comment from './Comment'
+import Comments from '../Comments/Comments'
 import './Posts.css';
 
 
 const Post = ({ post }) => {
   
   return (
-    <div className="style-anchor">
-      <div  className="mt-5 style-card">
+    <div className="">
+      <div  className="mt-2 style-card">
         <Card>
           <CardBody className="style-card-body">
           <CardTitle>
@@ -28,7 +28,7 @@ const Post = ({ post }) => {
             <CardText>{post.content}</CardText>
             <div className="style-fav">
               <Like postID={post.id} />
-              <Comment postID={post.id} />
+              <Comments postID={post.id} />
             </div>
           </CardBody>
         </Card>

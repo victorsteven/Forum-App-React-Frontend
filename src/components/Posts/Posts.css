@@ -1,7 +1,11 @@
 @media (min-width: 768px){
   .style-card {
-    margin-right: 120px;
-    margin-left: 120px;
+    margin-right: 200px;
+    margin-left: 200px;
+  }
+  .style-card-comment {
+    margin-right: 200px;
+    margin-left: 240px;
   }
 }
 
