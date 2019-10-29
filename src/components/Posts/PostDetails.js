@@ -100,7 +100,6 @@ const PostDetails = (props) => {
               <Comment comment={comment} key={comment.id} />
             )
           }) 
-          
           : ""
           }
         </div>

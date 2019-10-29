@@ -64,7 +64,8 @@ const authReducer = (state = initState, action) => {
         ...state,
         isAuthenticated: false,
         currentUser: {},
-        logoutError: null
+        logoutError: null,
+        isLoading: false
       }
     case UPDATE_USER_AVATAR:
       return {

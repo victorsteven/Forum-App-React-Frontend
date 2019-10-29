@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom';
 
 
 
-const Register = () => {
+const CreatePost = () => {
 
   const currentState = useSelector((state) => state);
 
@@ -90,4 +90,4 @@ const Register = () => {
     );
 }
 
-export default Register
+export default CreatePost

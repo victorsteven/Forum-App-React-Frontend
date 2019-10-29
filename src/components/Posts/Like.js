@@ -45,9 +45,6 @@ const Like = ({ postID }) => {
   const removeLike = likeDetails => dispatch(deleteLike(likeDetails))
 
 
-  // const authLike =  (auth_id, post_id) => dispatch(fetchAuthLike(auth_id, post_id))
-
-
   useEffect(() => {
     getPostLikes(postID);
 
@@ -56,23 +53,19 @@ const Like = ({ postID }) => {
 
   const unLike = (e) => {
     e.preventDefault()
-    // console.log("The auth like removed")
     removeLike({
       id: likeID,
       post_id: postID,
       user_id: authID,
     })
-    // setLike(like - 1)
   }
 
   const saveLike = (e) => {
     e.preventDefault()
-    // console.log("the auth just liked this post")
     addLike({
       post_id: postID,
       user_id: authID,
     })
-    // setLike(like + 1)
   }
 
 
