@@ -13,7 +13,6 @@ const EditPost = ({ post, className }) => {
     title: post.title,
     content: post.content,
   })
-  // console.log("this is the pist", post)
 
   const dispatch = useDispatch()
 
@@ -21,10 +20,14 @@ const EditPost = ({ post, className }) => {
 
   const authID = currentState.Auth.currentUser.id
 
-  // const commentsState = currentState.CommentsState
 
-  const theUpdate = details => dispatch(updatePost(details, toggle))
+  const theUpdate = details => dispatch(updatePost(details, updateSuccess))
 
+
+  const updateSuccess = () => {
+    setModal(!modal);
+
+  }
   const toggle = (e) => {
     e.preventDefault()
     setModal(!modal);
@@ -57,20 +60,24 @@ const EditPost = ({ post, className }) => {
           <FormGroup>
             <label>Title</label>
             <input className="form-control" type="text" name="title"  defaultValue={postUpdate.title}  onChange={handleChange}/>
+            { currentState.PostsState.postsError && currentState.PostsState.postsError.Required_title ? (
+              <small className="color-red">{currentState.PostsState.postsError.Required_title}</small>
+              ) : (
+                ""
+              )}
           </FormGroup>
           <FormGroup>
             <label>Content</label>
             <textarea className="form-control" name="content" style={{ width: "100%", height: "150px" }} defaultValue={postUpdate.content} onChange={handleChange}></textarea>
-          </FormGroup>
-
-          {/* { currentState.CommentsState.commentsError && currentState.CommentsState.commentsError.Required_body ? (
-              <small className="color-red">{currentState.CommentsState.commentsError.Required_body}</small>
+            { currentState.PostsState.postsError && currentState.PostsState.postsError.Required_content ? (
+              <small className="color-red">{currentState.PostsState.postsError.Required_content}</small>
               ) : (
                 ""
-              )} */}
+              )}
+          </FormGroup>
         </ModalBody>
         <ModalFooter>
-        { currentState.CommentsState.isLoading ? (
+        { currentState.PostsState.isLoading ? (
               <button className="btn btn-primary"
                 disabled
               >

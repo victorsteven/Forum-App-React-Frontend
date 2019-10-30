@@ -9,7 +9,7 @@ import Post from './Post'
 
 const Posts = () => {
 
-  const postsSelector = useSelector((state) => state.FetchPosts);
+  const postsSelector = useSelector((state) => state.PostsState);
   const dispatch = useDispatch();
 
   const getPosts = () => dispatch(fetchPosts());

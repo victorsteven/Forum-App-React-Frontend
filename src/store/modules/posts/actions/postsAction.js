@@ -27,35 +27,36 @@ export const fetchPosts = () => {
 //   }
 // }
 
-// export const createPost = (createPost) => {
-//   return async (dispatch) => {
-//     try {
-//       await axios.post(`${API_ROUTE}/posts`, createPost)
-//       dispatch({ type: CREATE_POST_SUCCESS })
-//       history.push('/');
-//     } catch(err) {
-//       dispatch({ type: CREATE_POST_ERROR, payload: err.response.data.error })
-//     }
-//   }
-// }
+export const createPost = (createPost) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.post(`${API_ROUTE}/posts`, createPost)
+      dispatch({ 
+        type: CREATE_POST_SUCCESS,  
+        payload: res.data.response
+      })
+      history.push('/');
+    } catch(err) {
+      dispatch({ type: CREATE_POST_ERROR, payload: err.response.data.error })
+    }
+  }
+}
 
-export const updatePost = (updateDetails, toggle) => {
+export const updatePost = (updateDetails, updateSuccess) => {
 
   console.log("these are the sending details: ", updateDetails)
   return async (dispatch) => {
     try {
       const res = await axios.put(`${API_ROUTE}/posts/${updateDetails.id}`, updateDetails)
-      // dispatch({ 
-      //   type: UPDATE_POST_SUCCESS 
-      // })
-      // history.push('/');
-
-      console.log("This is the post update", res.data.response)
-
-      toggle()
+      dispatch({ 
+        type: UPDATE_POST_SUCCESS,
+        payload: res.data.response
+      })
+      console.log("This is the post update id", res.data.response.id)
+      updateSuccess()
     } catch(err) {
       console.log("this is the error for the update: ", err)
-      // dispatch({ type: UPDATE_POST_ERROR, payload: err.response.data.error })
+      dispatch({ type: UPDATE_POST_ERROR, payload: err.response.data.error })
     }
   }
 }
