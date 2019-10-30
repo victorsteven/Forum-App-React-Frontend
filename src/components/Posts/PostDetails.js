@@ -32,8 +32,6 @@ const PostDetails = (props) => {
 
   const authID = currentState.Auth.currentUser.id
 
-  console.log("this is the post selector: ", postSelector)
-
 //Get the avatar of the author of the post
   let imagePreview = null;
   let avatarPathPost = postSelector.post.author ? postSelector.post.author.avatar_path : null
@@ -90,7 +88,7 @@ const PostDetails = (props) => {
               <CardTitle>{postSelector.post.title}</CardTitle>
               <CardText>{postSelector.post.content}</CardText>
               <div className="style-fav">
-                <Like postID={postID} />
+                <Like postID={Number(postID)} />
                 <Comments postID={postID} />
                 <div className="ml-auto">
                   <span style={{marginRight: "20px"}}>

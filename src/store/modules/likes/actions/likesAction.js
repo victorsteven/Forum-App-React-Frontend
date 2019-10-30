@@ -26,10 +26,10 @@ export const fetchLikes = id => {
 }
 
 export const createLike = (details) => {
-  console.log("this is the post id: ", details.post_id)
+  console.log("this is the data to send: ", details)
   return async (dispatch) => {
     try {
-      const res  = await axios.post(`${API_ROUTE}/createlike/${details.post_id}`, details)
+      const res  = await axios.post(`${API_ROUTE}/likes/${details.post_id}`, details)
       console.log("this is the response: ", res.data.response )
       dispatch({ 
         type: LIKE_CREATE_SUCCESS, 
@@ -46,16 +46,15 @@ export const createLike = (details) => {
 }
 
 
-export const deleteLike = details => {
-  // console.log("this is the post id: ", details.post_id)
+export const deleteLike = id => {
   return async (dispatch) => {
     try {
-      const res  = await axios.post(`${API_ROUTE}/deletelike/${details.id}`, details)
-      console.log("this is the response from the unlike: ", res.data.response )
+      const res  = await axios.delete(`${API_ROUTE}/likes/${id}`)
+      console.log("this is the response from the unlike: ", res.data.response.post_id)
       dispatch({ 
         type: LIKE_DELETE_SUCCESS, 
         payload: {
-          postID: details.post_id,
+          postID: res.data.response.post_id,
           deletedLike: res.data.response 
         }
       })

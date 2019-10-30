@@ -34,36 +34,29 @@ const Like = ({ postID }) => {
       }
     }) 
   }
-
-  // console.log("this is the postLikes: ", postLikes)
-
   const [like, setLike] = useState(0)
 
   const getPostLikes = id => dispatch(fetchLikes(id));
 
   const addLike = likeDetails => dispatch(createLike(likeDetails))
-  const removeLike = likeDetails => dispatch(deleteLike(likeDetails))
+  const removeLike = id => dispatch(deleteLike(id))
 
 
   useEffect(() => {
     getPostLikes(postID);
-
   }, [])
 
 
   const unLike = (e) => {
     e.preventDefault()
-    removeLike({
-      id: likeID,
-      post_id: postID,
-      user_id: authID,
-    })
+    let id = likeID
+    removeLike(id)
   }
 
   const saveLike = (e) => {
     e.preventDefault()
     addLike({
-      post_id: postID,
+      post_id: Number(postID),
       user_id: authID,
     })
   }
