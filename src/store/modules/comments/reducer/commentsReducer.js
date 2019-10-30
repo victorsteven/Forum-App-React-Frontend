@@ -1,4 +1,4 @@
-import {  COMMENT_CREATE_SUCCESS, COMMENT_CREATE_ERROR, GET_COMMENTS_SUCCESS, GET_COMMENTS_ERROR, COMMENT_DELETE_SUCCESS, COMMENT_DELETE_ERROR, GET_AUTH_COMMENT_SUCCESS, GET_AUTH_COMMENT_ERROR, BEFORE_STATE } from '../commentTypes'
+import {  COMMENT_CREATE_SUCCESS, COMMENT_CREATE_ERROR, GET_COMMENTS_SUCCESS, GET_COMMENTS_ERROR, COMMENT_DELETE_SUCCESS, COMMENT_DELETE_ERROR, COMMENT_UPDATE_SUCCESS, COMMENT_UPDATE_ERROR,  BEFORE_STATE } from '../commentTypes'
 
 export const initState = {
   commentItems : [],
@@ -24,13 +24,14 @@ export const commentsState = (state = initState, action) => {
         ...state, 
         commentItems: [...state.commentItems, { postID: payload.postID, comments: payload.comments  } ],
         isLoading: false,
-
       }
+
     case GET_COMMENTS_ERROR:
       return { 
         ...state, 
-        commentError: action.payload, 
+        commentError: payload, 
       }
+
     case COMMENT_CREATE_SUCCESS:
       return { 
         ...state, 
@@ -41,7 +42,29 @@ export const commentsState = (state = initState, action) => {
         isLoading: false,
         commentSuccess: true
      }
+
     case COMMENT_CREATE_ERROR:
+      return { 
+        ...state, 
+        commentsError: payload, 
+        isLoading: false,
+        commentSuccess: false
+      }
+
+    case COMMENT_UPDATE_SUCCESS:
+      return { 
+        ...state, 
+        commentItems: state.commentItems.map(commentItem => 
+          Number(commentItem.postID) === payload.comment.post_id ? 
+          {...commentItem, comments: commentItem.comments.map(comment => comment.id === payload.comment.id  ? 
+          {...comment, body: payload.comment.body } : comment  ) } : commentItem
+        ),
+        commentsError: null, 
+        isLoading: false,
+        commentSuccess: true,
+      }
+
+    case COMMENT_UPDATE_ERROR:
       return { 
         ...state, 
         commentsError: payload, 
@@ -52,15 +75,21 @@ export const commentsState = (state = initState, action) => {
     case COMMENT_DELETE_SUCCESS:
       return { 
         ...state, 
-        likeItems: state.likeItems.map(likeItem => 
-                    likeItem.postID === payload.postID ? 
-                    {...likeItem, likes: likeItem.likes.filter(({id}) => id !== payload.deletedLike.id) } : likeItem
-        )
+        commentItems: state.commentItems.map(commentItem => 
+          Number(commentItem.postID) === payload.postID ? 
+          {...commentItem, comments: commentItem.comments.filter(({id}) => id !== payload.id ) } : commentItem
+        ),
+        commentsError: null, 
+        isLoading: false,
+        commentSuccess: true,
       }
+
     case COMMENT_DELETE_ERROR:
       return { 
         ...state, 
-        postError: payload 
+        commentsError: payload, 
+        isLoading: false,
+        commentSuccess: false
       }
     default:
       return state

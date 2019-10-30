@@ -1,6 +1,6 @@
 import API_ROUTE from "../../../../apiRoute";
 import axios from 'axios'
-import {  COMMENT_CREATE_SUCCESS, COMMENT_CREATE_ERROR, GET_COMMENTS_SUCCESS, GET_COMMENTS_ERROR, COMMENT_DELETE_SUCCESS, COMMENT_DELETE_ERROR, GET_AUTH_COMMENT_SUCCESS, GET_AUTH_COMMENT_ERROR, BEFORE_STATE } from '../commentTypes'
+import {  COMMENT_CREATE_SUCCESS, COMMENT_CREATE_ERROR, GET_COMMENTS_SUCCESS, GET_COMMENTS_ERROR, COMMENT_DELETE_SUCCESS, COMMENT_DELETE_ERROR, COMMENT_UPDATE_SUCCESS, COMMENT_UPDATE_ERROR, BEFORE_STATE } from '../commentTypes'
 import  {history} from '../../../../history'
 
 
@@ -56,21 +56,44 @@ export const createComment = (details, toggle) => {
   }
 }
 
-export const deleteComment = details => {
-  // console.log("this is the post id: ", details.post_id)
+
+export const updateComment = (updateDetails, updateSuccess) => {
+
+  console.log("this is the uodate comment: ", updateDetails)
   return async (dispatch) => {
     try {
-      const res  = await axios.post(`${API_ROUTE}/deletecomment/${details.id}`, details)
-      console.log("this is the response from the unlike: ", res.data.response )
+      const res = await axios.put(`${API_ROUTE}/comments/${updateDetails.id}`, updateDetails)
       dispatch({ 
-        type: COMMENT_DELETE_SUCCESS, 
+        type: COMMENT_UPDATE_SUCCESS,
         payload: {
-          postID: details.post_id,
-          deletedLike: res.data.response 
-        }
+          comment: res.data.response
+        } 
       })
-    } catch(err){
-      console.log("this is the error for the post: ", err.response.data.error)
+      updateSuccess()
+    } catch(err) {
+      console.log("this is the error for the update: ", err)
+      dispatch({ type: COMMENT_UPDATE_ERROR, payload: err.response.data.error })
+    }
+  }
+}
+
+export const deleteComment = (details, deleteSuccess) => {
+
+  return async (dispatch) => {
+    try {
+      const res = await axios.delete(`${API_ROUTE}/comments/${details.id}`)
+      dispatch({ 
+        type: COMMENT_DELETE_SUCCESS,
+        payload: {
+          id: details.id,
+          postID: details.postID,
+          message: res.data.response
+        } 
+      })
+      deleteSuccess()
+
+    } catch(err) {
+      console.log("this is the error for the update: ", err)
       dispatch({ type: COMMENT_DELETE_ERROR, payload: err.response.data.error })
     }
   }

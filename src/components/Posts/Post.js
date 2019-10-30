@@ -17,6 +17,8 @@ import DeletePost from './DeletePost'
 
 const Post = ({ post }) => {
 
+  const currentState = useSelector(state => state)
+  const authID = currentState.Auth.currentUser.id
 
   let $imagePreview = null;
   if(post.author.avatar_path){
@@ -42,8 +44,13 @@ const Post = ({ post }) => {
             <CardTitle>{post.title}</CardTitle>
             <CardText>{post.content}</CardText>
             <div className="style-fav">
-              <Like postID={post.id} />
-              <Comments postID={post.id} />
+            { authID ? (
+                <>
+                  <Like postID={post.id} />
+                  <Comments postID={post.id} />
+                </>
+                ) : ""}
+              { authID === post.author_id ? (
                 <div className="ml-auto">
                   <span style={{marginRight: "20px"}}>
                     <EditPost post={post} />
@@ -52,6 +59,7 @@ const Post = ({ post }) => {
                     <DeletePost postID={post.id} />
                   </span>
                 </div>
+              ) : ""}
             </div>
           </CardBody>
         </Card>

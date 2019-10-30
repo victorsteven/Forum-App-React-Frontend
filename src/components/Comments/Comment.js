@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Moment from 'react-moment';
-// import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   Card, CardText, CardBody,
   CardTitle
@@ -9,10 +9,16 @@ import {
 // import Comments from '../Comments/Comments'
 import '../Posts/Posts.css';
 import Default from '../../Assets/default.png'
+import EditComment from './EditComment'
+import DeleteComment from './DeleteComment'
+
 
 
 
 const Comment = ({ comment }) => {
+
+  const currentState = useSelector(state => state)
+  const authID = currentState.Auth.currentUser.id
 
   let commentAvatar = comment.user.avatar_path
 
@@ -45,6 +51,16 @@ const Comment = ({ comment }) => {
             : "" }
             </CardTitle>
             <CardText>{comment.body}</CardText>
+            { authID === comment.user.id ? (
+              <div style={{float: "right"}}>
+                <span style={{marginRight: "20px"}}>
+                  <EditComment comment={comment} />
+                </span>
+                <span>
+                  <DeleteComment comment={comment} />
+                </span>
+              </div>
+            ) : ""}
         </CardBody>
       </Card>
     </div>

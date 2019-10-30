@@ -71,7 +71,7 @@ const PostDetails = (props) => {
       <div className="container">
         <div className="mt-5 style-card">
           <Card>
-            <CardBody>
+            <CardBody style={{paddingBottom: "0px"}}>
             <CardTitle>
               <span>
                 <span className="mr-2">
@@ -88,16 +88,22 @@ const PostDetails = (props) => {
               <CardTitle>{postSelector.post.title}</CardTitle>
               <CardText>{postSelector.post.content}</CardText>
               <div className="style-fav">
-                <Like postID={Number(postID)} />
-                <Comments postID={postID} />
+              { authID ? (
+                <>
+                  <Like postID={Number(postID)} />
+                  <Comments postID={postID} />
+                </>
+                ) : ""}
+                { authID === postSelector.post.author_id ? (
                 <div className="ml-auto">
                   <span style={{marginRight: "20px"}}>
                     <EditPost post={postSelector.post} />
                   </span>
                   <span>
-                    <DeletePost postID={postID} />
+                    <DeletePost postID={postSelector.post.id} />
                   </span>
                 </div>
+              ) : ""}
               </div>
             </CardBody>
           </Card>
