@@ -63,7 +63,7 @@ const Post = ({ post }) => {
                     <EditPost post={post} />
                   </span>
                   <span>
-                    <DeletePost post={post} />
+                    <DeletePost postID={post.id} />
                   </span>
                   
 

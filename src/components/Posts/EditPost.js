@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup } from 'reactstrap';
@@ -9,10 +9,16 @@ import { history } from '../../history'
 const EditPost = ({ post, className }) => {
 
   const [modal, setModal] = useState(false);
-  const [postUpdate, setPostUpdate] = useState({
-    title: post.title,
-    content: post.content,
-  })
+
+  // const [postUpdate, setPostUpdate] = useState({
+  //   title: post.title,
+  //   content: post.content,
+  // })
+
+// We would have done the above, but we want to favor the postDetails 
+//that gets its post asynchronously component
+
+  const [postUpdate, setPostUpdate] = useState("")
 
   const dispatch = useDispatch()
 
@@ -20,14 +26,16 @@ const EditPost = ({ post, className }) => {
 
   const authID = currentState.Auth.currentUser.id
 
-
   const theUpdate = details => dispatch(updatePost(details, updateSuccess))
-
 
   const updateSuccess = () => {
     setModal(!modal);
-
   }
+
+  useEffect(() => {
+    setPostUpdate(post)
+  }, [post]);
+
   const toggle = (e) => {
     e.preventDefault()
     setModal(!modal);
@@ -40,7 +48,7 @@ const EditPost = ({ post, className }) => {
     })
   }
 
-  const submitComment = (e) => {
+  const submitPost = (e) => {
     e.preventDefault()
     theUpdate({
       id: post.id,
@@ -58,7 +66,7 @@ const EditPost = ({ post, className }) => {
         <ModalHeader toggle={toggle}>Edit Post</ModalHeader>
         <ModalBody>
           <FormGroup>
-            <label>Title</label>
+            <label>Title hello</label>
             <input className="form-control" type="text" name="title"  defaultValue={postUpdate.title}  onChange={handleChange}/>
             { currentState.PostsState.postsError && currentState.PostsState.postsError.Required_title ? (
               <small className="color-red">{currentState.PostsState.postsError.Required_title}</small>
@@ -85,7 +93,7 @@ const EditPost = ({ post, className }) => {
             </button>
             ) : (
               <button className="btn btn-primary"
-                onClick={submitComment}
+                onClick={submitPost}
                 type="submit"
               >
               Update

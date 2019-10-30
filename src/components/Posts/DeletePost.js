@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { FaRegComment } from 'react-icons/fa'
-import { createComment } from '../../store/modules/comments/actions/commentsAction'
+import { Button, Modal, ModalHeader, ModalFooter } from 'reactstrap';
+import { FaWindowClose } from 'react-icons/fa'
+import { deletePost } from '../../store/modules/posts/actions/postsAction'
 import { history } from '../../history'
 import { FaRegTrashAlt } from 'react-icons/fa'
 
@@ -11,31 +11,27 @@ import { FaRegTrashAlt } from 'react-icons/fa'
 const DeletePost = ({ postID, className }) => {
 
   const [modal, setModal] = useState(false);
-  const [body, setBody] = useState("")
 
   const dispatch = useDispatch()
 
   const currentState = useSelector((state) => state);
 
-  const authID = currentState.Auth.currentUser.id
+  const removePost = id => dispatch(deletePost(id, deleteSuccess))
 
-  // const commentsState = currentState.CommentsState
+  const toggle = (e) => {
+    e.preventDefault();
+    setModal(!modal);
+  } 
 
-  const addComment = details => dispatch(createComment(details, toggle))
-
-  const toggle = () => setModal(!modal);
-
-  const handleChange = e => {
-    setBody(e.target.value)
+  //this callback should not listen for an event
+  const deleteSuccess = () => {
+    setModal(!modal);
   }
 
-  const submitComment = (e) => {
+  const submitDelete = (e) => {
     e.preventDefault()
-    addComment({
-      post_id: postID,
-      user_id: authID,
-      body
-    })
+    let id = postID
+    removePost(id)
   }
 
   return (
@@ -43,28 +39,20 @@ const DeletePost = ({ postID, className }) => {
       <FaRegTrashAlt className="style-delete" onClick={toggle}/>
 
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Comment</ModalHeader>
-        <ModalBody>
-          <textarea name="body" style={{ width: "100%", height: "150px" }} onChange={handleChange}></textarea>
-          { currentState.CommentsState.commentsError && currentState.CommentsState.commentsError.Required_body ? (
-              <small className="color-red">{currentState.CommentsState.commentsError.Required_body}</small>
-              ) : (
-                ""
-              )}
-        </ModalBody>
+        <ModalHeader toggle={toggle} className="text-center">Delete Post?</ModalHeader>
         <ModalFooter>
         { currentState.CommentsState.isLoading ? (
               <button className="btn btn-primary"
                 disabled
               >
-                Saving...
+                Deleting...
             </button>
             ) : (
               <button className="btn btn-primary"
-                onClick={submitComment}
+                onClick={submitDelete}
                 type="submit"
               >
-              Comment
+              Delete
             </button>
             )}
           <Button color="secondary" onClick={toggle}>Cancel</Button>

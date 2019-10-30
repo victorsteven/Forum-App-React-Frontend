@@ -5,13 +5,15 @@ import {
   Card, CardText, CardBody,
   CardTitle
 } from 'reactstrap';
-import { fetchPost } from '../../store/modules/post/actions/singlePostAction'
+import { fetchPost } from '../../store/modules/posts/actions/postsAction'
 
 import Navigation from '../Navigation'
 import Like from './Like'
 import Comments from '../Comments/Comments'
 import Comment from '../Comments/Comment'
 import Default from '../../Assets/default.png'
+import EditPost from './EditPost';
+import DeletePost from './DeletePost'
 
 
 const PostDetails = (props) => {
@@ -24,7 +26,7 @@ const PostDetails = (props) => {
 
   const currentState = useSelector(state => state)
 
-  const postSelector = currentState.FetchPost
+  const postSelector = currentState.PostsState
 
   const postComments = currentState.CommentsState
 
@@ -90,6 +92,14 @@ const PostDetails = (props) => {
               <div className="style-fav">
                 <Like postID={postID} />
                 <Comments postID={postID} />
+                <div className="ml-auto">
+                  <span style={{marginRight: "20px"}}>
+                    <EditPost post={postSelector.post} />
+                  </span>
+                  <span>
+                    <DeletePost postID={postID} />
+                  </span>
+                </div>
               </div>
             </CardBody>
           </Card>

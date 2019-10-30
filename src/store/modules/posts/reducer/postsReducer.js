@@ -1,8 +1,9 @@
-import { FETCH_POSTS, CREATE_POST_SUCCESS, UPDATE_POST_SUCCESS, CREATE_POST_ERROR, UPDATE_POST_ERROR } from '../postsTypes'
+import { FETCH_POSTS, CREATE_POST_SUCCESS, UPDATE_POST_SUCCESS, CREATE_POST_ERROR, UPDATE_POST_ERROR, GET_POST_SUCCESS, GET_POST_ERROR, DELETE_POST_SUCCESS, DELETE_POST_ERROR } from '../postsTypes'
 
 export const initState = {
   posts: [],
-  postsError: null
+  postsError: null,
+  post: {}
 }
 
 export const postsState = (state = initState, action) => {
@@ -14,6 +15,17 @@ export const postsState = (state = initState, action) => {
         ...state, 
         posts: payload 
       }
+      case GET_POST_SUCCESS:
+      return { 
+        ...state, 
+        post: payload,
+        postsError: null 
+      }
+    case GET_POST_ERROR:
+        return { 
+          ...state, 
+          postsError: payload 
+        }
     case UPDATE_POST_SUCCESS:
       return { 
         ...state, 
@@ -21,6 +33,7 @@ export const postsState = (state = initState, action) => {
           post.id === payload.id ? 
           {...post, title: payload.title, content: payload.content } : post
         ),
+        post: payload,
         postsError: null
       }
     case UPDATE_POST_ERROR:
@@ -35,6 +48,17 @@ export const postsState = (state = initState, action) => {
         postsError: null  
       }
     case CREATE_POST_ERROR:
+        return { 
+          ...state, 
+          postsError: payload 
+        }
+     case DELETE_POST_SUCCESS:
+      return { 
+        ...state, 
+        posts: state.posts.filter(post => post.id !== payload.deletedID),
+        postsError: null  
+      }
+    case DELETE_POST_ERROR:
         return { 
           ...state, 
           postsError: payload 
