@@ -9,6 +9,8 @@ import Profile from './components/Users/Profile';
 import ForgotPassword from './components/Users/ForgotPassword/ForgotPassword.js';
 import ResetPassword from './components/Users/ResetPassword';
 import PostDetails from './components/Posts/PostDetails'
+import AuthPosts from './components/Posts/AuthPosts'
+
 
 
 const Routes  = () => {
@@ -24,6 +26,7 @@ const Routes  = () => {
             <Route path='/forgotpassword' component={ForgotPassword} />
             <Route path='/resetpassword/:token' component={ResetPassword} />
             <Route path='/posts/:id' component={PostDetails} />
+            <Route path='/authposts' component={AuthPosts} />
           </Switch>
         </div>
       </Router>

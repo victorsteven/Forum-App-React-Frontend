@@ -36,14 +36,6 @@ const Profile = () => {
     })
   }
 
-  // useEffect(() => {
-  //   setUser({
-  //     email: currentUserState.currentUser.email,
-  //     current_password: '',
-  //     new_password: '',
-  //   })
-  // }, []);
-
   const handleChange = e => {
     setUser({
       ...user,

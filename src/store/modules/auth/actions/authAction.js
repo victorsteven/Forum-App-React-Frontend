@@ -27,6 +27,7 @@ export const SignOut = () => {
     setAuthorizationToken(false)
     dispatch({ type: LOGOUT_SUCCESS })
     window.localStorage.clear(); //update the localstorage
+    history.push('/login');
   }
 }
 

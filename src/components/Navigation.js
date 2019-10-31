@@ -53,7 +53,7 @@ const Navigation = () => {
                     <NavLink to="/createpost">Create Post</NavLink>
                   </NavItem>
                   <NavItem className="mt-2" style={{marginRight: "15px" }}>
-                    <NavLink to="/">Your posts</NavLink>
+                    <NavLink to="/authposts">Your posts</NavLink>
                   </NavItem>
                   <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>
@@ -76,7 +76,7 @@ const Navigation = () => {
 
   const SignedOutLinks = (
                <Aux>
-                  <NavItem style={{marginRight: "10px" }}>
+                  <NavItem style={{marginRight: "20px" }}>
                     <Link to='/login'>Login</Link>
                   </NavItem>
                   <NavItem>
