@@ -20,10 +20,6 @@ const CreatePost = () => {
 
   const addPost = (postDetails) => dispatch(createPost(postDetails))
 
-  // validateForm() {
-  //   return this.state.email.length > 0 && this.state.password.length > 0;
-  // }
-
   const handleChange = e => {
     setPost({
       ...post,
@@ -75,13 +71,25 @@ const CreatePost = () => {
                 ""
               )}
             </FormGroup>
-            <Button
-              color="primary"
-              type="submit"
-              block
-            >
+
+            { currentState.isLoading ? (
+              <Button
+                color="primary"
+                type="submit"
+                block
+                disabled
+              >
+                Creating...
+            </Button>
+            ) : (
+              <Button
+                color="primary"
+                type="submit"
+                block
+              >
               Create Post
             </Button>
+            )}
             </form>
             </CardBody>
           </Card>

@@ -10,14 +10,6 @@ const EditPost = ({ post, className }) => {
 
   const [modal, setModal] = useState(false);
 
-  // const [postUpdate, setPostUpdate] = useState({
-  //   title: post.title,
-  //   content: post.content,
-  // })
-
-// We would have done the above, but we want to favor the postDetails 
-//that gets its post asynchronously component
-
   const [postUpdate, setPostUpdate] = useState("")
 
   const dispatch = useDispatch()
@@ -39,6 +31,7 @@ const EditPost = ({ post, className }) => {
   const toggle = (e) => {
     e.preventDefault()
     setModal(!modal);
+    setPostUpdate(post)
   } 
 
   const handleChange = e => {

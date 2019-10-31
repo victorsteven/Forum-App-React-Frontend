@@ -21,10 +21,6 @@ const Register = () => {
 
   const addUser = (credentials) => dispatch(SignUp(credentials))
 
-  // validateForm() {
-  //   return this.state.email.length > 0 && this.state.password.length > 0;
-  // }
-
   const handleChange = e => {
     setUser({
       ...user,

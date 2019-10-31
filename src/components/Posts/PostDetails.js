@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Moment from 'react-moment';
 import { useSelector, useDispatch } from "react-redux";
-import {
-  Card, CardText, CardBody,
-  CardTitle
-} from 'reactstrap';
-import { fetchPost } from '../../store/modules/posts/actions/postsAction'
+import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
 
+import Default from '../../Assets/default.png'
+import { fetchPost } from '../../store/modules/posts/actions/postsAction'
 import Navigation from '../Navigation'
 import Like from './Like'
 import Comments from '../Comments/Comments'
 import Comment from '../Comments/Comment'
-import Default from '../../Assets/default.png'
 import EditPost from './EditPost';
 import DeletePost from './DeletePost'
 
@@ -47,20 +44,11 @@ const PostDetails = (props) => {
   }, [])
 
   let singlePostComments = []
-  let authCommented  = false
-  let commentID = null
 
   if(postComments){
     postComments.commentItems.map(eachItem => {
       if(eachItem.postID === postID){
         singlePostComments = eachItem.comments  
-
-        singlePostComments.map(eachComment => {
-          if(eachComment.user_id === authID){
-            authCommented = true
-            commentID = eachComment.id
-          } 
-        })  
       } 
     }) 
   }

@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Moment from 'react-moment';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
   Card, CardText, CardBody,
   CardTitle
 } from 'reactstrap';
-// import Like from './Like'
-// import Comments from '../Comments/Comments'
 import '../Posts/Posts.css';
 import Default from '../../Assets/default.png'
 import EditComment from './EditComment'

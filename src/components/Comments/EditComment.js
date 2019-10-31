@@ -1,30 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup } from 'reactstrap';
 import { FaPencilAlt } from 'react-icons/fa'
 import { updateComment } from '../../store/modules/comments/actions/commentsAction'
-import { history } from '../../history'
 
 const EditComment = ({ comment, className }) => {
 
   const [modal, setModal] = useState(false);
 
-  // const [postUpdate, setPostUpdate] = useState({
-  //   title: post.title,
-  //   content: post.content,
-  // })
-
-// We would have done the above, but we want to favor the postDetails 
-//that gets its post asynchronously component
 
   const [commentUpdate, setCommentUpdate] = useState("")
 
   const dispatch = useDispatch()
 
   const currentState = useSelector((state) => state);
-
-  const authID = currentState.Auth.currentUser.id
 
   const theUpdate = details => dispatch(updateComment(details, updateSuccess))
 
@@ -39,6 +28,7 @@ const EditComment = ({ comment, className }) => {
   const toggle = (e) => {
     e.preventDefault()
     setModal(!modal);
+    setCommentUpdate(comment)
   } 
 
   const handleChange = e => {
@@ -63,15 +53,15 @@ const EditComment = ({ comment, className }) => {
           <FormGroup>
             <label>Content</label>
             <textarea className="form-control" name="body" style={{ width: "100%", height: "100px" }} defaultValue={commentUpdate.body} onChange={handleChange}></textarea>
-            {/* { currentState.PostsState.postsError && currentState.PostsState.postsError.Required_content ? (
-              <small className="color-red">{currentState.PostsState.postsError.Required_content}</small>
+            { currentState.CommentsState.commentsError && currentState.CommentsState.commentsError.Required_body  ? (
+              <small className="color-red">{currentState.CommentsState.commentsError.Required_body }</small>
               ) : (
                 ""
-              )} */}
+              )}
           </FormGroup>
         </ModalBody>
         <ModalFooter>
-        { currentState.PostsState.isLoading ? (
+        { currentState.CommentsState.isLoading ? (
               <button className="btn btn-primary"
                 disabled
               >

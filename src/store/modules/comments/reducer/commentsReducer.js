@@ -8,6 +8,7 @@ export const initState = {
 
 
 export const commentsState = (state = initState, action) => {
+  
   const { payload, type }  = action;
   switch(type) {
 
@@ -24,12 +25,14 @@ export const commentsState = (state = initState, action) => {
         ...state, 
         commentItems: [...state.commentItems, { postID: payload.postID, comments: payload.comments  } ],
         isLoading: false,
+        commentsError: null,
       }
 
     case GET_COMMENTS_ERROR:
       return { 
         ...state, 
         commentError: payload, 
+        isLoading: false,
       }
 
     case COMMENT_CREATE_SUCCESS:

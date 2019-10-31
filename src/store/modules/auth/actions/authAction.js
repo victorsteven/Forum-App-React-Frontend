@@ -4,14 +4,6 @@ import setAuthorizationToken  from "../../../../utils/authorization";
 import { BEFORE_STATE, SIGNUP_SUCCESS, SIGNUP_ERROR, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, UPDATE_USER_AVATAR_ERROR, BEFORE_AVATAR_STATE, BEFORE_USER_STATE, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_ERROR, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_ERROR } from '../authTypes'
 import  {history} from '../../../../history'
 
-// export const setErrorState = 
-
-// export const SetCurrentUser = (user) => {
-//   return {
-//     type: SET_CURRENT_USER,
-//     user
-//   };
-// }
 
 export const SignIn = (credentials) => {
   return async (dispatch) => {
@@ -79,11 +71,8 @@ export const updateUser = (updateUser, clearInput) => {
       const res = await axios.put(`${API_ROUTE}/users/${currentUser.id}`, updateUser);
       let updatedUser = res.data.response
 
-      console.log("the clear input is called")
-
       dispatch({ type: UPDATE_USER_SUCCESS, payload: updatedUser })
       window.localStorage.setItem('user_data', JSON.stringify(updatedUser)); //update the localstorages
-      // history.push('/login');
       clearInput()
     } catch (err) {
       dispatch({ type: UPDATE_USER_ERROR, payload: err.response.data.error })
@@ -99,8 +88,6 @@ export const ForgotPassword = (userEmail, clearInput) => {
       const res = await axios.post(`${API_ROUTE}/password/forgot`, userEmail);
       let passwordRequest = res.data.response
       dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: passwordRequest })
-      // window.localStorage.setItem('user_data', JSON.stringify(updatedUser)); //update the localstorages
-      // history.push('/login');
       clearInput()
     } catch (err) {
       dispatch({ type: FORGOT_PASSWORD_ERROR, payload: err.response.data.error })
@@ -118,8 +105,6 @@ export const ResetPassword = (details, clearInput) => {
       let passwordRequest = res.data.response
       dispatch({ type: RESET_PASSWORD_SUCCESS, payload: passwordRequest })
       clearInput()
-      // window.localStorage.setItem('user_data', JSON.stringify(updatedUser)); //update the localstorages
-      // history.push('/login');
     } catch (err) {
       dispatch({ type: RESET_PASSWORD_ERROR, payload: err.response.data.error })
     }
