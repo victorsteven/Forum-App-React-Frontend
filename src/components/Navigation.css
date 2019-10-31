@@ -3,3 +3,41 @@
   display: flex;
   justify-content: right;
 }
+
+@media (min-width: 768px){
+  .img_style_nav {
+    border-radius: 50%; 
+    height: 30px; 
+    width: 30px; 
+  }
+}
+@media (max-width: 768px){
+  .img_style_nav {
+    border-radius: 50%; 
+    height: 30px; 
+    width: 30px; 
+  }
+}
+
+.style-dropdown {
+  cursor: pointer;
+}
+
+.navbar-expand-md .navbar-nav .dropdown-menu {
+  position: absolute;
+  width: 100px;
+}
+
+@media (min-width: 768px) {
+  .dropdown-menu {
+    min-width: 30px;
+    margin-left: 90px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown-menu {
+    min-width: 30px;
+    margin-left: 160px;
+  }
+}

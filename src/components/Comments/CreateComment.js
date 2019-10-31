@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { FaRegComment } from 'react-icons/fa'
 import { createComment } from '../../store/modules/comments/actions/commentsAction'
-import { history } from '../../history'
 
 const CreateComment = ({ postID, className }) => {
 
@@ -19,9 +17,16 @@ const CreateComment = ({ postID, className }) => {
 
   // const commentsState = currentState.CommentsState
 
-  const addComment = details => dispatch(createComment(details, toggle))
+  const addComment = details => dispatch(createComment(details, commentSuccess))
 
-  const toggle = () => setModal(!modal);
+  const commentSuccess = () => {
+    setModal(!modal);
+  }
+
+  const toggle = (e) => {
+    e.preventDefault()
+    setModal(!modal);
+  } 
 
   const handleChange = e => {
     setBody(e.target.value)
@@ -52,16 +57,16 @@ const CreateComment = ({ postID, className }) => {
         </ModalBody>
         <ModalFooter>
         { currentState.CommentsState.isLoading ? (
-              <button className="btn btn-primary"
+            <button className="btn btn-primary"
                 disabled
-              >
-                Saving...
+            >
+              Saving...
             </button>
             ) : (
-              <button className="btn btn-primary"
-                onClick={submitComment}
-                type="submit"
-              >
+            <button className="btn btn-primary"
+              onClick={submitComment}
+              type="submit"
+            >
               Comment
             </button>
             )}

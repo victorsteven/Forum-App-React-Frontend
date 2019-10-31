@@ -26,7 +26,7 @@ export const fetchComments = id => {
 }
 
 
-export const createComment = (details, toggle) => {
+export const createComment = (details, commentSuccess) => {
   
   return async (dispatch) => {
 
@@ -41,7 +41,9 @@ export const createComment = (details, toggle) => {
           comment: res.data.response,
         }
       })
-      toggle()
+      
+      commentSuccess()
+
       history.push(`/posts/${details.post_id}`);
 
     } catch(err){

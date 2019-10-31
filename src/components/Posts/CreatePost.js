@@ -72,7 +72,7 @@ const CreatePost = () => {
               )}
             </FormGroup>
 
-            { currentState.isLoading ? (
+            { currentState.PostsState.isLoading ? (
               <Button
                 color="primary"
                 type="submit"

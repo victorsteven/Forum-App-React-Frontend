@@ -26,7 +26,6 @@ export const fetchPost = id => {
       const res  = await axios.get(`${API_ROUTE}/posts/${id}`)
       dispatch({ type: GET_POST_SUCCESS, payload: res.data.response })
     } catch(err){
-      console.log("this is the error for the post: ", err.response.data.error)
       dispatch({ type: GET_POST_ERROR, payload: err.response.data.error })
     }
   }
@@ -62,10 +61,8 @@ export const updatePost = (updateDetails, updateSuccess) => {
         type: UPDATE_POST_SUCCESS,
         payload: res.data.response
       })
-      console.log("This is the post update id", res.data.response.id)
       updateSuccess()
     } catch(err) {
-      console.log("this is the error for the update: ", err)
       dispatch({ type: UPDATE_POST_ERROR, payload: err.response.data.error })
     }
   }

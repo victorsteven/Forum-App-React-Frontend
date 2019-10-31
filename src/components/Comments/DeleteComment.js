@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Modal, ModalHeader, ModalFooter } from 'reactstrap';
-import { FaWindowClose } from 'react-icons/fa'
 import { deleteComment } from '../../store/modules/comments/actions/commentsAction'
-import { history } from '../../history'
 import { FaRegTrashAlt } from 'react-icons/fa'
 
 

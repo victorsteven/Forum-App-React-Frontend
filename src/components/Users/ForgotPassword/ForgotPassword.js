@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
-// import "./Auth.css";
+import { Label, FormGroup, Card, CardHeader, CardBody } from "reactstrap";
 import Navigation from '../../Navigation'
 import { useSelector, useDispatch } from "react-redux";
 import { ForgotPassword } from '../../../store/modules/auth/actions/authAction';
@@ -8,13 +7,9 @@ import { Redirect, Link } from 'react-router-dom';
 import Message from '../../utils/Message';
 
 
-
-
 const PasswordForgot = () => {
 
   const currentState = useSelector((state) => state.Auth);
-
-  // console.log("this is the current state: ", currentState)
 
   const [email, setEmail] = useState('');
   const dispatch = useDispatch()

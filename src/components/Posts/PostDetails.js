@@ -6,7 +6,7 @@ import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
 import Default from '../../Assets/default.png'
 import { fetchPost } from '../../store/modules/posts/actions/postsAction'
 import Navigation from '../Navigation'
-import Like from './Like'
+import Likes from '../Likes/Likes'
 import Comments from '../Comments/Comments'
 import Comment from '../Comments/Comment'
 import EditPost from './EditPost';
@@ -41,11 +41,13 @@ const PostDetails = (props) => {
 
   useEffect(() => {
     singlePost(postID)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   let singlePostComments = []
 
   if(postComments){
+    // eslint-disable-next-line array-callback-return
     postComments.commentItems.map(eachItem => {
       if(eachItem.postID === postID){
         singlePostComments = eachItem.comments  
@@ -78,7 +80,7 @@ const PostDetails = (props) => {
               <div className="style-fav">
               { authID ? (
                 <>
-                  <Like postID={Number(postID)} />
+                  <Likes postID={Number(postID)} />
                   <Comments postID={postID} />
                 </>
                 ) : ""}

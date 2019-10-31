@@ -83,7 +83,9 @@ export const updateUser = (updateUser, clearInput) => {
 export const ForgotPassword = (userEmail, clearInput) => {
 
   return async (dispatch) => {
+
     dispatch({ type: BEFORE_STATE })
+    
     try {
       const res = await axios.post(`${API_ROUTE}/password/forgot`, userEmail);
       let passwordRequest = res.data.response
@@ -100,6 +102,7 @@ export const ResetPassword = (details, clearInput) => {
   return async (dispatch) => {
     
     dispatch({ type: BEFORE_STATE })
+
     try {
       const res = await axios.post(`${API_ROUTE}/password/reset`, details);
       let passwordRequest = res.data.response

@@ -2,8 +2,9 @@ import { BEFORE_STATE, FETCH_POSTS, FETCH_POSTS_ERROR, CREATE_POST_SUCCESS, UPDA
 
 export const initState = {
   posts: [],
+  post: {},
   postsError: null,
-  post: {}
+  isLoading: false,
 }
 
 export const postsState = (state = initState, action) => {

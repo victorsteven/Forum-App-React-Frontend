@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { FaRegHeart, FaHeart } from 'react-icons/fa'
-import './Posts.css';
-import { createLike, deleteLike,  fetchLikes } from '../../store/modules/likes/actions/likesAction';
+
+import '../Posts/Posts.css';
+import { createLike, deleteLike, fetchLikes } from '../../store/modules/likes/actions/likesAction';
 
 
-const Like = ({ postID }) => {
+const Likes = ({ postID }) => {
 
   const dispatch = useDispatch()
 
@@ -19,12 +20,13 @@ const Like = ({ postID }) => {
   let likeID = null
   let authLiked  = false
 
-
   if(postLikes){
+    // eslint-disable-next-line array-callback-return
     postLikes.likeItems.map(eachItem => {
       if(eachItem.postID === postID){
         postLike = eachItem.likes.length  
 
+        // eslint-disable-next-line array-callback-return
         eachItem.likes.map(eachLike => {
           if(eachLike.user_id === authID){
             authLiked = true
@@ -34,16 +36,14 @@ const Like = ({ postID }) => {
       }
     }) 
   }
-  const [like, setLike] = useState(0)
 
   const getPostLikes = id => dispatch(fetchLikes(id));
-
   const addLike = likeDetails => dispatch(createLike(likeDetails))
   const removeLike = id => dispatch(deleteLike(id))
 
-
   useEffect(() => {
     getPostLikes(postID);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
@@ -60,7 +60,6 @@ const Like = ({ postID }) => {
       user_id: authID,
     })
   }
-
 
   const likeToggle = (e) => {
     e.preventDefault()
@@ -89,4 +88,4 @@ const Like = ({ postID }) => {
   )
 }
 
-export default Like
+export default Likes

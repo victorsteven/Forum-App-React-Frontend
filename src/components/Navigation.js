@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { FaUser } from 'react-icons/fa';
 import Aux  from '../hoc/Aux/Aux'
 import { SignOut } from '../store/modules/auth/actions/authAction';
+import Default from '../Assets/default.png'
+import './Navigation.css'
 
 import {
     Collapse,
@@ -24,49 +25,49 @@ const Navigation = () => {
 
   const currentState = useSelector((state) => state);
   
-  const { isAuthenticated } = currentState.Auth;
-
-  // console.log("this is the auth user: ", isAuthenticated)
+  const { isAuthenticated, currentUser } = currentState.Auth;
 
   const dispatch = useDispatch()
 
   const logoutUser  = () => dispatch(SignOut());
 
 
+
+  let imagePreview = null;
+  if(currentUser.avatar_path){
+    imagePreview = (<img className="img_style_nav" src={currentUser.avatar_path} alt="profile"/>);
+  } else {
+    imagePreview = (<img className="img_style_nav" src={Default} alt="profile"/>);
+  }
+
   const logout = (e) => {
     e.preventDefault()
     logoutUser()
   }
 
-  // const userProfile = {
-  //   pathname: "/profile",
-  //   id:  currentState.Auth.currentUser.id
-  // }
-
   const userProfile = isAuthenticated ?  `/profile/${currentState.Auth.currentUser.id}` : ""
-
 
   const SignedInLinks = (
               <Aux>
-                  <NavItem style={{marginRight: "15px" }}>
+                  <NavItem className="mt-2" style={{marginRight: "15px" }}>
                     <NavLink to="/createpost">Create Post</NavLink>
                   </NavItem>
-                  <NavItem style={{marginRight: "15px" }}>
+                  <NavItem className="mt-2" style={{marginRight: "15px" }}>
                     <NavLink to="/">Your posts</NavLink>
                   </NavItem>
                   <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>
-                    <FaUser />
+                    {imagePreview}
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem>
                       <NavItem>
-                        <NavLink to={userProfile}>Edit Profile</NavLink>
+                        <NavLink to={userProfile}>Profile</NavLink>
                       </NavItem>
                     </DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem>
-                      <a href="#" onClick={logout}>Logout</a>
+                      <a onClick={logout}>Logout</a>
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>

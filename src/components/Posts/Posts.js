@@ -16,6 +16,7 @@ const Posts = () => {
 
   useEffect(() => {
     getPosts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   let posts = postsSelector.posts.map((post) => {
