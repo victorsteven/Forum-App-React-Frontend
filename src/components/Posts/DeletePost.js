@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import  { Redirect } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Modal, ModalHeader, ModalFooter } from 'reactstrap';
 import { deletePost } from '../../store/modules/posts/actions/postsAction'
@@ -13,7 +14,7 @@ const DeletePost = ({ postID, className }) => {
 
   const currentState = useSelector((state) => state);
 
-  const removePost = id => dispatch(deletePost(id, deleteSuccess))
+  const removePost = id => dispatch(deletePost(id))
 
   const toggle = (e) => {
     e.preventDefault();
@@ -21,9 +22,9 @@ const DeletePost = ({ postID, className }) => {
   } 
 
   //this callback should not listen for an event
-  const deleteSuccess = () => {
-    setModal(!modal);
-  }
+  // const deleteSuccess = () => {
+  //   setModal(!modal);
+  // }
 
   const submitDelete = (e) => {
     e.preventDefault()
