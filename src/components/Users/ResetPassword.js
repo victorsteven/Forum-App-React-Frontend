@@ -101,10 +101,10 @@ const PasswordReset = (props) => {
             </FormGroup>
 
             {showLogin ? (
-              <Link to="/login" className="btn btn-primary form-control"
+              <a href="/login" className="btn btn-primary form-control"
                 >
                   Login
-              </Link>
+              </a>
             ) : (
             <form onSubmit={submitRequest}>
             <FormGroup>
