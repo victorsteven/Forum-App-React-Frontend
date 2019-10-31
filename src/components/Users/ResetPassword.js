@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
-// import "./Auth.css";
 import Navigation from '../Navigation'
 import { useSelector, useDispatch } from "react-redux";
 import { ResetPassword } from '../../store/modules/auth/actions/authAction';
@@ -26,8 +25,10 @@ const PasswordReset = (props) => {
 
   const resetPass = (details) => dispatch(ResetPassword(details, clearInput))
 
+  const [showLogin, setShowLogin] = useState(false)
 
   const clearInput = () => {
+    setShowLogin(true)
     setResetDetails({
       token: '',
       new_password: '',
@@ -99,6 +100,12 @@ const PasswordReset = (props) => {
             )}
             </FormGroup>
 
+            {showLogin ? (
+              <Link to="/login" className="btn btn-primary form-control"
+                >
+                  Login
+              </Link>
+            ) : (
             <form onSubmit={submitRequest}>
             <FormGroup>
               <Label>New Password</Label>
@@ -128,6 +135,7 @@ const PasswordReset = (props) => {
               </Button>
               )}
               </form>
+              )}
             </CardBody>
           </Card>
         </div>

@@ -1,6 +1,6 @@
 import API_ROUTE from "../../../../apiRoute";
 import axios from 'axios'
-import {  COMMENT_CREATE_SUCCESS, COMMENT_CREATE_ERROR, GET_COMMENTS_SUCCESS, GET_COMMENTS_ERROR, COMMENT_DELETE_SUCCESS, COMMENT_DELETE_ERROR, COMMENT_UPDATE_SUCCESS, COMMENT_UPDATE_ERROR, BEFORE_STATE } from '../commentTypes'
+import {  COMMENT_CREATE_SUCCESS, COMMENT_CREATE_ERROR, GET_COMMENTS_SUCCESS, GET_COMMENTS_ERROR, COMMENT_DELETE_SUCCESS, COMMENT_DELETE_ERROR, COMMENT_UPDATE_SUCCESS, COMMENT_UPDATE_ERROR, BEFORE_STATE_COMMENT } from '../commentTypes'
 import  {history} from '../../../../history'
 
 
@@ -8,7 +8,7 @@ export const fetchComments = id => {
 
   return async dispatch => {
 
-    dispatch({ type: BEFORE_STATE }) 
+    dispatch({ type: BEFORE_STATE_COMMENT }) 
 
     try {
       const res = await axios.get(`${API_ROUTE}/comments/${id}`)
@@ -30,7 +30,7 @@ export const createComment = (details, commentSuccess) => {
   
   return async (dispatch) => {
 
-    dispatch({ type: BEFORE_STATE }) 
+    dispatch({ type: BEFORE_STATE_COMMENT }) 
 
     try {
       const res  = await axios.post(`${API_ROUTE}/comments/${details.post_id}`, details)
@@ -57,7 +57,7 @@ export const updateComment = (updateDetails, updateSuccess) => {
 
   return async (dispatch) => {
 
-    dispatch({ type: BEFORE_STATE }) 
+    dispatch({ type: BEFORE_STATE_COMMENT }) 
 
     try {
       const res = await axios.put(`${API_ROUTE}/comments/${updateDetails.id}`, updateDetails)
@@ -78,7 +78,7 @@ export const deleteComment = (details, deleteSuccess) => {
 
   return async (dispatch) => {
 
-    dispatch({ type: BEFORE_STATE }) 
+    dispatch({ type: BEFORE_STATE_COMMENT }) 
 
     try {
       const res = await axios.delete(`${API_ROUTE}/comments/${details.id}`)

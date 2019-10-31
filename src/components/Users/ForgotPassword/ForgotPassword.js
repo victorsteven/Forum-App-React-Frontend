@@ -81,7 +81,6 @@ const PasswordForgot = () => {
                 className="btn btn-primary w-100"
                 color="primary"
                 type="submit"
-                block
                 disabled
               >
                 Sending Request...
@@ -92,7 +91,6 @@ const PasswordForgot = () => {
                 className="btn btn-primary w-100"
                 color="primary"
                 type="submit"
-                block
                 disabled={ email === ""}
               >
                 Reset Password

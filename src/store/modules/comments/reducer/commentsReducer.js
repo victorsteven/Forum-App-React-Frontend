@@ -1,4 +1,4 @@
-import {  COMMENT_CREATE_SUCCESS, COMMENT_CREATE_ERROR, GET_COMMENTS_SUCCESS, GET_COMMENTS_ERROR, COMMENT_DELETE_SUCCESS, COMMENT_DELETE_ERROR, COMMENT_UPDATE_SUCCESS, COMMENT_UPDATE_ERROR,  BEFORE_STATE } from '../commentTypes'
+import { BEFORE_STATE_COMMENT, COMMENT_CREATE_SUCCESS, COMMENT_CREATE_ERROR, GET_COMMENTS_SUCCESS, GET_COMMENTS_ERROR, COMMENT_DELETE_SUCCESS, COMMENT_DELETE_ERROR, COMMENT_UPDATE_SUCCESS, COMMENT_UPDATE_ERROR } from '../commentTypes'
 
 export const initState = {
   commentItems : [],
@@ -12,7 +12,7 @@ export const commentsState = (state = initState, action) => {
   const { payload, type }  = action;
   switch(type) {
 
-    case BEFORE_STATE:
+    case BEFORE_STATE_COMMENT:
       return {
         ...state,
         commentsError: null,
