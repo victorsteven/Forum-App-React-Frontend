@@ -65,6 +65,8 @@ export const updateUserAvatar = (updateUserAvatar) => {
 
 export const updateUser = (updateUser, clearInput) => {
 
+  console.log("this is the user details to update: ", updateUser)
+
   return async (dispatch, getState) => {
     dispatch({ type: BEFORE_USER_STATE })
     const { currentUser } = getState().Auth

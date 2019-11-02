@@ -176,6 +176,11 @@ const Profile = () => {
                   ) : (
                     ""
                 )}
+                { currentUserState.userError && currentUserState.userError.Taken_email ? (
+                  <small className="color-red">{ currentUserState.userError.Taken_email }</small>
+                  ) : (
+                    ""
+                )}
               </FormGroup>
             </Col>
           </Row>
@@ -189,8 +194,8 @@ const Profile = () => {
                   ) : (
                     ""
                 )}
-                { currentUserState.userError && currentUserState.userError.Empty_Current ? (
-                  <small className="color-red">{ currentUserState.userError.Empty_Current }</small>
+                { currentUserState.userError && currentUserState.userError.Empty_current ? (
+                  <small className="color-red">{ currentUserState.userError.Empty_current }</small>
                   ) : (
                     ""
                 )}
@@ -207,8 +212,8 @@ const Profile = () => {
                   ) : (
                     ""
                 )}
-                { currentUserState.userError && currentUserState.userError.Empty_New ? (
-                  <small className="color-red">{ currentUserState.userError.Empty_New }</small>
+                { currentUserState.userError && currentUserState.userError.Empty_new ? (
+                  <small className="color-red">{ currentUserState.userError.Empty_new }</small>
                   ) : (
                     ""
                 )}
