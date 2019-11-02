@@ -38,7 +38,7 @@ const Likes = ({ postID }) => {
   }
 
   const getPostLikes = id => dispatch(fetchLikes(id));
-  const addLike = likeDetails => dispatch(createLike(likeDetails))
+  const addLike = id => dispatch(createLike(id))
   const removeLike = id => dispatch(deleteLike(id))
 
   useEffect(() => {
@@ -55,10 +55,7 @@ const Likes = ({ postID }) => {
 
   const saveLike = (e) => {
     e.preventDefault()
-    addLike({
-      post_id: Number(postID),
-      user_id: authID,
-    })
+    addLike(postID)
   }
 
   const likeToggle = (e) => {

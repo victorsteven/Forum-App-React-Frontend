@@ -20,14 +20,14 @@ export const fetchLikes = id => {
   }
 }
 
-export const createLike = (details) => {
+export const createLike = id => {
   return async (dispatch) => {
     try {
-      const res  = await axios.post(`${API_ROUTE}/likes/${details.post_id}`, details)
+      const res  = await axios.post(`${API_ROUTE}/likes/${id}`)
       dispatch({ 
         type: LIKE_CREATE_SUCCESS, 
         payload: {
-          postID: details.post_id,
+          postID: id,
           oneLike: res.data.response,
         }
       })

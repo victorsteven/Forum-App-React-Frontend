@@ -31,7 +31,6 @@ const CreatePost = () => {
     addPost({
       title: post.title,
       content: post.content,
-      author_id: currentState.Auth.currentUser.id
     });
   }
 
