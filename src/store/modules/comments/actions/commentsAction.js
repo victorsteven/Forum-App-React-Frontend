@@ -27,13 +27,11 @@ export const fetchComments = id => {
 
 
 export const createComment = (details, commentSuccess) => {
-  
   return async (dispatch) => {
-
     dispatch({ type: BEFORE_STATE_COMMENT }) 
-
     try {
       const res  = await axios.post(`${API_ROUTE}/comments/${details.post_id}`, details)
+      console.log("this is the created comment: ", res.data.response)
       dispatch({ 
         type: COMMENT_CREATE_SUCCESS, 
         payload: {
@@ -41,17 +39,13 @@ export const createComment = (details, commentSuccess) => {
           comment: res.data.response,
         }
       })
-      
       commentSuccess()
-
       history.push(`/posts/${details.post_id}`);
-
     } catch(err){
       dispatch({ type: COMMENT_CREATE_ERROR, payload: err.response.data.error })
     }
   }
 }
-
 
 export const updateComment = (updateDetails, updateSuccess) => {
 

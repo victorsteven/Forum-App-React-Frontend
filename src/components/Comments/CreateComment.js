@@ -13,10 +13,6 @@ const CreateComment = ({ postID, className }) => {
 
   const currentState = useSelector((state) => state);
 
-  const authID = currentState.Auth.currentUser.id
-
-  // const commentsState = currentState.CommentsState
-
   const addComment = details => dispatch(createComment(details, commentSuccess))
 
   const commentSuccess = () => {
@@ -35,8 +31,7 @@ const CreateComment = ({ postID, className }) => {
   const submitComment = (e) => {
     e.preventDefault()
     addComment({
-      post_id: postID,
-      user_id: authID,
+      post_id: Number(postID),
       body
     })
   }

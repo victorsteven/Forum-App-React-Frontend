@@ -39,9 +39,10 @@ export const commentsState = (state = initState, action) => {
       return { 
         ...state, 
         commentItems: state.commentItems.map(commentItem => 
-                    commentItem.postID === payload.postID ? 
+                    Number(commentItem.postID) === payload.postID ? 
                     {...commentItem, comments: [payload.comment, ...commentItem.comments]} : commentItem
         ),
+        message: "The comment is added",
         isLoading: false,
         commentSuccess: true
      }

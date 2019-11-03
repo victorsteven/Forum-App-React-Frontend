@@ -45,7 +45,7 @@ export const likesState = (state = initState, action) => {
         ...state, 
         likeItems: state.likeItems.map(likeItem => 
                     Number(likeItem.postID) === payload.postID ? 
-                    {...likeItem, likes: likeItem.likes.filter(({id}) => id !== payload.deletedLike.id) } : likeItem
+                    {...likeItem, likes: likeItem.likes.filter(({id}) => id !== payload.likeID) } : likeItem
         )
       }
 

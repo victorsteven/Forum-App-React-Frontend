@@ -45,8 +45,8 @@ export const deleteLike = id => {
       dispatch({ 
         type: LIKE_DELETE_SUCCESS, 
         payload: {
+          likeID: id,
           postID: res.data.response.post_id,
-          deletedLike: res.data.response 
         }
       })
     } catch(err){
