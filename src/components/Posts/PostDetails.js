@@ -27,7 +27,7 @@ const PostDetails = (props) => {
 
   const postComments = currentState.CommentsState
 
-  const authID = currentState.Auth.currentUser.id
+  const authID = currentState.Auth.currentUser ? currentState.Auth.currentUser.id : ""
 
 //Get the avatar of the author of the post
   let imagePreview = null;
