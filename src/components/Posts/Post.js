@@ -14,7 +14,7 @@ import DeletePost from './DeletePost'
 const Post = ({ post }) => {
 
   const currentState = useSelector(state => state)
-  const authID = currentState.Auth.currentUser.id
+  const authID = currentState.Auth.currentUser ? currentState.Auth.currentUser.id : ""
 
   let $imagePreview = null;
   if(post.author.avatar_path){
