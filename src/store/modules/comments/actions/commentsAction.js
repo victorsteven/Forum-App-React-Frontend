@@ -75,13 +75,12 @@ export const deleteComment = (details, deleteSuccess) => {
     dispatch({ type: BEFORE_STATE_COMMENT }) 
 
     try {
-      const res = await axios.delete(`${API_ROUTE}/comments/${details.id}`)
+      await axios.delete(`${API_ROUTE}/comments/${details.id}`)
       dispatch({ 
         type: COMMENT_DELETE_SUCCESS,
         payload: {
           id: details.id,
           postID: details.postID,
-          message: res.data.response
         } 
       })
       deleteSuccess()

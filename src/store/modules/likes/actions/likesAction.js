@@ -38,15 +38,15 @@ export const createLike = id => {
 }
 
 
-export const deleteLike = id => {
+export const deleteLike = details => {
   return async (dispatch) => {
     try {
-      const res  = await axios.delete(`${API_ROUTE}/likes/${id}`)
+      await axios.delete(`${API_ROUTE}/likes/${details.id}`)
       dispatch({ 
         type: LIKE_DELETE_SUCCESS, 
         payload: {
-          likeID: id,
-          postID: res.data.response.post_id,
+          likeID: details.id,
+          postID: details.postID,
         }
       })
     } catch(err){

@@ -40,7 +40,7 @@ const Likes = ({ postID }) => {
 
   const getPostLikes = id => dispatch(fetchLikes(id));
   const addLike = id => dispatch(createLike(id))
-  const removeLike = id => dispatch(deleteLike(id))
+  const removeLike = details => dispatch(deleteLike(details))
 
   useEffect(() => {
     getPostLikes(postID);
@@ -51,7 +51,7 @@ const Likes = ({ postID }) => {
   const unLike = (e) => {
     e.preventDefault()
     let id = likeID
-    removeLike(id)
+    removeLike({id, postID})
   }
 
   const saveLike = (e) => {

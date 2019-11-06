@@ -47,6 +47,7 @@ export const likesState = (state = initState, action) => {
                     Number(likeItem.postID) === payload.postID ? 
                     {...likeItem, likes: likeItem.likes.filter(({id}) => id !== payload.likeID) } : likeItem
         )
+        // likeItems: []
       }
 
     case LIKE_DELETE_ERROR:
