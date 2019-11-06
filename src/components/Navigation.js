@@ -34,7 +34,7 @@ const Navigation = () => {
 
 
   let imagePreview = null;
-  if(currentUser.avatar_path){
+  if(currentUser){
     imagePreview = (<img className="img_style_nav" src={currentUser.avatar_path} alt="profile"/>);
   } else {
     imagePreview = (<img className="img_style_nav" src={Default} alt="profile"/>);
