@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import '../Posts/Posts.css';
 import { fetchComments } from '../../store/modules/comments/actions/commentsAction';
 import CreateComment from './CreateComment'
+import { history } from '../../history'
+
 
 
 
@@ -11,6 +13,8 @@ const Comments = ({ postID }) => {
   const dispatch = useDispatch()
 
   const currentState = useSelector((state) => state);
+
+  const authID = currentState.Auth.currentUser ? currentState.Auth.currentUser.id : ""
 
   const postComments = currentState.CommentsState
 
@@ -27,6 +31,11 @@ const Comments = ({ postID }) => {
     }) 
   }
 
+  const noAuth = (e) => {
+    e.preventDefault()
+    history.push('/login');
+  }
+
   useEffect(() => {
     getPostComments(postID);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -35,7 +44,15 @@ const Comments = ({ postID }) => {
   return (
     <div className="style-heart-outer">
       <span className="mr-4">
-        <CreateComment postID={postID} />
+        { authID ? 
+        <span>
+          <CreateComment postID={postID} />
+        </span> 
+         : 
+         <span onClick={noAuth}>
+          <CreateComment />
+         </span>
+         }
         <span className="ml-2">
           {singlePostComments.length}
         </span>

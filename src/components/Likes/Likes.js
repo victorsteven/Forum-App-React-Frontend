@@ -4,6 +4,7 @@ import { FaRegHeart, FaHeart } from 'react-icons/fa'
 
 import '../Posts/Posts.css';
 import { createLike, deleteLike, fetchLikes } from '../../store/modules/likes/actions/likesAction';
+import { history } from '../../history'
 
 
 const Likes = ({ postID }) => {
@@ -14,7 +15,7 @@ const Likes = ({ postID }) => {
 
   const postLikes  =  currentState.LikesState
 
-  const authID = currentState.Auth.currentUser.id
+  const authID = currentState.Auth.currentUser ? currentState.Auth.currentUser.id : ""
 
   let postLike = 0
   let likeID = null
@@ -60,16 +61,19 @@ const Likes = ({ postID }) => {
 
   const likeToggle = (e) => {
     e.preventDefault()
-
     authLiked ? unLike(e) : saveLike(e)
-
+  }
+  const noAuth = (e) => {
+    e.preventDefault()
+    history.push('/login');
   }
 
   return (
     <div className="style-fav">
       <div className="style-heart-outer">
         <span className="mr-4">
-          <span onClick={likeToggle}>
+          { authID ? (
+            <span onClick={likeToggle}>
             { authLiked ? 
               <FaHeart className="style-auth"/>
               :
@@ -79,6 +83,14 @@ const Likes = ({ postID }) => {
               {postLike}
             </span>
           </span>
+          ) : (
+            <span onClick={noAuth}>
+              <FaRegHeart className="style-heart"/>
+            <span className="ml-2">
+              {postLike}
+            </span>
+          </span>
+          )}
         </span>
       </div>
     </div>

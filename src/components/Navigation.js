@@ -34,10 +34,10 @@ const Navigation = () => {
 
 
   let imagePreview = null;
-  if(currentUser){
-    imagePreview = (<img className="img_style_nav" src={currentUser.avatar_path} alt="profile"/>);
+  if(currentUser && currentUser.avatar_path){
+    imagePreview = (<img className="img_style_nav" src={currentUser.avatar_path} alt="profile 1"/>);
   } else {
-    imagePreview = (<img className="img_style_nav" src={Default} alt="profile"/>);
+    imagePreview = (<img className="img_style_nav" src={Default} alt="profile 2"/>);
   }
 
   const logout = (e) => {

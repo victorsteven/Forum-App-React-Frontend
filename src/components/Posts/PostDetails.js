@@ -78,12 +78,8 @@ const PostDetails = (props) => {
               <CardTitle>{postSelector.post.title}</CardTitle>
               <CardText>{postSelector.post.content}</CardText>
               <div className="style-fav">
-              { authID ? (
-                <>
-                  <Likes postID={Number(postID)} />
-                  <Comments postID={postID} />
-                </>
-                ) : ""}
+                <Likes postID={Number(postID)} />
+                <Comments postID={postID} />
                 { authID === postSelector.post.author_id ? (
                 <div className="ml-auto">
                   <span style={{marginRight: "20px"}}>
