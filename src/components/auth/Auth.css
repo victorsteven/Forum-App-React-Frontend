@@ -1,0 +1,15 @@
+@media all and (min-width: 480px) {
+  .Auth {
+    padding: 60px 0;
+  }
+
+  .Auth .card-style {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+
+  .Auth .login-style {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}
