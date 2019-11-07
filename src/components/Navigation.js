@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 
-import Aux  from '../hoc/Aux/Aux'
 import { SignOut } from '../store/modules/auth/actions/authAction';
 import Default from '../Assets/default.png'
 import './Navigation.css'
@@ -49,7 +48,7 @@ const Navigation = () => {
   const userProfile = isAuthenticated ?  `/profile/${currentState.Auth.currentUser.id}` : ""
 
   const SignedInLinks = (
-              <Aux>
+              <React.Fragment>
                   <NavItem className="mt-2" style={{marginRight: "15px" }}>
                     <NavLink to="/createpost">Create Post</NavLink>
                   </NavItem>
@@ -72,18 +71,19 @@ const Navigation = () => {
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
-              </Aux>
+              </React.Fragment>
+
             )
 
   const SignedOutLinks = (
-               <Aux>
+                <React.Fragment>
                   <NavItem style={{marginRight: "20px" }}>
                     <Link to='/login'>Login</Link>
                   </NavItem>
                   <NavItem>
                     <Link to='/signup'>Signup</Link>
                   </NavItem>
-                </Aux>
+                </React.Fragment>
               )
 
 

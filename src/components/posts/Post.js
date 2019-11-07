@@ -35,7 +35,7 @@ const Post = ({ post }) => {
           <span href="" style={{fontWeight: 'bold'}}>{post.author.username}</span>
         </span>
         <span style={{float: 'right'}}>
-          <Moment fromNow>{post.author.created_at}</Moment>
+          <Moment fromNow>{post.created_at}</Moment>
         </span>
         </CardTitle>
         <CardTitle>{post.title}</CardTitle>

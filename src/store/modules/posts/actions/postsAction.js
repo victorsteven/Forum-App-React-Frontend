@@ -99,7 +99,6 @@ export const deletePost = (id) => {
         } 
       })
       history.push('/');
-      // deleteSuccess()
     } catch(err) {
       dispatch({ type: DELETE_POST_ERROR, payload: err.response.data.error })
     }

@@ -43,7 +43,7 @@ const Comment = ({ comment }) => {
               </span>
               <span style={{float: 'right'}}>
                 <Moment fromNow>
-                  {comment.user.created_at}
+                  {comment.created_at}
                 </Moment>
               </span>
               </span>

@@ -71,7 +71,7 @@ const PostDetails = (props) => {
               </span>
               <span style={{float: 'right'}}>
                 <Moment fromNow>
-                  {postSelector.post.author ? postSelector.post.author.created_at : ""}
+                  {postSelector.post ? postSelector.post.created_at : ""}
                 </Moment>
               </span>
               </CardTitle>
