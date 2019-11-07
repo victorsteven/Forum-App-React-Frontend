@@ -19,9 +19,9 @@ const AuthPost = ({ post }) => {
 
   let $imagePreview = null;
   if(post.author.avatar_path){
-    $imagePreview = (<img className="img_style" src={post.author.avatar_path} alt="no one"/>);
+    $imagePreview = (<img className="img_style_post" src={post.author.avatar_path} alt="no one"/>);
   } else {
-    $imagePreview = (<img className="img_style" src={Default} alt="no one 2"/>);
+    $imagePreview = (<img className="img_style_post" src={Default} alt="no one 2"/>);
   }
   
   return (
