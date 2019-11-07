@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { Label, Input, FormGroup, Button, CardBody, Col, Row, Form, CustomInput } from "reactstrap";
 import { updateUserAvatar, updateUser } from '../../store/modules/auth/actions/authAction';
 import Default from '../../Assets/default.png'
-import styles from './Profile.module.css'
+import  './Profile.css'
 import Message from '../utils/Message';
 
 
@@ -57,12 +57,12 @@ const Profile = () => {
 
   let imagePreview = null;
   if(currentUserState.currentUser.avatar_path && !uploadedFile){
-    imagePreview = (<img className={styles.img_style} src={currentUserState.currentUser.avatar_path} alt="no one"/>);
+    imagePreview = (<img className="img_style" src={currentUserState.currentUser.avatar_path} alt="no one"/>);
   }
   else if(uploadedFile) {
-    imagePreview = (<img className={styles.img_style} src={uploadedFile} alt="no one"/>);
+    imagePreview = (<img className="img_style" src={uploadedFile} alt="no one"/>);
   } else {
-    imagePreview = (<img className={styles.img_style} src={Default} alt="no one 2"/>);
+    imagePreview = (<img className="img_style" src={Default} alt="no one 2"/>);
   }
 
   //incase someone visits the route manually
@@ -110,7 +110,7 @@ const Profile = () => {
             </div>
           <Form onSubmit={submitUserAvatar} encType="multipart/form-data">
             <div>
-              <FormGroup className={styles.style_file_input}>
+              <FormGroup className="style_file_input">
                 <CustomInput type="file" accept="image/*" id="exampleCustomFileBrowser" onChange={(e)=> handleImageChange(e)} />
                 { currentUserState.avatarError && currentUserState.avatarError.Too_large ? (
                   <small className="color-red">{currentUserState.avatarError.Too_large}</small>
@@ -125,7 +125,7 @@ const Profile = () => {
               </FormGroup>
             </div>
             { currentUserState.isLoadingAvatar ? (
-              <Button className={styles.style_photo_button}
+              <Button className="style_photo_button"
                 color="primary"
                 type="submit"
                 disabled
@@ -133,7 +133,7 @@ const Profile = () => {
                 Updating...
               </Button>
             ) : (
-              <Button className={styles.style_photo_button}
+              <Button className="style_photo_button"
                 color="primary"
                 type="submit"
                 disabled={ uploadedFile == null || file == null }

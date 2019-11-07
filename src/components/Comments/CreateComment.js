@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { FaRegComment } from 'react-icons/fa'
+
 import { createComment } from '../../store/modules/comments/actions/commentsAction'
 
 const CreateComment = ({ postID, className }) => {

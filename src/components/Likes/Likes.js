@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { FaRegHeart, FaHeart } from 'react-icons/fa'
 
-import '../Posts/Posts.css';
+import '../posts/Posts.css';
 import { createLike, deleteLike, fetchLikes } from '../../store/modules/likes/actions/likesAction';
 import { history } from '../../history'
 

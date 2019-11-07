@@ -5,7 +5,8 @@ import {
   Card, CardText, CardBody,
   CardTitle
 } from 'reactstrap';
-import '../Posts/Posts.css';
+
+import '../posts/Posts.css';
 import Default from '../../Assets/default.png'
 import EditComment from './EditComment'
 import DeleteComment from './DeleteComment'
@@ -22,9 +23,9 @@ const Comment = ({ comment }) => {
 
   let imagePreview = null
   if(commentAvatar){
-    imagePreview = (<img className="img_style" src={commentAvatar} alt="no one"/>);
+    imagePreview = (<img className="img_style_post" src={commentAvatar} alt="profile"/>);
   } else {
-    imagePreview = (<img className="img_style" src={Default} alt="no one 2"/>);
+    imagePreview = (<img className="img_style_post" src={Default} alt="profile"/>);
   }
   
   return (

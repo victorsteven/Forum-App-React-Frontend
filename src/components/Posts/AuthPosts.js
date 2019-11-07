@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
+import { FaFilter } from 'react-icons/fa'
 
 import { fetchAuthPosts } from '../../store/modules/posts/actions/postsAction';
 import AuthPost from './AuthPost'
 import Navigation from '../Navigation'
 import './Posts.css';
-import { FaFilter } from 'react-icons/fa'
 
 
 const AuthPosts = () => {

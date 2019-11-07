@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
+import { Redirect } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+
 import "./Posts.css";
 import Navigation from '../Navigation'
-import { useSelector, useDispatch } from "react-redux";
 import { createPost } from '../../store/modules/posts/actions/postsAction';
-import { Redirect } from 'react-router-dom';
 
 
 

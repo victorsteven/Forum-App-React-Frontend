@@ -6,9 +6,9 @@ import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
 import Default from '../../Assets/default.png'
 import { fetchPost } from '../../store/modules/posts/actions/postsAction'
 import Navigation from '../Navigation'
-import Likes from '../Likes/Likes'
-import Comments from '../Comments/Comments'
-import Comment from '../Comments/Comment'
+import Likes from '../likes/Likes'
+import Comments from '../comments/Comments'
+import Comment from '../comments/Comment'
 import EditPost from './EditPost';
 import DeletePost from './DeletePost'
 
@@ -33,9 +33,9 @@ const PostDetails = (props) => {
   let imagePreview = null;
   let avatarPathPost = postSelector.post.author ? postSelector.post.author.avatar_path : null
   if(avatarPathPost){
-    imagePreview = (<img className="img_style" src={avatarPathPost} alt="no one"/>);
+    imagePreview = (<img className="img_style_post" src={avatarPathPost} alt="profile"/>);
   } else {
-    imagePreview = (<img className="img_style" src={Default} alt="no one 2"/>);
+    imagePreview = (<img className="img_style_post" src={Default} alt="profile"/>);
   }
 
 

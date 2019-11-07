@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
-import Navigation from '../Navigation'
 import { useSelector, useDispatch } from "react-redux";
-import { ResetPassword } from '../../store/modules/auth/actions/authAction';
 import { Redirect, Link } from 'react-router-dom';
 
+import Navigation from '../Navigation'
+import { ResetPassword } from '../../store/modules/auth/actions/authAction';
 import Message from '../utils/Message';
-
 
 
 const PasswordReset = (props) => {

@@ -2,10 +2,11 @@ import React from 'react'
 import Moment from 'react-moment';
 import { useSelector } from 'react-redux'
 import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
+
 import './Posts.css';
 import Default from '../../Assets/default.png'
-import Likes from '../Likes/Likes'
-import Comments from '../Comments/Comments'
+import Likes from '../likes/Likes'
+import Comments from '../comments/Comments'
 import EditPost from './EditPost';
 import DeletePost from './DeletePost'
 

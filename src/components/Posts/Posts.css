@@ -7,14 +7,14 @@
     margin-right: 200px;
     margin-left: 240px;
   }
-  .img_style {
+  .img_style_post {
     border-radius: 50%; 
     height: 50px; 
     width: 50px; 
   }
 }
 @media (max-width: 768px){
-  .img_style {
+  .img_style_post {
     border-radius: 50%; 
     height: 30px; 
     width: 30px; 

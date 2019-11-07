@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup } from 'reactstrap';
 import { FaPencilAlt } from 'react-icons/fa'
+
 import { updatePost } from '../../store/modules/posts/actions/postsAction'
 
 const EditPost = ({ post, className }) => {

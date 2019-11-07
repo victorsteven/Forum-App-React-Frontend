@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup } from 'reactstrap';
 import { FaPencilAlt } from 'react-icons/fa'
+
 import { updateComment } from '../../store/modules/comments/actions/commentsAction'
 
 const EditComment = ({ comment, className }) => {

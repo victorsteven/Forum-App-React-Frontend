@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import '../Posts/Posts.css';
+import '../posts/Posts.css';
 import { fetchComments } from '../../store/modules/comments/actions/commentsAction';
 import CreateComment from './CreateComment'
 import { history } from '../../history'

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
-import "./Auth.css";
-import Navigation from '../Navigation'
 import { useSelector, useDispatch } from "react-redux";
-import { SignUp } from '../../store/modules/auth/actions/authAction';
 import { Redirect, Link } from 'react-router-dom';
 
+import "./Auth.css";
+import Navigation from '../Navigation'
+import { SignUp } from '../../store/modules/auth/actions/authAction';
 
 
 const Register = () => {

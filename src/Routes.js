@@ -1,15 +1,16 @@
 import React from 'react';
-import Login from './components/Auth/Login';
-import Register from './components/Auth/Register';
-import CreatePost from './components/Posts/CreatePost';
+import { Router, Switch, Route } from 'react-router-dom';
+
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import CreatePost from './components/posts/CreatePost';
 import Dashboard from './components/dashboard/Dashboard';
 import { history } from './history'
-import { Router, Switch, Route } from 'react-router-dom';
-import Profile from './components/Users/Profile';
-import ForgotPassword from './components/Users/ForgotPassword/ForgotPassword.js';
-import ResetPassword from './components/Users/ResetPassword';
-import PostDetails from './components/Posts/PostDetails'
-import AuthPosts from './components/Posts/AuthPosts'
+import Profile from './components/users/Profile';
+import ForgotPassword from './components/users/ForgotPassword/ForgotPassword.js';
+import ResetPassword from './components/users/ResetPassword';
+import PostDetails from './components/posts/PostDetails'
+import AuthPosts from './components/posts/AuthPosts'
 
 
 

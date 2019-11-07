@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Modal, ModalHeader, ModalFooter } from 'reactstrap';
-import { deleteComment } from '../../store/modules/comments/actions/commentsAction'
 import { FaRegTrashAlt } from 'react-icons/fa'
+
+import { deleteComment } from '../../store/modules/comments/actions/commentsAction'
 
 
 const DeleteComment = ({ comment, className }) => {

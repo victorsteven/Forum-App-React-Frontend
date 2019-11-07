@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect, Link } from 'react-router-dom';
+
 import "./Auth.css";
 import Navigation from '../Navigation'
-import { useSelector, useDispatch } from "react-redux";
 import { SignIn } from '../../store/modules/auth/actions/authAction';
-import { Redirect, Link } from 'react-router-dom';
 
 
 
@@ -20,9 +21,6 @@ const Login = () => {
 
   const userLogin = (credentials) => dispatch(SignIn(credentials))
 
-  // validateForm() {
-  //   return this.state.email.length > 0 && this.state.password.length > 0;
-  // }
 
   const handleChange = e => {
     setUser({

@@ -2,10 +2,11 @@ import React from 'react'
 import Moment from 'react-moment';
 import { useSelector } from 'react-redux'
 import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
+
 import './Posts.css';
 import Default from '../../Assets/default.png'
-import Likes from '../Likes/Likes'
-import Comments from '../Comments/Comments'
+import Likes from '../likes/Likes'
+import Comments from '../comments/Comments'
 import EditPost from './EditPost';
 import DeletePost from './DeletePost'
 
@@ -18,9 +19,9 @@ const Post = ({ post }) => {
 
   let $imagePreview = null;
   if(post.author.avatar_path){
-    $imagePreview = (<img className="img_style" src={post.author.avatar_path} alt="no one"/>);
+    $imagePreview = (<img className="img_style_post" src={post.author.avatar_path} alt="no one"/>);
   } else {
-    $imagePreview = (<img className="img_style" src={Default} alt="no one 2"/>);
+    $imagePreview = (<img className="img_style_post" src={Default} alt="no one 2"/>);
   }
   
   return (

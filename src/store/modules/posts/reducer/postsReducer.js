@@ -25,6 +25,14 @@ export const postsState = (state = initState, action) => {
         posts: payload,
         isLoading: false,
       }
+      
+    case FETCH_POSTS_ERROR:
+      return { 
+        ...state, 
+        postsError: payload,
+        isLoading: false 
+      }
+
     case FETCH_AUTH_POSTS:
       return { 
         ...state, 
@@ -32,7 +40,7 @@ export const postsState = (state = initState, action) => {
         isLoading: false,
       }
 
-    case FETCH_POSTS_ERROR:
+    case FETCH_AUTH_POSTS_ERROR:
       return { 
         ...state, 
         postsError: payload,

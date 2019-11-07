@@ -1,5 +1,5 @@
 import React from 'react';
-import Posts from '../Posts/Posts';
+import Posts from '../posts/Posts';
 import Navigation from '../Navigation'
 
 
