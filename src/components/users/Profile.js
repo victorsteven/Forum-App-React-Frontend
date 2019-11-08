@@ -99,7 +99,6 @@ const Profile = () => {
   const shutDown = (e) => {
     e.preventDefault()
     deleteAccount(AuthID)
-    // console.log("this is the id to shutdown: ", AuthID)
   }
 
   return (
@@ -159,18 +158,6 @@ const Profile = () => {
               </Button>
             )}
         </Form>
-
-        <Row className="mt-4">
-          <Col sm="12" md={{ size: 10, offset: 1 }}>
-            <FormGroup>
-              { currentUserState.authSuccessUser != null && currentUserState.userError == null ? (
-                <Message msg={currentUserState.authSuccessUser} />
-                ) : (
-                  ""
-              )}
-            </FormGroup>
-          </Col>
-        </Row>
         <Row>
           <Col sm="12" md={{ size: 10, offset: 1 }}>
           <div style={{margin: "10px 0px 10px"}}>Username: <strong>{currentUserState.currentUser.username}</strong></div>
@@ -237,6 +224,17 @@ const Profile = () => {
               </FormGroup>
             </Col>
           </Row>
+          <Row className="mt-4">
+            <Col sm="12" md={{ size: 10, offset: 1 }}>
+              <FormGroup>
+                { currentUserState.authSuccessUser != null && currentUserState.userError == null ? (
+                  <Message msg={currentUserState.authSuccessUser} />
+                  ) : (
+                    ""
+                )}
+              </FormGroup>
+            </Col>
+          </Row>
           <Row className="mt-3">
             <Col sm="12" md={{ size: 10, offset: 1 }}>
               <FormGroup>
@@ -271,7 +269,7 @@ const Profile = () => {
                 type="submit"
                 block
               >
-                Shutdown Account
+              Deactivate Account
               </Button>
             </FormGroup>
           </Col>

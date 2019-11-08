@@ -12,12 +12,22 @@
     height: 50px; 
     width: 50px; 
   }
+  .dropdown-menu {
+    position: absolute;
+    left: -6.8rem;
+    top: 100%;
+  }
 }
 @media (max-width: 768px){
   .img_style_post {
     border-radius: 50%; 
     height: 30px; 
     width: 30px; 
+  }
+  .dropdown-menu {
+    position: absolute;
+    left: -10rem;
+    top: 100%;
   }
 }
 
@@ -92,12 +102,16 @@ a:hover{
 .style-dropdown {
   width: 10px;
 }
-.dropdown-menu {
-  position: absolute;
-  left: -8.2rem;
-  top: 100%;
-}
 
 .dropdown-menu {
   padding: 2px;
 }
+
+button.dropdown-item {
+  padding: 2px 0px 0px 10px;
+}
+
+.navbar-expand-md .navbar-nav .dropdown-menu {
+  width: 75px;
+}
+
