@@ -11,8 +11,8 @@ import './Posts.css';
 
 const AuthPosts = () => {
 
-  const currentState = useSelector((state) => state);
-  const authID = currentState.Auth.currentUser.id
+  const currentState = useSelector((state) => state.Auth);
+  const authID = currentState.currentUser.id
 
   const postsSelector = useSelector((state) => state.PostsState);
   const dispatch = useDispatch();
@@ -24,8 +24,9 @@ const AuthPosts = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  if(currentState.isAuthenticated){
-    return <Redirect to='/' />
+   //incase someone visits the route manually
+  if(!currentState.isAuthenticated){
+    return <Redirect to='/login' />
   }
 
   let authPosts = postsSelector.authPosts.map(post => {

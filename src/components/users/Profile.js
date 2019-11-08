@@ -107,9 +107,9 @@ const Profile = () => {
       <div className="post-style container">
         <div className="card-style">
           <div className="text-center">
-            <h2>Update Profile</h2>
+            <h4>Update Profile</h4>
           </div>
-          <Row className="mt-4">
+          <Row className="mt-1">
             <Col sm="12" md={{ size: 10, offset: 1 }}>
               <FormGroup>
                 { currentUserState.authSuccessImage != null && currentUserState.avatarError == null ? (
