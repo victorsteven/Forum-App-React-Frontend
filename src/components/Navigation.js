@@ -53,7 +53,7 @@ const Navigation = () => {
                     <NavLink to="/createpost">Create Post</NavLink>
                   </NavItem>
                   <NavItem className="mt-2" style={{marginRight: "15px" }}>
-                    <NavLink to="/authposts">Your posts</NavLink>
+                    <NavLink to="/authposts">My Posts</NavLink>
                   </NavItem>
                   <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>

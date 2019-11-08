@@ -23,7 +23,7 @@ const PostDetails = (props) => {
 
   const currentState = useSelector(state => state)
 
-  const postSelector = currentState.PostsState
+  const post = currentState.PostsState.post
 
   const postComments = currentState.CommentsState
 
@@ -31,7 +31,7 @@ const PostDetails = (props) => {
 
 //Get the avatar of the author of the post
   let imagePreview = null;
-  let avatarPathPost = postSelector.post.author ? postSelector.post.author.avatar_path : null
+  let avatarPathPost = post.author ? post.author.avatar_path : null
   if(avatarPathPost){
     imagePreview = (<img className="img_style_post" src={avatarPathPost} alt="profile"/>);
   } else {
@@ -67,26 +67,26 @@ const PostDetails = (props) => {
                 <span className="mr-2">
                   {imagePreview}
                 </span>
-                <span href="" style={{fontWeight: 'bold'}}>{postSelector.post.author ? postSelector.post.author.username : ""}</span>
+                <span href="" style={{fontWeight: 'bold'}}>{post.author ? post.author.username : ""}</span>
               </span>
               <span style={{float: 'right'}}>
                 <Moment fromNow>
-                  {postSelector.post ? postSelector.post.created_at : ""}
+                  {post ? post.created_at : ""}
                 </Moment>
               </span>
               </CardTitle>
-              <CardTitle>{postSelector.post.title}</CardTitle>
-              <CardText>{postSelector.post.content}</CardText>
+              <CardTitle>{post.title}</CardTitle>
+              <CardText>{post.content}</CardText>
               <div className="style-fav">
                 <Likes postID={Number(postID)} />
                 <Comments postID={postID} />
-                { authID === postSelector.post.author_id ? (
+                { authID === post.author_id ? (
                 <div className="ml-auto">
                   <span style={{marginRight: "20px"}}>
-                    <EditPost post={postSelector.post} />
+                    <EditPost post={post} />
                   </span>
                   <span>
-                    <DeletePost postID={postSelector.post.id} />
+                    <DeletePost postID={post.id} />
                   </span>
                 </div>
               ) : ""}

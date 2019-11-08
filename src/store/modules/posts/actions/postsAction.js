@@ -27,6 +27,7 @@ export const fetchPost = id => {
       dispatch({ type: GET_POST_SUCCESS, payload: res.data.response })
     } catch(err){
       dispatch({ type: GET_POST_ERROR, payload: err.response.data.error })
+      history.push('/'); //incase the user manually enter the param that dont exist
     }
   }
 }
