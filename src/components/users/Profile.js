@@ -11,12 +11,11 @@ import Message from '../utils/Message';
 
 import Navigation from "../Navigation"
 
-const Profile = ({ className }) => {
+const Profile = () => {
 
   const [modal, setModal] = useState(false);
 
   const toggle = (e) => {
-    e.preventDefault();
     setModal(!modal);
   } 
 
@@ -68,12 +67,12 @@ const Profile = ({ className }) => {
 
   let imagePreview = null;
   if(currentUserState.currentUser.avatar_path && !uploadedFile){
-    imagePreview = (<img className="img_style" src={currentUserState.currentUser.avatar_path} alt="no one"/>);
+    imagePreview = (<img className="img_style" src={currentUserState.currentUser.avatar_path} alt="profile"/>);
   }
   else if(uploadedFile) {
-    imagePreview = (<img className="img_style" src={uploadedFile} alt="no one"/>);
+    imagePreview = (<img className="img_style" src={uploadedFile} alt="profile"/>);
   } else {
-    imagePreview = (<img className="img_style" src={Default} alt="no one 2"/>);
+    imagePreview = (<img className="img_style" src={Default} alt="profile"/>);
   }
 
   //incase someone visits the route manually
@@ -102,10 +101,6 @@ const Profile = ({ className }) => {
     deleteAccount(AuthID)
     // console.log("this is the id to shutdown: ", AuthID)
   }
-
-  // const refreshPage = () => {
-  //   window.location.reload();
-  // }
 
   return (
     <Fragment>
@@ -283,7 +278,7 @@ const Profile = ({ className }) => {
         </Row>
         </CardBody>
 
-        <Modal isOpen={modal} toggle={toggle} className={className}>
+        <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle} className="text-center">Are you sure you want to delete your account?</ModalHeader>
         <ModalBody toggle={toggle} className="text-center">This will also delete your posts, likes and comments if you created any.</ModalBody>
         <ModalFooter>

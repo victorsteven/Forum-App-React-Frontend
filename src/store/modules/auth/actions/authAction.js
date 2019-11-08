@@ -84,15 +84,13 @@ export const updateUser = (updateUser, clearInput) => {
 export const deleteUser = (id)  => {
 
   return async dispatch => {
-    dispatch({ type: BEFORE_USER_STATE })
+    dispatch({ type: BEFORE_STATE })
     try {
       const res = await axios.delete(`${API_ROUTE}/users/${id}`);
       let deleteMessage = res.data.response
       dispatch({ type: DELETE_USER_SUCCESS, payload: deleteMessage })
       window.localStorage.clear(); //update the localstorage
-      // refreshPage()
-      // window.location.reload();
-      history.push('/');
+      window.location.href = "/"
     } catch (err) {
       dispatch({ type: DELETE_USER_ERROR, payload: err.response.data.error })
     }

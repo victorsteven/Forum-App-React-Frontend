@@ -10,8 +10,6 @@ import Message from '../utils/Message';
 
 const PasswordReset = (props) => {
 
-  console.log("this is the token: ", props.match.params.token)
-
   const currentState = useSelector((state) => state.Auth);
 
   const [resetDetails, setResetDetails] = useState({

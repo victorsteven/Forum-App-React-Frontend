@@ -31,7 +31,6 @@ export const createComment = (details, commentSuccess) => {
     dispatch({ type: BEFORE_STATE_COMMENT }) 
     try {
       const res  = await axios.post(`${API_ROUTE}/comments/${details.post_id}`, details)
-      console.log("this is the created comment: ", res.data.response)
       dispatch({ 
         type: COMMENT_CREATE_SUCCESS, 
         payload: {
