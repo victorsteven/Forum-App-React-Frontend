@@ -50,9 +50,14 @@ const Login = () => {
           <CardHeader>Login</CardHeader>
           <CardBody>
           <form onSubmit={submitUser}>
-          <div>
+          <div className="mb-2">
             { currentState.loginError && currentState.loginError.Incorrect_details ? (
               <small className="color-red">{currentState.loginError.Incorrect_details}</small>
+              ) : (
+                ""
+            )}
+            { currentState.loginError && currentState.loginError.No_record ? (
+              <small className="color-red">{currentState.loginError.No_record}</small>
               ) : (
                 ""
             )}

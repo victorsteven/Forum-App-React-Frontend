@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-// import  { Redirect } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Modal, ModalHeader, ModalFooter } from 'reactstrap';
-import { deletePost } from '../../store/modules/posts/actions/postsAction'
 import { FaRegTrashAlt } from 'react-icons/fa'
+
+import { deletePost } from '../../store/modules/posts/actions/postsAction'
 
 
 const DeletePost = ({ postID, className }) => {
@@ -20,11 +20,6 @@ const DeletePost = ({ postID, className }) => {
     e.preventDefault();
     setModal(!modal);
   } 
-
-  //this callback should not listen for an event
-  // const deleteSuccess = () => {
-  //   setModal(!modal);
-  // }
 
   const submitDelete = (e) => {
     e.preventDefault()

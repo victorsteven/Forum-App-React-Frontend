@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 import { useSelector, useDispatch } from "react-redux";
 import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
 
-import Default from '../../Assets/default.png'
+import Default from '../../assets/default.png'
 import { fetchPost } from '../../store/modules/posts/actions/postsAction'
 import Navigation from '../Navigation'
 import Likes from '../likes/Likes'

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
 
 import './Posts.css';
-import Default from '../../Assets/default.png'
+import Default from '../../assets/default.png'
 import Likes from '../likes/Likes'
 import Comments from '../comments/Comments'
 import EditPost from './EditPost';

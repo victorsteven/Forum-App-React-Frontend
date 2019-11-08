@@ -45,7 +45,6 @@ a:hover{
 .style-auth {
   color: red;
   font-size: 18px;
-  /* background: red; */
 }
 
 .style-heart {
@@ -60,57 +59,27 @@ a:hover{
 .style-delete:hover {
   color: red;
 }
-
 .style-edit {
   cursor: pointer;
   font-size: 18px
 } 
-
 .style-edit:hover {
   color: cyan;
 }
-
 .style-fav {
   display: flex;
   justify-content: left;
-  /* margin-bottom: -30px; */
 }
 
 @media all and (min-width: 480px) {
   .post-style {
     padding: 60px 0;
   }
-
   .post-style .card-style {
     margin: 0 auto;
     max-width: 500px;
   }
 }
-
-.dot {
-  height: 5px;
-  width: 5px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 1px;
-}
-
-/* .style-dots {
-  cursor: pointer;
-  padding-left:6px;
-  padding-right:6px;
-}
-
-.style-dots:hover {
-  background-color:#d3d3d3;
-  margin-bottom:18px;
-  padding-left:6px;
-  padding-right:6px;
-  border-radius: 5px;
-  color: #fff;
-} */
-
 
 .toggle-style {
   background: #fff;

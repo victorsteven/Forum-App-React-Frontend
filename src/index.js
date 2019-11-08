@@ -4,8 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Routes from './Routes';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from "react-redux"
+import './index.css'
 import store from './store/index'
-import setAuthorizationToken  from './utils/authorization';
+import setAuthorizationToken  from './authorization/authorization';
 import { LOGIN_SUCCESS } from './store/modules/auth/authTypes';
 
 //when the page reloads, the auth user is still set

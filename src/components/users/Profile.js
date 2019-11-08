@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { Label, Input, FormGroup, Button, CardBody, Col, Row, Form, CustomInput } from "reactstrap";
 import { updateUserAvatar, updateUser } from '../../store/modules/auth/actions/authAction';
-import Default from '../../Assets/default.png'
+import Default from '../../assets/default.png'
 import  './Profile.css'
 import Message from '../utils/Message';
 

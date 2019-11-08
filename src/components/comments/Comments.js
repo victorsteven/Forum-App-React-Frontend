@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
 import '../posts/Posts.css';
 import { fetchComments } from '../../store/modules/comments/actions/commentsAction';
 import CreateComment from './CreateComment'
@@ -63,3 +64,4 @@ const Comments = ({ postID }) => {
 }
 
 export default Comments
+

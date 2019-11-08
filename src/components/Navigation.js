@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 
 import { SignOut } from '../store/modules/auth/actions/authAction';
-import Default from '../Assets/default.png'
+import Default from '../assets/default.png'
 import './Navigation.css'
 
 import {

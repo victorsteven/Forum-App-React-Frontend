@@ -4,7 +4,7 @@ import { Router, Switch, Route } from 'react-router-dom';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import CreatePost from './components/posts/CreatePost';
-import Dashboard from './components/dashboard/Dashboard';
+import Dashboard from './components/Dashboard';
 import { history } from './history'
 import Profile from './components/users/Profile';
 import ForgotPassword from './components/users/ForgotPassword.js';
@@ -35,3 +35,4 @@ const Routes  = () => {
 }
 
 export default Routes;
+
