@@ -48,18 +48,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^4.1.2",
-    "@testing-library/react": "^9.3.0",
-    "check-prop-types": "^1.1.2",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1",
-    "enzyme-to-json": "^3.4.2",
-    "husky": "^3.0.9",
-    "jest": "^24.8.0",
-    "jest-enzyme": "^7.1.1",
-    "moxios": "^0.4.0",
-    "redux-mock-store": "^1.5.3"
   }
 }

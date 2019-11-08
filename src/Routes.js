@@ -7,7 +7,7 @@ import CreatePost from './components/posts/CreatePost';
 import Dashboard from './components/dashboard/Dashboard';
 import { history } from './history'
 import Profile from './components/users/Profile';
-import ForgotPassword from './components/users/ForgotPassword/ForgotPassword.js';
+import ForgotPassword from './components/users/ForgotPassword.js';
 import ResetPassword from './components/users/ResetPassword';
 import PostDetails from './components/posts/PostDetails'
 import AuthPosts from './components/posts/AuthPosts'

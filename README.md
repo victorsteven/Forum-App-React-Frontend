@@ -1,5 +1,5 @@
 
-### Forum-App-React-Frontend [![CircleCI](https://circleci.com/gh/victorsteven/Forum-App-React-Frontend.svg?style=svg)](https://circleci.com/gh/victorsteven/Forum-App-React-Frontend)
+### Forum-App-React-Frontend 
 
 
 React client that consumes the API: `https://github.com/victorsteven/Forum-App-Go-Backend`
