@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 
 import { SignOut } from '../store/modules/auth/actions/authAction';
-// import Default from '../assets/default.png'
+import Default from '../Assets/default.png'
 import './Navigation.css'
 
 import {
@@ -33,12 +33,12 @@ const Navigation = () => {
 
 
 
-  // let imagePreview = null;
-  // if(currentUser && currentUser.avatar_path){
-  //   imagePreview = (<img className="img_style_nav" src={currentUser.avatar_path} alt="profile 1"/>);
-  // } else {
-  //   imagePreview = (<img className="img_style_nav" src={Default} alt="profile 2"/>);
-  // }
+  let imagePreview = null;
+  if(currentUser && currentUser.avatar_path){
+    imagePreview = (<img className="img_style_nav" src={currentUser.avatar_path} alt="profile 1"/>);
+  } else {
+    imagePreview = (<img className="img_style_nav" src={Default} alt="profile 2"/>);
+  }
 
   const logout = (e) => {
     e.preventDefault()
@@ -57,7 +57,7 @@ const Navigation = () => {
                   </NavItem>
                   <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>
-                    {/* {imagePreview} */}
+                    {imagePreview}
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem>

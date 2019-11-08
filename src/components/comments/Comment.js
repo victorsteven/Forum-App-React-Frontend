@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
 
 import '../posts/Posts.css';
-import Default from '../../assets/default.png'
+import Default from '../../Assets/default.png'
 import EditComment from './EditComment'
 import DeleteComment from './DeleteComment'
 
