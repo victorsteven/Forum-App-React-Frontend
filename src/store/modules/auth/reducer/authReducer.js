@@ -1,4 +1,4 @@
-import { SIGNUP_SUCCESS, SIGNUP_ERROR, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, BEFORE_STATE, UPDATE_USER_AVATAR_ERROR, BEFORE_AVATAR_STATE, BEFORE_USER_STATE, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_ERROR, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_ERROR } from '../authTypes'
+import { SIGNUP_SUCCESS, SIGNUP_ERROR, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, BEFORE_STATE, UPDATE_USER_AVATAR_ERROR, BEFORE_AVATAR_STATE, BEFORE_USER_STATE, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_ERROR, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_ERROR, DELETE_USER_SUCCESS, DELETE_USER_ERROR  } from '../authTypes'
 import isEmpty from 'lodash/isEmpty';
 
 export const initState = {
@@ -95,12 +95,26 @@ const authReducer = (state = initState, action) => {
         isUpdatingUser: false,
         userError: action.payload
       }
+    case DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: false,
+        currentUser: {},
+        isLoading: false,
+        authSuccessUser: "User Deleted"
+      }
+    case DELETE_USER_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        userError: action.payload
+      }
     case FORGOT_PASSWORD_SUCCESS:
       return {
         ...state,
         isLoading: false,
         forgotError: null,
-        successMessage: "Mesage sent to the email provided"
+        successMessage: "Mesage sent to the email provided. Please check the spam folder"
       }
     case FORGOT_PASSWORD_ERROR:
       return {

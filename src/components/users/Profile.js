@@ -1,24 +1,35 @@
 import React, { Fragment, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from 'react-router-dom';
-import { Label, Input, FormGroup, Button, CardBody, Col, Row, Form, CustomInput } from "reactstrap";
-import { updateUserAvatar, updateUser } from '../../store/modules/auth/actions/authAction';
+import { Label, Input, FormGroup, Button, CardBody, Col, Row, Form, CustomInput, Modal, ModalHeader, ModalFooter, ModalBody } from "reactstrap";
+import { updateUserAvatar, updateUser, deleteUser } from '../../store/modules/auth/actions/authAction';
 import Default from '../../assets/default.png'
 import  './Profile.css'
 import Message from '../utils/Message';
 
 
+
 import Navigation from "../Navigation"
 
-const Profile = () => {
+const Profile = ({ className }) => {
+
+  const [modal, setModal] = useState(false);
+
+  const toggle = (e) => {
+    e.preventDefault();
+    setModal(!modal);
+  } 
 
   const currentUserState = useSelector((state) => state.Auth);
-  console.log("this is the current auth: ", currentUserState.currentUser.id)
+  
+  const AuthID = currentUserState.currentUser ? currentUserState.currentUser.id : ""
 
   const dispatch = useDispatch()
 
   const userAvatarUpdate = (userDetails) => dispatch(updateUserAvatar(userDetails))
   const userUpdate = (userDetails) => dispatch(updateUser(userDetails, clearInput))
+  const deleteAccount = id => dispatch(deleteUser(id))
+
 
   const [file, setFile] = useState();
   const [uploadedFile, setUploadedFile] = useState();
@@ -85,6 +96,17 @@ const Profile = () => {
       new_password: user.new_password
     })
   }
+
+  const shutDown = (e) => {
+    e.preventDefault()
+    deleteAccount(AuthID)
+    // console.log("this is the id to shutdown: ", AuthID)
+  }
+
+  // const refreshPage = () => {
+  //   window.location.reload();
+  // }
+
   return (
     <Fragment>
       <Navigation />
@@ -238,14 +260,50 @@ const Profile = () => {
                     type="submit"
                     block
                   >
-                  Update User
+                  Update
                 </Button>
                 )}
               </FormGroup>
             </Col>
           </Row>
         </Form>
+
+        <Row className="mt-3">
+          <Col sm="12" md={{ size: 10, offset: 1 }}>
+            <FormGroup>
+              <Button onClick={toggle}
+                color="danger"
+                type="submit"
+                block
+              >
+                Shutdown Account
+              </Button>
+            </FormGroup>
+          </Col>
+        </Row>
         </CardBody>
+
+        <Modal isOpen={modal} toggle={toggle} className={className}>
+        <ModalHeader toggle={toggle} className="text-center">Are you sure you want to delete your account?</ModalHeader>
+        <ModalBody toggle={toggle} className="text-center">This will also delete your posts, likes and comments if you created any.</ModalBody>
+        <ModalFooter>
+        { currentUserState.isLoading ? (
+              <button className="btn btn-danger"
+                disabled
+              >
+                Deleting...
+            </button>
+            ) : (
+              <button className="btn btn-danger"
+                onClick={shutDown}
+                type="submit"
+              >
+              Delete
+            </button>
+            )}
+          <Button color="secondary" onClick={toggle}>Cancel</Button>
+        </ModalFooter>
+      </Modal>
       </div>
     </div>
   </Fragment>

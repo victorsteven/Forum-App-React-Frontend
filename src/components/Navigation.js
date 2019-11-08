@@ -90,7 +90,7 @@ const Navigation = () => {
   return (
     <div className="mb-3">
       <Navbar color="light" light expand="md"> 
-          <NavbarBrand className="mx-auto" href="/">Seamflow</NavbarBrand>
+          <NavbarBrand className="mx-auto" href="/"><span style={{ fontWeight: "bold"}}>SeamFlow</span></NavbarBrand>
           <NavbarToggler onClick={() => setIsOpen(!isOpen) } /> 
         <Collapse isOpen={isOpen} navbar> 
           <Nav className="ml-auto" navbar>

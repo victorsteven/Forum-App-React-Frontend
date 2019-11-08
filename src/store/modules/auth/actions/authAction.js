@@ -1,7 +1,7 @@
 import API_ROUTE from "../../../../apiRoute";
 import axios from 'axios'
 import setAuthorizationToken  from "../../../../authorization/authorization";
-import { BEFORE_STATE, SIGNUP_SUCCESS, SIGNUP_ERROR, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, UPDATE_USER_AVATAR_ERROR, BEFORE_AVATAR_STATE, BEFORE_USER_STATE, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_ERROR, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_ERROR } from '../authTypes'
+import { BEFORE_STATE, SIGNUP_SUCCESS, SIGNUP_ERROR, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, UPDATE_USER_AVATAR_ERROR, BEFORE_AVATAR_STATE, BEFORE_USER_STATE, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_ERROR, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_ERROR, DELETE_USER_SUCCESS, DELETE_USER_ERROR } from '../authTypes'
 import  {history} from '../../../../history'
 
 
@@ -65,8 +65,6 @@ export const updateUserAvatar = (updateUserAvatar) => {
 
 export const updateUser = (updateUser, clearInput) => {
 
-  console.log("this is the user details to update: ", updateUser)
-
   return async (dispatch, getState) => {
     dispatch({ type: BEFORE_USER_STATE })
     const { currentUser } = getState().Auth
@@ -82,6 +80,25 @@ export const updateUser = (updateUser, clearInput) => {
     }
   }
 }
+
+export const deleteUser = (id)  => {
+
+  return async dispatch => {
+    dispatch({ type: BEFORE_USER_STATE })
+    try {
+      const res = await axios.delete(`${API_ROUTE}/users/${id}`);
+      let deleteMessage = res.data.response
+      dispatch({ type: DELETE_USER_SUCCESS, payload: deleteMessage })
+      window.localStorage.clear(); //update the localstorage
+      // refreshPage()
+      // window.location.reload();
+      history.push('/');
+    } catch (err) {
+      dispatch({ type: DELETE_USER_ERROR, payload: err.response.data.error })
+    }
+  }
+}
+
 
 export const ForgotPassword = (userEmail, clearInput) => {
 
