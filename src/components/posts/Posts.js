@@ -21,21 +21,17 @@ const Posts = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // let posts = postsSelector.posts.map((post) => {
-  //   return (
-  //     <div  className="mt-2 style-card" key={post.id}>
-  //        <Link to={'/posts/' + post.id} key={post.id}>
-  //         <Post post={post} key={post.id} />
-  //       </Link>
-  //     </div>
-  //   );
-  // })
-  return (
-      <div className="mt-4" style={{ textAlign: "center"}}>
-        <h1>We will be right back in 30 min.</h1>
-        <p>Deploying App...</p>
+  let posts = postsSelector.posts.map((post) => {
+    return (
+      <div  className="mt-2 style-card" key={post.id}>
+         <Link to={'/posts/' + post.id} key={post.id}>
+          <Post post={post} key={post.id} />
+        </Link>
       </div>
-
+    );
+  })
+  return (
+    <div className="container">{posts}</div>
   )
 }
 

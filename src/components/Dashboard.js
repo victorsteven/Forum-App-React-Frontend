@@ -6,7 +6,7 @@ import Navigation from './Navigation'
   const Dashboard = () => {
     return (
       <div>
-        {/* <Navigation /> */}
+        <Navigation />
         <Posts /> 
       </div>
     )

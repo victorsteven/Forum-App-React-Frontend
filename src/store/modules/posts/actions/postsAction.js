@@ -13,7 +13,7 @@ export const fetchPosts = () => {
 
     try {
       const res  = await axios.get(`${API_ROUTE}/posts`)
-      console.log("these are the post: ", res.data.response)
+      // console.log("these are the post: ", res.data.response)
       dispatch({ type: FETCH_POSTS, payload: res.data.response })
     } catch(err){
       dispatch({ type: FETCH_POSTS_ERROR, payload: err.response ? err.respons.data.error : "" })
