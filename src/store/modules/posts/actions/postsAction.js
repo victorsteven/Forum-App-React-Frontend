@@ -8,7 +8,8 @@ export const fetchPosts = () => {
 
   return (dispatch) => {
 
-    axios.get(`${API_ROUTE}/posts`).then(res => {
+    const res = axios.get(`${API_ROUTE}/posts`).then(res => {
+      console.log("these are the posts: ", res)
       dispatch({ type: FETCH_POSTS, payload: res.data.response })
     }).catch(err => {
       dispatch({ type: FETCH_POSTS_ERROR, payload: err.response ? err.respons.data.error : "" })
