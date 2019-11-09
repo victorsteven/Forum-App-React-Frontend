@@ -6,8 +6,9 @@ import Navigation from './Navigation'
   const Dashboard = () => {
     return (
       <div>
-        <Navigation />
-        <Posts /> 
+        {/* <Navigation />
+        <Posts />  */}
+        <h1>We will be right back in 30 min</h1>
       </div>
     )
   }
