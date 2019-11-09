@@ -6,14 +6,18 @@ import  {history} from '../../../../history'
  
 export const fetchPosts = () => {
 
-  return (dispatch) => {
 
-    const res = axios.get(`${API_ROUTE}/posts`).then(res => {
-      console.log("these are the posts: ", res)
+  return async (dispatch) => {
+
+    dispatch({ type: BEFORE_STATE_POST })
+
+    try {
+      const res  = await axios.get(`${API_ROUTE}/posts`)
+      console.log("these are the post: ", res.data.response)
       dispatch({ type: FETCH_POSTS, payload: res.data.response })
-    }).catch(err => {
+    } catch(err){
       dispatch({ type: FETCH_POSTS_ERROR, payload: err.response ? err.respons.data.error : "" })
-    })
+    }
   }
 }
 

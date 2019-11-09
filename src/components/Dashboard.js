@@ -5,10 +5,9 @@ import Navigation from './Navigation'
 
   const Dashboard = () => {
     return (
-      <div className="mt-4" style={{ textAlign: "center"}}>
-        {/* <Navigation />
-        <Posts />  */}
-        <h1>We will be right back in 30 min</h1>
+      <div>
+        {/* <Navigation /> */}
+        <Posts /> 
       </div>
     )
   }
