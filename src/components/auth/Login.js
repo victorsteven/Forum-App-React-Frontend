@@ -110,6 +110,7 @@ const Login = () => {
                 color="primary"
                 type="submit"
                 block
+                disabled={ user.email === "" || user.password === ""  }
               >
                 Login
             </Button>

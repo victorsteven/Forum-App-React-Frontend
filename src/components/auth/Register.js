@@ -111,6 +111,7 @@ const Register = () => {
                 color="primary"
                 type="submit"
                 block
+                disabled={ user.username === "" || user.email === "" || user.password === ""  }
               >
                 Register
             </Button>
