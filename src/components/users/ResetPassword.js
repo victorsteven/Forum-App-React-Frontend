@@ -6,6 +6,8 @@ import { Redirect, Link } from 'react-router-dom';
 import Navigation from '../Navigation'
 import { ResetPassword } from '../../store/modules/auth/actions/authAction';
 import Message from '../utils/Message';
+import Footer from '../Footer'
+
 
 
 const PasswordReset = (props) => {
@@ -136,6 +138,7 @@ const PasswordReset = (props) => {
             </CardBody>
           </Card>
         </div>
+        <Footer />
       </div>
   );
 }

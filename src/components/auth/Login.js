@@ -6,6 +6,8 @@ import { Redirect, Link } from 'react-router-dom';
 import "./Auth.css";
 import Navigation from '../Navigation'
 import { SignIn } from '../../store/modules/auth/actions/authAction';
+import Footer from '../Footer'
+
 
 
 
@@ -128,6 +130,8 @@ const Login = () => {
             </CardBody>
           </Card>
         </div>
+        <Footer />
+
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Posts from './posts/Posts';
 import Navigation from './Navigation'
+import Footer from './Footer'
 
 
   const Dashboard = () => {
@@ -8,6 +9,8 @@ import Navigation from './Navigation'
       <div>
         <Navigation />
         <Posts /> 
+
+        <Footer />
       </div>
     )
   }

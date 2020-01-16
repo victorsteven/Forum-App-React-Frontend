@@ -6,6 +6,8 @@ import { updateUserAvatar, updateUser, deleteUser } from '../../store/modules/au
 import Default from '../../Assets/default.png'
 import  './Profile.css'
 import Message from '../utils/Message';
+import Footer from '../Footer'
+
 
 
 
@@ -299,6 +301,7 @@ const Profile = () => {
       </Modal>
       </div>
     </div>
+    <Footer />
   </Fragment>
   )
 }
