@@ -43,7 +43,7 @@ const Login = () => {
   }
 
     return (
-      <div className="App">
+      <div className="App" id="page-container">
         <div>
           <Navigation />
         </div>

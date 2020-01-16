@@ -6,7 +6,7 @@ import Footer from './Footer'
 
   const Dashboard = () => {
     return (
-      <div>
+      <div id="page-container">
         <Navigation />
         <Posts /> 
 
