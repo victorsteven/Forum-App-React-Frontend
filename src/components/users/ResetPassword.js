@@ -138,7 +138,7 @@ const PasswordReset = (props) => {
             </CardBody>
           </Card>
         </div>
-        <Footer />
+        
       </div>
   );
 }

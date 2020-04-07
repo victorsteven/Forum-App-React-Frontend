@@ -125,7 +125,7 @@ const Register = () => {
             </CardBody>
           </Card>
         </div>
-        <Footer />
+        
       </div>
     );
 }

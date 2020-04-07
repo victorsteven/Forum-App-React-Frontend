@@ -106,7 +106,7 @@ const PostDetails = (props) => {
           }
         </div>
       </div>
-      <Footer />
+      
     </div>
   )
 }

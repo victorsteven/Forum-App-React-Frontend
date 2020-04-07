@@ -89,9 +89,11 @@ const Navigation = () => {
 
   return (
     <div className="mb-3">
+    <div style={{"textAlign": "center"}}> Developed with <span role="img"> ❤️ </span> by <a className="link-style"  href="https://twitter.com/stevensunflash" target="_blank">@stevensunflash</a></div>
       <Navbar color="light" light expand="md"> 
-          <NavbarBrand className="mx-auto" href="/"><span style={{ fontWeight: "bold"}}>SeamFlow</span></NavbarBrand>
-          <NavbarToggler onClick={() => setIsOpen(!isOpen) } /> 
+        <NavbarBrand className="mx-auto" href="/"><span style={{ fontWeight: "bold"}}>SeamFlow</span></NavbarBrand>
+        
+        <NavbarToggler onClick={() => setIsOpen(!isOpen) } /> 
         <Collapse isOpen={isOpen} navbar> 
           <Nav className="ml-auto" navbar>
             { isAuthenticated ? SignedInLinks: SignedOutLinks }

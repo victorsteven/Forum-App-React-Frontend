@@ -111,7 +111,7 @@ const PasswordForgot = () => {
             </CardBody>
           </Card>
         </div>
-        <Footer />
+        
       </div>
   );
 }

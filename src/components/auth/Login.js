@@ -130,7 +130,7 @@ const Login = () => {
             </CardBody>
           </Card>
         </div>
-        <Footer />
+        
 
         </div>
     );

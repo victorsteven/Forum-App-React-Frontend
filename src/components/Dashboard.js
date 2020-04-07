@@ -10,7 +10,7 @@ import Footer from './Footer'
         <Navigation />
         <Posts /> 
 
-        <Footer />
+        
       </div>
     )
   }

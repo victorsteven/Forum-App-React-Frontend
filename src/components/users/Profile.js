@@ -301,7 +301,7 @@ const Profile = () => {
       </Modal>
       </div>
     </div>
-    <Footer />
+    
   </Fragment>
   )
 }
