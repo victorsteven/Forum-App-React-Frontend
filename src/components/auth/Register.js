@@ -6,7 +6,6 @@ import { Redirect, Link } from 'react-router-dom';
 import "./Auth.css";
 import Navigation from '../Navigation'
 import { SignUp } from '../../store/modules/auth/actions/authAction';
-import Footer from '../Footer'
 
 
 

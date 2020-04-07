@@ -11,7 +11,6 @@ import Comments from '../comments/Comments'
 import Comment from '../comments/Comment'
 import EditPost from './EditPost';
 import DeletePost from './DeletePost'
-import Footer from '../Footer'
 
 
 

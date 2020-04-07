@@ -6,7 +6,6 @@ import { Redirect, Link } from 'react-router-dom';
 import Navigation from '../Navigation'
 import { ForgotPassword } from '../../store/modules/auth/actions/authAction';
 import Message from '../utils/Message';
-import Footer from '../Footer'
 
 
 
