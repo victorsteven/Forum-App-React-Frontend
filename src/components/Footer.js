@@ -1,11 +1,16 @@
 import React from 'react'
 
+
+const styleMe = {
+  margin: '20px'
+};
+
 export default () => {
 
 return (
-  <footer style={{"textAlign": "center"}}>
-      Developed with <span role="img"> ❤️ </span> by <a class="link-style"  href="https://twitter.com/stevensunflash" target="_blank">@stevensunflash</a>
-    </footer>
+  <header style={styleMe}>
+    Developed with <span role="img"> ❤️ </span> by <a className="link-style"  href="https://twitter.com/stevensunflash" target="_blank">@stevensunflash</a>
+  </header>
   )
 } 
 
