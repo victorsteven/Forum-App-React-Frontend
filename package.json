@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "autoprefixer": "^9.6.5",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "dayjs": "^1.8.16",
     "jsonwebtoken": "^8.5.1",
